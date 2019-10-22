@@ -13,5 +13,10 @@ namespace SoftEngineering.Controllers
         {
             return View();
         }
+
+        public ActionResult ManualTimetable()
+        {
+            return View();
+        }
     }
 }

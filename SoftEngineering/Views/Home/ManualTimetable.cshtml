@@ -6,11 +6,16 @@
 <head>
     <link href="~/Style/StyleSheet.css" rel="stylesheet" />
     <script src="~/Scripts/JavaScript.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
     <script>
         $(document).ready(function () {
-            var subject = document.getElementById("1").value;
+            $("select").change(function () {
+                $("select option:selected").each(function () {
+                    subject = $(this).text();
+                });
+            })
 
+            var subject = document.getElementById("1").value;
             $("td").click(function () {
                 $(this).text(subject);
             });

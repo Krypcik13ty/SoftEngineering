@@ -5,19 +5,35 @@
 <html>
 <head>
     <link href="~/Style/StyleSheet.css" rel="stylesheet" />
+    <script src="~/Scripts/JavaScript.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var subject = document.getElementById("1").value;
+
+            $("td").click(function () {
+                $(this).text(subject);
+            });
+        });
+    </script>
 </head>
-    <body>
+<body>
+    <div>
         <div>
             <!--brak bootstrapa-->
-            <select class="form-control form-control-lg">
-                <option>Large select1</option>
-                <option>Large select2</option>
-                <option>Large select3</option>
+            <select name="mySelect" class="form-control form-control-lg">
+                <option id="1" value="jezyk polski">jezyk polski</option>
+                <option id="2" value="matma">matma</option>
+                <option id="3" value="wf">wf</option>
             </select>
         </div>
-
+        <div class='1'>dsadsa</div>
+        <br />
+        <br />
+        <br />
+        <br />
         <div>
-            <table border="2">
+            <table border="2" class="hoverTable">
                 <tr>
                     <td>1</td>
                     <td>2</td>
@@ -76,6 +92,7 @@
                 </tr>
             </table>
         </div>
-    </body>
+    </div>
+</body>
 </html>
 

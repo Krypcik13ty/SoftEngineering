@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
     <script>
         $(document).ready(function () {
-            subject = document.getElementById("1").value;
+            subject = document.getElementById("SubElement1").value;
             $("select").change(function () {
                 $("select option:selected").each(function () {
                     subject = $(this).text();
@@ -25,11 +25,11 @@
 <body>
     <div>
         <div>
-            <!--brak bootstrapa-->
-            <select name="mySelect" class="form-control form-control-lg">
-                <option id="1" value="jezyk polski">jezyk polski</option>
-                <option id="2" value="matma">matma</option>
-                <option id="3" value="wf">wf</option>
+            <!--bootstrap w połowie dziala-->
+            <select class="form-control form-control-lg">
+                <option id="SubElement1" value="jezyk polski">jezyk polski</option>
+                <option id="SubElement2" value="matma">matma</option>
+                <option id="SubElement3" value="wf">wf</option>
             </select>
         </div>
         <br />

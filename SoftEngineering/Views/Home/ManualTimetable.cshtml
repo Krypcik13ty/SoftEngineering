@@ -9,14 +9,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
     <script>
         $(document).ready(function () {
+            subject = document.getElementById("1").value;
             $("select").change(function () {
                 $("select option:selected").each(function () {
                     subject = $(this).text();
                 });
             })
 
-            var subject = document.getElementById("1").value;
-            $("td").click(function () {
+            $('td[id="SubjectField"]').click(function () {
                 $(this).text(subject);
             });
         });
@@ -32,7 +32,6 @@
                 <option id="3" value="wf">wf</option>
             </select>
         </div>
-        <div class='1'>dsadsa</div>
         <br />
         <br />
         <br />
@@ -40,60 +39,60 @@
         <div>
             <table border="2" class="hoverTable">
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td>Poniedzialek</td>
+                    <td>Wtorek</td>
+                    <td>sroda</td>
+                    <td>czwartek</td>
+                    <td>piatek</td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
+                    <td id="SubjectField"></td>
                 </tr>
             </table>
         </div>

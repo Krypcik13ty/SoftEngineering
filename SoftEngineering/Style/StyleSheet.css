@@ -7,12 +7,17 @@ table {
 .hoverTable {
     width: 100%;
     border-collapse: collapse;
+    height: 335px;
 }
 
 .hoverTable td {
     padding: 7px;
     border: #4e95f4 1px solid;
     background: #b8d1f3;
+}
+
+td{
+    height: 10%;
 }
 
 .hoverTable td:hover {

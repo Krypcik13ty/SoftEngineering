@@ -9,15 +9,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
     <script>
         $(document).ready(function () {
-            subject = document.getElementById("SubElement1").value;
+            var subject = document.getElementById("SubElement1").value;
+            var titleAtr = document.getElementById("SubElement1").title;
             $("select").change(function () {
                 $("select option:selected").each(function () {
                     subject = $(this).text();
+                    titleAtr = $("select option:selected").attr( "title" );
                 });
             })
 
             $('td[id="SubjectField"]').click(function () {
                 $(this).text(subject);
+                $(this).attr('title', titleAtr);
             });
         });
     </script>
@@ -27,9 +30,9 @@
         <div>
             <!--bootstrap w połowie dziala-->
             <select class="form-control form-control-lg">
-                <option id="SubElement1" value="jezyk polski">jezyk polski</option>
-                <option id="SubElement2" value="matma">matma</option>
-                <option id="SubElement3" value="wf">wf</option>
+                <option id="SubElement1" value="jezyk polski" title="Adrian Gruchowiecki &#10; 8:15 - 9:45">jezyk polski</option>
+                <option id="SubElement2" value="matma" title="Michalus Wojdalus &#10; 8:15 - 9:45">matma</option>
+                <option id="SubElement3" value="wf" title="James Mountain &#10; 8:15 - 9:45">wf</option>
             </select>
         </div>
         <br />

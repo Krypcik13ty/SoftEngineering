@@ -23,3 +23,7 @@ td{
 .hoverTable td:hover {
     background-color: #ffff99;
 }
+
+.elasticHours {
+    visibility: hidden;
+}

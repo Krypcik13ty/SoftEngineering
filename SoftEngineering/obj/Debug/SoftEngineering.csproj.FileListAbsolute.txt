@@ -307,3 +307,11 @@ C:\Users\Don\Desktop\Programming\SoftEngineering\SoftEngineering\bin\roslyn\Syst
 C:\Users\Don\Desktop\Programming\SoftEngineering\SoftEngineering\bin\roslyn\System.Net.Sockets.dll
 C:\Users\Don\Desktop\Programming\SoftEngineering\SoftEngineering\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
 C:\Users\Don\Desktop\Programming\SoftEngineering\SoftEngineering\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\roslyn\System.Globalization.Calendars.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\roslyn\System.Net.Http.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\roslyn\System.Net.Sockets.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\roslyn\System.Threading.Tasks.Extensions.dll

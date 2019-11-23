@@ -5,7 +5,7 @@
 <html lang="pl">
 <head>
     <title>SoftEngineering</title> @* temporary title tag *@
-    <link href="~/Style/StyleSheet.css" rel="stylesheet"/>
+    <link href="~/Style/StyleSheet.css" rel="stylesheet" />
     <script src="~/Scripts/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
     <script>
@@ -15,7 +15,7 @@
             $("select").change(function () {
                 $("select option:selected").each(function () {
                     subject = $(this).text();
-                    titleAtr = $("select option:selected").attr( "title" );
+                    titleAtr = $("select option:selected").attr("title");
                 });
             })
 
@@ -23,7 +23,96 @@
                 $(this).text(subject);
                 $(this).attr('title', titleAtr);
             });
+            //Dane do tabeli (do czasu pobierania ich z bazy)
+            var daysOfWeek = ['', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek'];
+            var hours = ['Godz Rozp. 8:15<br />Godz Zak. 9:45', 'Godz Rozp. 10:00<br />Godz Zak. 11:30', 'Godz Rozp. 11:45<br />Godz Zak. 13:15',
+                'Godz Rozp. 13:30<br />Godz Zak. 15:00', 'Godz Rozp. 15:15<br />Godz Zak. 16:45', 'Godz Rozp. 17:00<br />Godz Zak. 18:30'];
+            var defaultData = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]];
+            var nextData = [[6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10]];
+            var lastData = [['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e']];
+            //----
+
+            //Tworzenie planu
+            arrayToTable = function (defaultData, options = {}) {
+                var table = $('<table />'),
+                    rows = [],
+                    row,
+                    i, j,
+                    defaults = {
+                        th: true, // should we use th elemenst for the first row
+                        thead: false, //should we incldue a thead element with the first row
+                        tfoot: false, // should we include a tfoot element with the last row
+                        attrs: {} // attributes for the table element, can be used to
+                    }
+
+                options = $.extend(defaults, options);
+
+                table.attr(options.attrs)
+
+                // loop through all the rows, we will deal with tfoot and thead later
+                for (i = 0; i < defaultData.length; i++) {
+                    row = $('<tr />');
+                    for (j = 0; j < defaultData[i].length + 1; j++) {
+                        if (i == 0) {
+                            row.append($('<td>').html(daysOfWeek[j]));
+                        }
+                        else if (j == 0) {
+                            row.append($('<td>').html(hours[i - 1]));
+                        }
+                        else {
+                            row.append($('<td id="SubjectField">').html(defaultData[i - 1][j - 1]));
+                        }
+                    }
+                    rows.push(row);
+                }
+
+
+                // add all the rows
+                for (i = 0; i < rows.length; i++) {
+                    table.append(rows[i]);
+                };
+
+                return table;
+            }
+
+            var table = arrayToTable(defaultData, {
+                thead: true,
+                attrs: { class: 'hoverTable', border: 1 }
+            })
+
+            $('div[id="table"]').append(table);
+            //-----
+
+
+            //Zmiana wyświetlanego tygodnia
+            $('button[name="nextWeek"]').click(function () {
+                $("table").remove();
+                var table = arrayToTable(nextData, {
+                    thead: true,
+                    attrs: { class: 'hoverTable', border: 1 }
+                })
+                $('div[id="table"]').append(table);
+            })
+            $('button[name="lastWeek"]').click(function () {
+                $("table").remove();
+                var table = arrayToTable(lastData, {
+                    thead: true,
+                    attrs: { class: 'hoverTable', border: 1 }
+                })
+                $('div[id="table"]').append(table);
+            })
+            //-------
+
+
+            $(document).on('click', 'td[id="SubjectField"]', function () {
+                $(this).text(subject);
+                $(this).attr('title', titleAtr);
+                // for () {
+                //   var = $("td").index(this)
+                ///}
+            });
         });
+
     </script>
 </head>
 <body>
@@ -40,75 +129,12 @@
         <br />
         <br />
         <br />
+        <div id="table">
+
+        </div>
         <div>
-            <table border="1" class="hoverTable">
-                <tr>
-                    <td></td>
-                    <td>Poniedzialek</td>
-                    <td>Wtorek</td>
-                    <td>sroda</td>
-                    <td>czwartek</td>
-                    <td>piatek</td>
-                </tr>
-                <tr>
-                    <td>Godz Rozp. 8:15<br />Godz Zak. 9:45</td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                </tr>
-                <tr>
-                    <td> Godz Rozp. 8:15<br />Godz Zak. 9:45</td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                </tr>
-                <tr>
-                    <td>Godz Rozp. 10:00<br />Godz Zak. 11:30</td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                </tr>
-                <tr>
-                    <td>Godz Rozp. 11:45<br />Godz Zak. 12:15</td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                </tr>
-                <tr>
-                    <td>Godz Rozp. 12:30<br />Godz Zak. 14:00</td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                </tr>
-                <tr>
-                    <td>Godz Rozp. 14:15<br />Godz Zak. 15:30</td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                </tr>
-                <tr>
-                    <td>Godz Rozp. 15:45<br />Godz Zak. 17:15</td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                    <td id="SubjectField"></td>
-                </tr>
-            </table>
+            <button name="lastWeek"><</button><button name="nextWeek">></button>
         </div>
     </div>
 </body>
 </html>
-

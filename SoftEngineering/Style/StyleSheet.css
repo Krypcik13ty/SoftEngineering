@@ -1,27 +1,37 @@
-﻿
-table {
-    width: 50%;
-    margin: 0 auto;
+﻿body {
+    background-color: #ffffff;
 }
 
 .hoverTable {
-    width: 100%;
+    width: 75%;
+    margin-left: 20%;
+    margin-right: 5%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
     border-collapse: collapse;
     height: 335px;
 }
 
 .hoverTable td {
     padding: 7px;
-    border: #4e95f4 1px solid;
-    background: #b8d1f3;
+    height: 10%;
+    border-top: none;
+    border-bottom: #40377c 1px solid;
+    border-left: #40377c 1px solid;
+    border-right: #40377c 1px solid;
+    background: #d8d5ef;
 }
 
-td{
-    height: 10%;
+.hoverTable th {
+    padding: 20px;
+    background: linear-gradient(30deg,#17134d,#40377c);
+    border: none;
+    color: #ffffff;
+    text-align: center;
 }
+
 
 .hoverTable td:hover {
-    background-color: #ffff99;
+    background-color: #9f99c8;
 }
 
 .elasticHours {

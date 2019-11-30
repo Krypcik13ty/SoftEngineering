@@ -32,8 +32,7 @@ namespace SoftEngineering.Controllers
             client.Send(message);
 
             client.Dispose();
-            Console.WriteLine("Message sent");
-            return View();
+            return View("EmailSender");
         }
     }
 }

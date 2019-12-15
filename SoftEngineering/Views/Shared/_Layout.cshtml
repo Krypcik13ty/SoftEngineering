@@ -6,27 +6,28 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link href="~/Style/calendarmake.css" rel="stylesheet" />
+    <link href="~/Style/main.css" rel="stylesheet" />
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <script src="~/Scripts/calendarscipt.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script>
-        function startTime(){
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('txt').innerHTML =
-    h + ":" + m + ":" + s;
-    var t = setTimeout(startTime, 500);
-    }
-    function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML =
+                h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
         }
-        </script>
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
 </head>
 <body style="background-color:powderblue;" onload="startTime()">
     @RenderBody()
@@ -100,6 +101,14 @@
             </form>
         </div>
     </div>
+
+    <footer id="footer">
+        <a class="footer_link" href="https://pila.amu.edu.pl/">Kontakt</a>
+        <br />
+        &copy; Nadnotecki Instytut UAM w Pile
+        <br />
+        <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
+    </footer>
 
     <script src="~/Scripts/calendarscipt.js"></script>
 

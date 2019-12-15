@@ -1,0 +1,28 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Style/main.css" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    
+    @RenderSection("scripts", required: false)
+    <div>
+        @RenderBody()
+    </div>
+    
+    <footer id="footer">
+        <a class="footer_link" href="https://pila.amu.edu.pl/">Kontakt</a>
+        <br />
+        &copy; Nadnotecki Instytut UAM w Pile
+        <br />
+        <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
+    </footer>
+</body>
+</html>

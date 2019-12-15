@@ -1,11 +1,13 @@
 ﻿
 @{
     ViewBag.Title = "ManualTimetable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <html lang="pl">
 <head>
     <title>SoftEngineering</title> @* temporary title tag *@
     <link href="~/Style/StyleSheet.css" rel="stylesheet" />
+    <link href="~/Style/main.css" rel="stylesheet" />
     <script src="~/Scripts/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
     <script>
@@ -120,6 +122,15 @@
         <i class="fa fa-clock-o"></i>
         Zarządzanie funkcjami<strong> administratora</strong>
     </a>
+    <div id="header_nav">
+        <ul>
+            <li><a class="active" href="#">Plan Zajęć</a></li>
+            <li><a href="https://pila.amu.edu.pl/">Panel Administracyjny</a></li>
+            <li><a href="https://pila.amu.edu.pl/">Zarządzanie kontem</a></li>
+            <li><a href="https://pila.amu.edu.pl/">Kontakt</a></li>
+            <li class="logout"><a href="https://pila.amu.edu.pl/">Wyloguj</a></li>
+        </ul>
+    </div>
     <div>
         <div id="menu">
             <!--bootstrap w połowie dziala-->

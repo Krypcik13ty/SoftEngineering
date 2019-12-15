@@ -10,78 +10,96 @@
     <script src="~/Scripts/calendarscipt.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script>
+        function startTime(){
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+        }
+        </script>
 </head>
-<body style="background-color:powderblue;">
+<body style="background-color:powderblue;" onload="startTime()">
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-   
-        <div class="container col-sm-2 col-md-7 col-lg-4 mt-5" id="positioning">
-            <div class="card">
-                <h3 class="card-header" id="monthAndYear"></h3>
-                <table class="table table-bordered table-responsive-sm" id="calendar">
-                    <thead>
-                        <tr>
+    <div id="txt"></div>
 
-                            <th>Nie</th>
-                            <th>Pon</th>
-                            <th>Wto</th>
-                            <th>Sro</th>
-                            <th>Czw</th>
-                            <th>Pia</th>
-                            <th>Sob</th>
-                        </tr>
-                    </thead>
+    <div class="container col-sm-2 col-md-7 col-lg-4 mt-5" id="positioning">
+        <div class="card">
+            <h3 class="card-header" id="monthAndYear"></h3>
+            <table class="table table-bordered table-responsive-sm" id="calendar">
+                <thead>
+                    <tr>
 
-                    <tbody id="calendar-body">
-                    </tbody>
-                </table>
+                        <th>Nie</th>
+                        <th>Pon</th>
+                        <th>Wto</th>
+                        <th>Sro</th>
+                        <th>Czw</th>
+                        <th>Pia</th>
+                        <th>Sob</th>
+                    </tr>
+                </thead>
 
-                <div class="form-inline">
+                <tbody id="calendar-body">
+                </tbody>
+            </table>
 
-                    <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Poprzedni</button>
+            <div class="form-inline">
 
-                    <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Następny</button>
-                </div>
-                <br />
-                <form class="form-inline">
-                    <label class="lead mr-2 ml-2" for="month">Przejdź do: </label>
-                    <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
-                        <option value=0>Styczeń</option>
-                        <option value=1>Luty</option>
-                        <option value=2>Marzec</option>
-                        <option value=3>Kwiecień</option>
-                        <option value=4>Maj</option>
-                        <option value=5>Czerwiec</option>
-                        <option value=6>Lipiec</option>
-                        <option value=7>Sierpień</option>
-                        <option value=8>Wczesień</option>
-                        <option value=9>Październik</option>
-                        <option value=10>Listopad</option>
-                        <option value=11>Grudzień</option>
-                    </select>
+                <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Poprzedni</button>
 
-
-                    <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
-                        <option value=2018>2018</option>
-                        <option value=2019>2019</option>
-                        <option value=2020>2020</option>
-                        <option value=2021>2021</option>
-                        <option value=2022>2022</option>
-                        <option value=2023>2023</option>
-                        <option value=2024>2024</option>
-                        <option value=2025>2025</option>
-                        <option value=2026>2026</option>
-                        <option value=2027>2027</option>
-                        <option value=2028>2028</option>
-                        <option value=2029>2029</option>
-                        <option value=2030>2030</option>
-                    </select>
-                </form>
+                <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Następny</button>
             </div>
+            <br />
+            <form class="form-inline">
+                <label class="lead mr-2 ml-2" for="month">Przejdź do: </label>
+                <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+                    <option value=0>Styczeń</option>
+                    <option value=1>Luty</option>
+                    <option value=2>Marzec</option>
+                    <option value=3>Kwiecień</option>
+                    <option value=4>Maj</option>
+                    <option value=5>Czerwiec</option>
+                    <option value=6>Lipiec</option>
+                    <option value=7>Sierpień</option>
+                    <option value=8>Wczesień</option>
+                    <option value=9>Październik</option>
+                    <option value=10>Listopad</option>
+                    <option value=11>Grudzień</option>
+                </select>
+
+
+                <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
+                    <option value=2018>2018</option>
+                    <option value=2019>2019</option>
+                    <option value=2020>2020</option>
+                    <option value=2021>2021</option>
+                    <option value=2022>2022</option>
+                    <option value=2023>2023</option>
+                    <option value=2024>2024</option>
+                    <option value=2025>2025</option>
+                    <option value=2026>2026</option>
+                    <option value=2027>2027</option>
+                    <option value=2028>2028</option>
+                    <option value=2029>2029</option>
+                    <option value=2030>2030</option>
+                </select>
+            </form>
         </div>
+    </div>
 
     <script src="~/Scripts/calendarscipt.js"></script>
 

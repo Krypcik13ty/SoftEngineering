@@ -18,5 +18,21 @@ namespace SoftEngineering.Controllers
         {
             return View();
         }
+        public ActionResult Accmanagment()
+        {
+            return View();
+        }
+        public ActionResult AdminPanel()
+        {
+            return View();
+        }
+        public ActionResult Contact()
+        {
+            return View();
+        }
+        public ActionResult LogOut()
+        {
+            return View();
+        }
     }
 }

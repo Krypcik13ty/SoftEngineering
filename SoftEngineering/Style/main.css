@@ -465,3 +465,40 @@ button:hover {
 
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////[INDEX - LOGIN PAGE] END  */
+
+#logOut_message {
+    width: 100%;
+    position: absolute;
+    top: 20%;
+    color: #3374FF;
+    text-align: center;
+    text-decoration: none;
+    font-family: Arial;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+#logIn_again {
+    width: 10px;
+    left: 45%;
+    position: absolute;
+    top: 30%;
+}
+
+#logIn_again a {
+    color: #3374FF;
+    text-align: center;
+    text-decoration: none;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#logIn_again a:hover {
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+}

@@ -3,12 +3,13 @@
 }
 
 .hoverTable {
-    width: 75%;
-    margin-left: 20%;
+    width: 60%;
+    margin-left: 35%;
     margin-right: 5%;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
     border-collapse: collapse;
     height: 335px;
+    table-layout: fixed;
 }
 
 .hoverTable td {

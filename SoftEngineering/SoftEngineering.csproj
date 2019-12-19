@@ -210,6 +210,10 @@
     <None Include="Scripts\umd\popper-utils.min.js.map" />
     <None Include="Scripts\umd\popper.js.map" />
     <None Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Views\Home\AdminPanel.cshtml" />
+    <Content Include="Views\Home\Accmanagment.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\LogOut.cshtml" />
     <Content Include="Views\Temporary\TemporaryView.cshtml" />
   </ItemGroup>
   <ItemGroup>

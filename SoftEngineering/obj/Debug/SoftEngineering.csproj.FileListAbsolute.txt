@@ -777,3 +777,9 @@ C:\Users\MK\Desktop\proj\SoftEngineering\SoftEngineering\bin\roslyn\vbc.exe.conf
 C:\Users\MK\Desktop\proj\SoftEngineering\SoftEngineering\bin\roslyn\vbc.rsp
 C:\Users\MK\Desktop\proj\SoftEngineering\SoftEngineering\bin\roslyn\VBCSCompiler.exe
 C:\Users\MK\Desktop\proj\SoftEngineering\SoftEngineering\bin\roslyn\VBCSCompiler.exe.config
+C:\Projekt\SoftEngineering\SoftEngineering\bin\pl\System.Web.Helpers.resources.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\pl\System.Web.Mvc.resources.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\pl\System.Web.Razor.resources.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\pl\System.Web.WebPages.resources.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\pl\System.Web.WebPages.Deployment.resources.dll
+C:\Projekt\SoftEngineering\SoftEngineering\bin\pl\System.Web.WebPages.Razor.resources.dll

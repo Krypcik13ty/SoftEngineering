@@ -502,3 +502,39 @@ button:hover {
     font-size: 15px;
     font-weight: bold;
 }
+
+/*//////////////////////////////////////////////////////////////////
+[ ADMIN PANEL LOOK]*/
+
+.dropdownpanel {
+    background-color: dodgerblue;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 1%;
+    width: 96%;
+    margin-left: 2%;
+    position: relative;
+    border-radius: 12px;
+}
+.aktywowanie, .dropdownpanel:hover {
+        background-color: darkcyan;
+}
+.zawartosc {
+    padding: 0 14px;
+    display: none;
+    overflow: hidden;
+    background-color: lightblue;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: -1%;
+    position: relative;
+    top: 2%;
+    border-radius: 12px;
+}

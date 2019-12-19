@@ -7,6 +7,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Style/main.css" rel="stylesheet" />
     <title></title>
 </head>
 <body>
@@ -19,5 +20,45 @@
             <li class="logout"><a href="./LogOut">Wyloguj</a></li>
         </ul>
     </div>
+    <br/>
+    <button type="button" class="dropdownpanel">DODAWANIE ZAJĘĆ</button>
+    <div class="zawartosc">
+        <p>TUTAJ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?</p>
+    </div>
+    <button type="button" class="dropdownpanel">ZARZĄDZANIE UŻYTKOWNIKAMI</button>
+    <div class="zawartosc">
+        <p>
+            TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?
+            TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?
+            TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?
+            TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?
+            TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?
+            TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?
+        </p>
+    </div>
+    <button type="button" class="dropdownpanel">EDYCJA ZAJĘĆ</button>
+    <div class="zawartosc">
+        <p>TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?</p>
+    </div>
+    <button type="button" class="dropdownpanel">DODAJ POWIADOMIENIE</button>
+    <div class="zawartosc">
+        <p>TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?</p>
+    </div>
+    <script>
+        var coll = document.getElementsByClassName("dropdownpanel");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("aktywowanie");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    </script>
 </body>
 </html>

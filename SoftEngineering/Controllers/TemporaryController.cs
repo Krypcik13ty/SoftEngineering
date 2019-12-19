@@ -7,6 +7,8 @@ using System.Net;
 using System.Net.Mail;
 using System.Data.SqlClient;
 using System.Windows;
+using MySql.Data.MySqlClient;
+
 
 namespace SoftEngineering.Controllers
 {
@@ -50,26 +52,35 @@ namespace SoftEngineering.Controllers
 
         public ActionResult connectToDB()
         {
-            string connetionString = null;
-            SqlConnection connection;
-            SqlCommand command;
-            string sqlcommand = "SELECT * from Accounts";
+            string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=test;";
+            string query = "SELECT * FROM user";
 
-            connetionString = "Data Source=ServerName;Initial Catalog=DatabaseName;User ID=UserName;Password=Password";
-
-            connection = new SqlConnection(connetionString);
+            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+            MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+            commandDatabase.CommandTimeout = 60;
+            MySqlDataReader reader;
             try
             {
-                connection.Open();
-                command = new SqlCommand(sqlcommand, connection);
-                command.ExecuteNonQuery();
-                command.Dispose();
-                connection.Close();
-                MessageBox.Show("Połączono");
+                databaseConnection.Open();
+                reader = commandDatabase.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        // As our database, the array will contain : ID 0, FIRST_NAME 1,LAST_NAME 2, ADDRESS 3
+                        string[] row = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3) };
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+                databaseConnection.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Błąd połączenia");
+                MessageBox.Show(ex.Message);
             }
             return View("TemporaryView");
         }

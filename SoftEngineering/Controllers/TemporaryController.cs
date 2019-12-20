@@ -52,7 +52,7 @@ namespace SoftEngineering.Controllers
 
         public ActionResult connectToDB()
         {
-            string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=test;";
+            string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=test;CharSet=utf8";
             string query = "SELECT * FROM user";
 
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
@@ -69,7 +69,7 @@ namespace SoftEngineering.Controllers
                     while (reader.Read())
                     {
                         // As our database, the array will contain : ID 0, FIRST_NAME 1,LAST_NAME 2, ADDRESS 3
-                        string[] row = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3) };
+                        string[] row = { reader.GetString(0), reader.GetString(1)};
                     }
                 }
                 else

@@ -521,20 +521,22 @@ button:hover {
     width: 96%;
     margin-left: 2%;
     position: relative;
-    border-radius: 12px;
 }
 .aktywowanie, .dropdownpanel:hover {
         background-color: darkcyan;
 }
 .zawartosc {
-    padding: 0 14px;
+    padding: 14px 14px;
     display: none;
     overflow: hidden;
     background-color: lightblue;
     width: 96%;
     margin-left: 2%;
     margin-top: -1%;
+    margin-bottom: 30px;
     position: relative;
     top: 2%;
     border-radius: 12px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }

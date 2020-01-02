@@ -1,24 +1,37 @@
 body, html {
+    width: 100%;
     height: 100%;
 }
-
 
 * {
     margin: 0px;
     padding: 0px;
 }
 
+.main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
 /*////////////////////LAYOUT - HEADER (NAVBAR), FOOTER////////////////////////////////*/
 
-#header_nav ul {
-    position: fixed;
-    top: 0;
+
+#header_nav {
+    margin-bottom: 30px;
     width: 100%;
+    flex-shrink: 0;
+}
+
+#header_nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    left: 0;
     overflow: hidden;
     background-color: #333;
+    display: block;
 }
 
 #header_nav li {
@@ -50,39 +63,47 @@ body, html {
 }
 
 #footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
+
+    margin-top: auto;
+    flex-shrink: 0;
     width: 100%;
     border-top: 1px solid #17134d;
+    background-color: #333;
     text-align: center;
     padding: 7px;
-    background-color: #d3d3d3;
-    color: #555555;
-    text-align: center;
-    font-family: Arial;
-    font-size: 15px;
+    color: #e6e6e6;
 }
 
 .footer_link {
-    color: #555555;
+    color: #e6e6e6;
     font-family: Arial;
     font-size: 15px;
     text-decoration: none;
 }
 
 .footer_link:hover{
-    color: #000;
+    color: #3374FF;
     text-decoration: none;
 }
 
+
+
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////[CONTENT] START  */
+.content_wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////[CONTENT] END  */
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////[INDEX - LOGIN PAGE] START  */
-
-
-
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
-
 @font-face {
     font-family: Raleway-Regular;
     src: url('~/Style/fonts/raleway/Raleway-Regular.ttf');

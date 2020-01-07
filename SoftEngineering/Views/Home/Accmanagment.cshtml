@@ -11,39 +11,49 @@
     <title></title>
 </head>
 <body>
-    <div id="header_nav">
-        <ul>
-            <li><a href="./ManualTimetable">Plan Zajęć</a></li>
-            <li><a href="./AdminPanel">Panel Administracyjny</a></li>
-            <li><a class="active" href="#">Zarządzanie kontem</a></li>
-            <li><a href="./Contact">Kontakt</a></li>
-            <li class="logout"><a href="./LogOut">Wyloguj</a></li>
-        </ul>
+    <div class="main">
+        <div id="header_nav">
+            <ul>
+                <li><a href="./ManualTimetable">Plan Zajęć</a></li>
+                <li><a href="./AdminPanel">Panel Administracyjny</a></li>
+                <li><a class="active" href="#">Zarządzanie kontem</a></li>
+                <li><a href="./Contact">Kontakt</a></li>
+                <li class="logout"><a href="./LogOut">Wyloguj</a></li>
+            </ul>
+        </div>
+        <div class="content_wrapper">
+            <button type="button" class="dropdownpanel">ZMIANA HASŁA</button>
+            <div class="zawartosc">
+                <p>TUTAJ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?</p>
+            </div>
+            <button type="button" class="dropdownpanel">ZMIANA ADRESU EMAIL</button>
+            <div class="zawartosc">
+                <p>TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?</p>
+            </div>
+        </div>
+        <div id="footer">
+            <a class="footer_link" href="https://pila.amu.edu.pl/">Kontakt</a>
+            <br />
+            &copy; Nadnotecki Instytut UAM w Pile
+            <br />
+            <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
+        </div>
     </div>
-    <br />
-    <button type="button" class="dropdownpanel">ZMIANA HASŁA</button>
-    <div class="zawartosc">
-        <p>TUTAJ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?</p>
-    </div>
-    <button type="button" class="dropdownpanel">ZMIANA ADRESU EMAIL</button>
-    <div class="zawartosc">
-        <p>TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?</p>
-    </div>
-    <script>
-        var coll = document.getElementsByClassName("dropdownpanel");
-        var i;
+        <script>
+            var coll = document.getElementsByClassName("dropdownpanel");
+            var i;
 
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function () {
-                this.classList.toggle("aktywowanie");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                } else {
-                    content.style.display = "block";
-                }
-            });
-        }
-    </script>
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function () {
+                    this.classList.toggle("aktywowanie");
+                    var content = this.nextElementSibling;
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                    } else {
+                        content.style.display = "block";
+                    }
+                });
+            }
+        </script>
 </body>
 </html>

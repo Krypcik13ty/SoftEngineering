@@ -561,3 +561,93 @@ button:hover {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
+
+
+
+/*//////////////////////////////////////////////////////////////////[ CONTACT ]*/
+
+.contact_wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: white;
+    justify-content: space-around;
+}
+
+.contact_form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    max-width: 880px;
+    min-width: 550px;
+    height: 450px;
+    background: rgba(0, 0, 0, 0.32);
+    text-align: left;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.contact_form .contact_id, .contact_info  {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: left;
+    height: 80px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.contact_form .contact_text {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.contact_text .content {
+}
+
+.contact_id .contact_imie, .contact_nazwisko {
+    display: inline-block;
+}
+
+.contact_info .contact_email, .contact_temat {
+    display: inline-block;
+}
+
+.contact_nazwisko label {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.contact_imie label {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.contact_email label {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.contact_temat label {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+.content textarea {
+    min-width: 100%;
+  
+    resize: none;
+}
+

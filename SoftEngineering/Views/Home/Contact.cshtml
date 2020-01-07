@@ -10,14 +10,57 @@
     <title></title>
 </head>
 <body>
-    <div id="header_nav">
-        <ul>
-            <li><a href="./ManualTimetable">Plan Zajęć</a></li>
-            <li><a href="./AdminPanel">Panel Administracyjny</a></li>
-            <li><a href="./Accmanagment">Zarządzanie kontem</a></li>
-            <li><a class="active" href="#">Kontakt</a></li>
-            <li class="logout"><a href="./LogOut">Wyloguj</a></li>
-        </ul>
+    <div class="main">
+        <div id="header_nav">
+            <ul>
+                <li><a href="./ManualTimetable">Plan Zajęć</a></li>
+                <li><a href="./AdminPanel">Panel Administracyjny</a></li>
+                <li><a href="./Accmanagment">Zarządzanie kontem</a></li>
+                <li><a class="active" href="#">Kontakt</a></li>
+                <li class="logout"><a href="./LogOut">Wyloguj</a></li>
+            </ul>
+        </div>
+        <section class="contact_wrapper">
+            <form class="contact_form">
+                <div class="contact_id">
+                    <div class="contact_imie">
+                        <label for="imie">Imię: </label>
+                        <input id="imie" type="text" name="imie">
+                    </div>
+                    <div class="contact_nazwisko">
+                        <label for="nazwisko">Nazwisko: </label>
+                        <input id="nazwisko" type="text" name="nazwisko">
+                    </div>
+                </div>
+                <div class="contact_info">
+                    <div class="contact_email">
+                        <label for="email">E-mail: </label>
+                        <input id="email" type="text" name="email">
+                    </div>
+                    <div class="contact_temat">
+                        <label for="Tytuł zapytania:">Temat</label>
+                        <input id="temat" type="text" name="temat">
+                    </div>
+                </div>
+                <br />
+                <div class="contact_text">
+                    <div class="content">
+                        <label id="content" for="content">Treść</label>
+                        <textarea name="content" id=""></textarea>
+                    </div>
+                </div>
+                <div class="contact_button">
+                    <button type="submit">SUBMIT</button>
+                </div>
+            </form>
+        </section>
+        <div id="footer">
+            <a class="footer_link" href="https://pila.amu.edu.pl/">Kontakt</a>
+            <br />
+            &copy; Nadnotecki Instytut UAM w Pile
+            <br />
+            <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
+        </div>
     </div>
 </body>
 </html>

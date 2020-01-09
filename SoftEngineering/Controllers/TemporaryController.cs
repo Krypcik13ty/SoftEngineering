@@ -52,7 +52,17 @@ namespace SoftEngineering.Controllers
 
         public ActionResult connectToDB()
         {
-            string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=test;CharSet=utf8";
+            /*
+             * # 2 STEPS to connect to database:
+             * #1
+            in my.ini file in xampp you must change these lines
+            character-set-server=utf8
+            collation-server=utf8_general_ci
+            --------------
+             * #2
+             * In database 'Metoda porównywania napisów' = 'utf8_general_ci'	
+            */
+            string connectionString = "datasource=127.0.0.1; port=3306; username=root; password=; database=testt; CharSet=utf8";
             string query = "SELECT * FROM user";
 
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
@@ -69,7 +79,8 @@ namespace SoftEngineering.Controllers
                     while (reader.Read())
                     {
                         // As our database, the array will contain : ID 0, FIRST_NAME 1,LAST_NAME 2, ADDRESS 3
-                        string[] row = { reader.GetString(0), reader.GetString(1)};
+                        string[] row = { reader.GetString(0), reader.GetString(1) };
+                        MessageBox.Show("dasdaa");
                     }
                 }
                 else

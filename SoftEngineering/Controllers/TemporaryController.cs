@@ -14,10 +14,11 @@ namespace SoftEngineering.Controllers
 {
     public class TemporaryController : Controller
     {
+        private string connectionString = "datasource=127.0.0.1; port=3306; username=root; password=; database=testt; CharSet=utf8";
+        private string query = "SELECT * FROM user";
         // GET: Temporary
         public ActionResult TemporaryView()
         {
-            //sendMail();
             return View();
         }
 
@@ -49,6 +50,31 @@ namespace SoftEngineering.Controllers
             }
             return View("TemporaryView");
         }
+        private void OpenConnection(MySqlConnection databaseConnection)
+        {
+            try
+            {
+                databaseConnection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 0:
+                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        break;
+
+                    case 1045:
+                        MessageBox.Show("Invalid username/password, please try again");
+                        break;
+                }
+            }
+        }
+
+        private void CloseConnection(MySqlConnection databaseConnection)
+        {
+            databaseConnection.Close();
+        }
 
         public ActionResult connectToDB()
         {
@@ -62,16 +88,14 @@ namespace SoftEngineering.Controllers
              * #2
              * In database 'Metoda porównywania napisów' = 'utf8_general_ci'	
             */
-            string connectionString = "datasource=127.0.0.1; port=3306; username=root; password=; database=testt; CharSet=utf8";
-            string query = "SELECT * FROM user";
-
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+            OpenConnection(databaseConnection);
+
             MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
             commandDatabase.CommandTimeout = 60;
             MySqlDataReader reader;
             try
             {
-                databaseConnection.Open();
                 reader = commandDatabase.ExecuteReader();
 
                 if (reader.HasRows)
@@ -80,19 +104,20 @@ namespace SoftEngineering.Controllers
                     {
                         // As our database, the array will contain : ID 0, FIRST_NAME 1,LAST_NAME 2, ADDRESS 3
                         string[] row = { reader.GetString(0), reader.GetString(1) };
-                        MessageBox.Show("dasdaa");
+                        MessageBox.Show(row[1]);
                     }
                 }
                 else
                 {
                     Console.WriteLine("No rows found.");
                 }
-                databaseConnection.Close();
+                CloseConnection(databaseConnection);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
             return View("TemporaryView");
         }
     }

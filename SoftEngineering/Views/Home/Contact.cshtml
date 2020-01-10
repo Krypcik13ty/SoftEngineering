@@ -2,6 +2,8 @@
     Layout = "~/Views/Shared/_Page_Layout.cshtml";
 }
 
+@model SoftEngineering.Models.MailSender
+
 <!DOCTYPE html>
 
 <html>
@@ -21,38 +23,41 @@
             </ul>
         </div>
         <section class="contact_wrapper">
-            <form class="contact_form">
-                <div class="contact_id">
-                    <div class="contact_imie">
-                        <label for="imie">Imię: </label>
-                        <input id="imie" type="text" name="imie">
+            @using (Html.BeginForm("ContactMail", "Home", FormMethod.Post))
+            {
+                <form class="contact_form">
+                    <div class="contact_id">
+                        <div class="contact_imie">
+                            <label for="imie">Imię: </label>
+                            @Html.TextBoxFor(model => model.firstname)
+                        </div>
+                        <div class="contact_nazwisko">
+                            <label for="nazwisko">Nazwisko: </label>
+                            @Html.TextBoxFor(model => model.lastname)
+                        </div>
                     </div>
-                    <div class="contact_nazwisko">
-                        <label for="nazwisko">Nazwisko: </label>
-                        <input id="nazwisko" type="text" name="nazwisko">
+                    <div class="contact_info">
+                        <div class="contact_email">
+                            <label for="email">E-mail: </label>
+                            @Html.TextBoxFor(model => model.mailadress)
+                        </div>
+                        <div class="contact_temat">
+                            <label for="Tytuł zapytania:">Temat</label>
+                            @Html.TextBoxFor(model => model.mailsubject)
+                        </div>
                     </div>
-                </div>
-                <div class="contact_info">
-                    <div class="contact_email">
-                        <label for="email">E-mail: </label>
-                        <input id="email" type="text" name="email">
+                    <br />
+                    <div class="contact_text">
+                        <div class="content">
+                            <label id="content" for="content">Treść</label>
+                            @Html.TextBoxFor(model => model.mailtext)
+                        </div>
                     </div>
-                    <div class="contact_temat">
-                        <label for="Tytuł zapytania:">Temat</label>
-                        <input id="temat" type="text" name="temat">
+                    <div class="contact_button">
+                        <button type="submit">Wyślij</button>
                     </div>
-                </div>
-                <br />
-                <div class="contact_text">
-                    <div class="content">
-                        <label id="content" for="content">Treść</label>
-                        <textarea name="content" id=""></textarea>
-                    </div>
-                </div>
-                <div class="contact_button">
-                    <button type="submit">SUBMIT</button>
-                </div>
-            </form>
+                </form>
+            }
         </section>
         <div id="footer">
             <a class="footer_link" href="https://pila.amu.edu.pl/">Kontakt</a>

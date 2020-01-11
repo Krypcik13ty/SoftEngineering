@@ -961,3 +961,9 @@ C:\Users\SoChi\source\repos\SoftEngineering\SoftEngineering\obj\Debug\SoftEngine
 C:\Users\SoChi\source\repos\SoftEngineering\SoftEngineering\obj\Debug\SoftEngineering.csproj.CopyComplete
 C:\Users\SoChi\source\repos\SoftEngineering\SoftEngineering\obj\Debug\SoftEngineering.dll
 C:\Users\SoChi\source\repos\SoftEngineering\SoftEngineering\obj\Debug\SoftEngineering.pdb
+C:\Users\MK\Desktop\projekt\SoftEngineering\SoftEngineering\bin\pl\System.Web.Helpers.resources.dll
+C:\Users\MK\Desktop\projekt\SoftEngineering\SoftEngineering\bin\pl\System.Web.Mvc.resources.dll
+C:\Users\MK\Desktop\projekt\SoftEngineering\SoftEngineering\bin\pl\System.Web.Razor.resources.dll
+C:\Users\MK\Desktop\projekt\SoftEngineering\SoftEngineering\bin\pl\System.Web.WebPages.resources.dll
+C:\Users\MK\Desktop\projekt\SoftEngineering\SoftEngineering\bin\pl\System.Web.WebPages.Deployment.resources.dll
+C:\Users\MK\Desktop\projekt\SoftEngineering\SoftEngineering\bin\pl\System.Web.WebPages.Razor.resources.dll

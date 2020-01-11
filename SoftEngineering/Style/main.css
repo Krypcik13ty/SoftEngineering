@@ -15,6 +15,44 @@ body, html {
     align-items: stretch;
 }
 
+.hoverTable {
+    width: 60%;
+    margin-left: 35%;
+    margin-right: 5%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    border-collapse: collapse;
+    height: 335px;
+    table-layout: fixed;
+}
+
+    .hoverTable td {
+        padding: 7px;
+        height: 10%;
+        border-top: #3374FF 1px solid;
+        border-bottom: #3374FF 1px solid;
+        border-left: #3374FF 1px solid;
+        border-right: #3374FF 1px solid;
+        background: #ffffff;
+    }
+
+    .hoverTable th {
+        padding: 20px;
+        background: linear-gradient(30deg,#3374FF,#93b5fe);
+        border: #3374FF 1px solid;
+        color: #ffffff;
+        text-align: center;
+    }
+
+
+    .hoverTable td:hover {
+        background-color: #93b5fe;
+        cursor: pointer;
+    }
+
+.elasticHours {
+    visibility: hidden;
+}
+
 /*////////////////////LAYOUT - HEADER (NAVBAR), FOOTER////////////////////////////////*/
 
 
@@ -58,9 +96,9 @@ body, html {
     color: #e6e6e6;
 }
 
-#header_nav li a.active {
-    background: linear-gradient(30deg,#17134d,#40377c);
-}
+    #header_nav li a.active {
+        background: linear-gradient(30deg,#3374FF,#93b5fe);
+    }
 
 #footer {
 
@@ -528,7 +566,7 @@ button:hover {
 [ ADMIN PANEL LOOK]*/
 
 .dropdownpanel {
-    background-color: dodgerblue;
+    background-color: #3374FF;
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -543,14 +581,14 @@ button:hover {
     margin-left: 2%;
     position: relative;
 }
-.aktywowanie, .dropdownpanel:hover {
-        background-color: darkcyan;
-}
+    .aktywowanie, .dropdownpanel:hover {
+        background-color: #666666;
+    }
 .zawartosc {
     padding: 14px 14px;
     display: none;
     overflow: hidden;
-    background-color: lightblue;
+    background-color: #e6e6e6;
     width: 96%;
     margin-left: 2%;
     margin-top: -1%;

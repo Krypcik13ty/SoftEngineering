@@ -15,7 +15,7 @@ namespace SoftEngineering.Controllers
     public class TemporaryController : Controller
     {
         private string connectionString = "datasource=127.0.0.1; port=3306; username=root; password=; database=testt; CharSet=utf8";
-        private string query = "SELECT * FROM user";
+        private string query = "SELECT login, typ FROM accounts";
         // GET: Temporary
         public ActionResult TemporaryView()
         {
@@ -104,7 +104,7 @@ namespace SoftEngineering.Controllers
                     {
                         // As our database, the array will contain : ID 0, FIRST_NAME 1,LAST_NAME 2, ADDRESS 3
                         string[] row = { reader.GetString(0), reader.GetString(1) };
-                        MessageBox.Show(row[1]);
+                        MessageBox.Show(CheckUserType(row));
                     }
                 }
                 else
@@ -119,6 +119,22 @@ namespace SoftEngineering.Controllers
             }
 
             return View("TemporaryView");
+        }
+
+        private string CheckUserType(string[] row)
+        {
+            if(row[1] == "Admin")
+            {
+                return "admin";
+            }
+            else if(row[1] == "Wykładowca")
+            {
+                return "wykladowca";
+            }
+            else
+            {
+                return "User";
+            }
         }
     }
 }

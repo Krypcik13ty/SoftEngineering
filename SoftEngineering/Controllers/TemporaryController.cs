@@ -7,6 +7,8 @@ using System.Net;
 using System.Net.Mail;
 using System.Data.SqlClient;
 using System.Windows;
+using System.Timers;
+using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 
@@ -19,6 +21,7 @@ namespace SoftEngineering.Controllers
         // GET: Temporary
         public ActionResult TemporaryView()
         {
+            GetTimer();
             return View();
         }
 
@@ -119,6 +122,17 @@ namespace SoftEngineering.Controllers
             }
 
             return View("TemporaryView");
+        }
+        public static void GetTimer()
+        {
+            Timer timer = new Timer(10000);
+            timer.Elapsed += async (sender, e) => await HandleTimer();
+            timer.Start();
+        }
+        private static Task HandleTimer()
+        {
+            MessageBox.Show("Wyslano maila");
+            throw new NotImplementedException();
         }
 
         private string CheckUserType(string[] row)

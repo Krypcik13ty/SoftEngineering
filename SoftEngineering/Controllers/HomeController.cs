@@ -35,6 +35,10 @@ namespace SoftEngineering.Controllers
         {
             return View();
         }
+        public ActionResult ConfirmedReg()
+        {
+            return View();
+        }
         public ActionResult Contact()
         {
             return View();

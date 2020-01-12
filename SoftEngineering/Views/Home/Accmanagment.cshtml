@@ -92,10 +92,15 @@
     </div>
         <script>
             var coll = document.getElementsByClassName("dropdownpanel");
-            var i;
+    
 
             for (i = 0; i < coll.length; i++) {
                 coll[i].addEventListener("click", function () {
+                        for (var j = 0; j < coll.length; j++) {
+                            coll[j].classList.remove("aktywowanie");
+                            coll[j].nextElementSibling.style.display = "none";
+    }
+ 
                     this.classList.toggle("aktywowanie");
                     var content = this.nextElementSibling;
                     if (content.style.display === "block") {
@@ -105,6 +110,14 @@
                     }
                 });
             }
+            </script>
+    <script>
+
+var active = document.getElementsByClassName('aktywowanie');
+if (active.length && active[0] !== this) {
+    active[0].classList.remove('aktywowanie');
+}
+
         </script>
 </body>
 </html>

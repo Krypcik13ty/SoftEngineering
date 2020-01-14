@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SoftEngineering.Models.Logging
+@{
     ViewBag.Title = "index";
     Layout = "~/Views/Shared/_Page_Layout.cshtml";
 
@@ -17,56 +18,59 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
 </head>
 <body class="body-login">
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        <div class="limiter">
+            <div class="container-login">
+                <div class="wrap-login">
+                    <form class="login-form flex-sb flex-w" action="Login" method="post">
+                        <span class="login-form-title pd-bt30">
+                            Logowanie
+                        </span>
 
-    <div class="limiter">
-        <div class="container-login">
-            <div class="wrap-login">
-                <form class="login-form flex-sb flex-w">
-                    <span class="login-form-title pd-bt30">
-                        Logowanie
-                    </span>
-
-                    <span class="txt1 mg-bt">
-                        Użytkownik
-                    </span>
-                    <div class="wrap-input m-b-36">
-                        <input class="input" type="text" name="username">
-                        <span class="focus-input"></span>
-                    </div>
-
-                    <span class="txt1 mg-bt">
-                        Hasło
-                    </span>
-                    <div class="wrap-input mg-bt12">
-                        <input class="input" type="password" name="pass">
-                        <span class="focus-input"></span>
-                    </div>
-
-                    <div class="flex-sb-m w-full pd-bt30">
-                        <div class="contact-form-checkbox">
-                            <input class="input-checkbox" id="ckb1" type="checkbox" name="remember-me">
-                            <label class="label-checkbox" for="ckb1">
-                                Zapamiętaj
-                            </label>
+                        <span class="txt1 mg-bt">
+                            Użytkownik
+                        </span>
+                        <div class="wrap-input m-b-36">
+                            @Html.TextBoxFor(model => model.Username)
+                            <span class="focus-input"></span>
                         </div>
 
-                        <div>
-                            <a href="#" class="txt3">
-                                Zapomniałeś hasła?
-                            </a>
+                        <span class="txt1 mg-bt">
+                            Hasło
+                        </span>
+                        <div class="wrap-input mg-bt12">
+                            @Html.TextBoxFor(model => model.Password)
+                            <span class="focus-input"></span>
                         </div>
-                    </div>
 
-                    <div class="container-login-form-btn">
-                        <button class="login-form-btn">
-                            Zaloguj
-                        </button>
-                    </div>
+                        <div class="flex-sb-m w-full pd-bt30">
+                            <div class="contact-form-checkbox">
+                                <input class="input-checkbox" id="ckb1" type="checkbox" name="remember-me">
+                                <label class="label-checkbox" for="ckb1">
+                                    Zapamiętaj
+                                </label>
+                            </div>
 
-                </form>
+                            <div>
+                                <a href="#" class="txt3">
+                                    Zapomniałeś hasła?
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="container-login-form-btn">
+                                                     
+                            <button type="submit">
+                                Zaloguj
+                            </button>
+                            
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-
+    }
 </body>
 </html>

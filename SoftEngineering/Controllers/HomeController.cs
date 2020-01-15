@@ -40,16 +40,12 @@ namespace SoftEngineering.Controllers
              6. If password is ok, forwards to ManualTimetable.                         
              */
             string[] array = connectToDB(querymaker(username));
-            if (array.Length == 0)
+         
+            if (array[1] == password)
             {
-                MessageBox.Show("Incorrect username");
-                return View("index");
-            }
-            else if (array[3] == password)
-            {
-                MessageBox.Show("Success!");
                 return View("ManualTimetable");
             }
+            MessageBox.Show("Incorrect username");
             return View("index");
         }
         public ActionResult ManualTimetable()
@@ -162,9 +158,9 @@ namespace SoftEngineering.Controllers
         }
         private string querymaker(string login)
         {       
-            string query = "SELECT login, haslo, typ FROM accounts WHERE login=";
-            string querycomplete = query + "'" + login + "'";
-            return querycomplete;
+            string query = "SELECT login, haslo FROM login";
+            //string querycomplete = query + "'" + login + "'";
+            return query;
            
         }
     }

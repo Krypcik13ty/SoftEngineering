@@ -6,7 +6,6 @@
 <html lang="pl">
 <head>
     <title>SoftEngineering</title> @* temporary title tag *@
-    <link href="~/Style/StyleSheet.css" rel="stylesheet" />
     <link href="~/Style/main.css" rel="stylesheet" />
     <script src="~/Scripts/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
@@ -14,17 +13,12 @@
         $(document).ready(function () {
             var subject = document.getElementById("SubElement1").value;
             var titleAtr = document.getElementById("SubElement1").title;
-            $("select").change(function () {
-                $("select option:selected").each(function () {
+            $("#option").change(function () {
+                $("#option option:selected").each(function () {
                     subject = $(this).text();
-                    titleAtr = $("select option:selected").attr("title");
+                    titleAtr = $("#option option:selected").attr("title");
                 });
             })
-
-            $('td[id="SubjectField"]').click(function () {
-                $(this).text(subject);
-                $(this).attr('title', titleAtr);
-            });
             //Dane do tabeli (do czasu pobierania ich z bazy)
             var daysOfWeek = ['', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek'];
             var hours = ['8:15 - 9:45', '10:00 - 11:30', '11:45 - 13:15',
@@ -33,7 +27,27 @@
             var nextData = [[6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10]];
             var lastData = [['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e']];
             //----
+        $('td[id="SubjectField"]').click(function () {
+                $(this).text(subject);
+                $(this).attr('title', titleAtr);
+                nextData = [];
+                $("#SubjectField").each(function () {
+                    nextData.push($(this).text());
+                });
+                
+            });
 
+            /*narazie niedziała
+            
+            $("#save").click(function () {
+                nextData = $(".hoverTable .test").map(function() {
+                     return [$(this).find('#SubjectField').map(function() {
+                        return $(this).text()
+                        }).get()]
+                }).get()
+                alert(nextData);
+            });
+    */
             //Tworzenie planu
             arrayToTable = function (defaultData, options = {}) {
                 var table = $('<table />'),
@@ -53,7 +67,10 @@
 
                 // loop through all the rows, we will deal with tfoot and thead later
                 for (i = 0; i < defaultData.length; i++) {
-                    row = $('<tr />');
+                    if (i == 0)
+                        row = $('<tr />');
+                    else {row = $('<tr class ="test"/>');}
+
                     for (j = 0; j < defaultData[i].length + 1; j++) {
                         if (i == 0) {
                             row.append($('<th>').html(daysOfWeek[j]));
@@ -88,7 +105,7 @@
 
             //Zmiana wyświetlanego tygodnia
             $('button[id="nextWeek"]').click(function () {
-                $("table").remove();
+                $(".hoverTable").remove();
                 var table = arrayToTable(nextData, {
                     thead: true,
                     attrs: { class: 'hoverTable', border: 1 }
@@ -96,7 +113,7 @@
                 $('div[id="table"]').append(table);
             })
             $('button[id="lastWeek"]').click(function () {
-                $("table").remove();
+                $(".hoverTable").remove();
                 var table = arrayToTable(lastData, {
                     thead: true,
                     attrs: { class: 'hoverTable', border: 1 }
@@ -113,8 +130,17 @@
                 //   var = $("td").index(this)
                 ///}
             });
+            $("#calendar-body td").click(function () {
+                $( ".bg-primary" ).removeClass( "bg-primary" )
+                $(this).addClass("bg-primary");
+                $(".hoverTable").remove();
+                var table = arrayToTable(nextData, {
+                    thead: true,
+                    attrs: { class: 'hoverTable', border: 1 }
+                })
+                $('div[id="table"]').append(table);
+            });
         });
-
     </script>
 </head>
 <body>
@@ -130,7 +156,7 @@
     <div>
         <div id="menu">
             <!--bootstrap w połowie dziala-->
-            <select class="form-control form-control-lg">
+            <select class="form-control form-control-lg" id="option">
                 <option id="SubElement1" value="jezyk polski" title="Adrian Gruchowiecki &#10; Sala: 204">jezyk polski</option>
                 <option id="SubElement2" value="matma" title="Michalus Wojdalus &#10; Sala: 205">matma</option>
                 <option id="SubElement3" value="wf" title="James Mountain &#10; Sala: 104">wf</option>

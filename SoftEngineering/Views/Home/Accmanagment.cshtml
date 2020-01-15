@@ -11,39 +11,113 @@
     <title></title>
 </head>
 <body>
-    <div id="header_nav">
-        <ul>
-            <li><a href="./ManualTimetable">Plan Zajęć</a></li>
-            <li><a href="./AdminPanel">Panel Administracyjny</a></li>
-            <li><a class="active" href="#">Zarządzanie kontem</a></li>
-            <li><a href="./Contact">Kontakt</a></li>
-            <li class="logout"><a href="./LogOut">Wyloguj</a></li>
-        </ul>
+    <div class="main">
+        <div id="header_nav">
+            <ul>
+                <li><a href="./ManualTimetable">Plan Zajęć</a></li>
+                <li><a href="./AdminPanel">Panel Administracyjny</a></li>
+                <li><a class="active" href="#">Zarządzanie kontem</a></li>
+                <li><a href="./Contact">Kontakt</a></li>
+                <li class="logout"><a href="./LogOut">Wyloguj</a></li>
+            </ul>
+        </div>
+        <div class="content_wrapper">
+            <button type="button" class="dropdownpanel">ZMIANA HASŁA</button>
+            <div class="zawartosc">
+                    <div class="PasswordCh">
+                        <form>
+                            <ul class="form-style-1">
+                                <li>
+                                    <label>
+                                        Wpisz aktualne hasło <input type="password" name="subjectTime" />
+                                    </label>
+                                </li>
+                                <br />
+                                <li>
+                                    <label>
+                                        Wpisz nowe hasło <input type="password" name="subjectTime" />
+                                    </label>
+                                </li>
+                                <br />
+                                <li>
+                                    <label>
+                                        Powtórz nowe hasło<input type="password" name="subjectTime" />
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="submit" value="Submit" />
+                                </li>
+                            </ul>
+                        </form>
+                </div>
+                </div>
+                <button type="button" class="dropdownpanel">ZMIANA ADRESU EMAIL</button>
+                <div class="zawartosc">
+                    <div class="PasswordCh">
+                        <form>
+                            <ul class="form-style-1">
+                                <li>
+                                    <label>
+                                        Wpisz aktualny email <input type="text" name="subjectTime" />
+                                    </label>
+                                </li>
+                                <br />
+                                <li>
+                                    <label>
+                                        Wpisz nowe email <input type="text" name="subjectTime" />
+                                    </label>
+                                </li>
+                                <br />
+                                <li>
+                                    <label>
+                                        Powtórz nowy email<input type="text" name="subjectTime" />
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="submit" value="Submit" />
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+     
+            </div>
+        <div id="footer">
+            <a class="footer_link" href="https://pila.amu.edu.pl/">Kontakt</a>
+            <br />
+            &copy; Nadnotecki Instytut UAM w Pile
+            <br />
+            <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
+        </div>
     </div>
-    <br />
-    <button type="button" class="dropdownpanel">ZMIANA HASŁA</button>
-    <div class="zawartosc">
-        <p>TUTAJ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?</p>
-    </div>
-    <button type="button" class="dropdownpanel">ZMIANA ADRESU EMAIL</button>
-    <div class="zawartosc">
-        <p>TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?</p>
-    </div>
-    <script>
-        var coll = document.getElementsByClassName("dropdownpanel");
-        var i;
+        <script>
+            var coll = document.getElementsByClassName("dropdownpanel");
+    
 
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function () {
-                this.classList.toggle("aktywowanie");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                } else {
-                    content.style.display = "block";
-                }
-            });
-        }
-    </script>
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function () {
+                        for (var j = 0; j < coll.length; j++) {
+                            coll[j].classList.remove("aktywowanie");
+                            coll[j].nextElementSibling.style.display = "none";
+    }
+ 
+                    this.classList.toggle("aktywowanie");
+                    var content = this.nextElementSibling;
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                    } else {
+                        content.style.display = "block";
+                    }
+                });
+            }
+            </script>
+    <script>
+
+var active = document.getElementsByClassName('aktywowanie');
+if (active.length && active[0] !== this) {
+    active[0].classList.remove('aktywowanie');
+}
+
+        </script>
 </body>
 </html>

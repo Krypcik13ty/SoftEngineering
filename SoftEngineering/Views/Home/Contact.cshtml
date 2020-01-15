@@ -2,22 +2,118 @@
     Layout = "~/Views/Shared/_Page_Layout.cshtml";
 }
 
+@model SoftEngineering.Models.MailSender
+
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <title>Kontakt - Formularz Kontaktowy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Style/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Style/css/main.css">
+    <!--===============================================================================================-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
 </head>
 <body>
-    <div id="header_nav">
-        <ul>
-            <li><a href="./ManualTimetable">Plan Zajęć</a></li>
-            <li><a href="./AdminPanel">Panel Administracyjny</a></li>
-            <li><a href="./Accmanagment">Zarządzanie kontem</a></li>
-            <li><a class="active" href="#">Kontakt</a></li>
-            <li class="logout"><a href="./LogOut">Wyloguj</a></li>
-        </ul>
+    <div class="main">
+        <div id="header_nav">
+            <ul>
+                <li><a href="./ManualTimetable">Plan Zajęć</a></li>
+                <li><a href="./AdminPanel">Panel Administracyjny</a></li>
+                <li><a href="./Accmanagment">Zarządzanie kontem</a></li>
+                <li><a class="active" href="#">Kontakt</a></li>
+                <li class="logout"><a href="./LogOut">Wyloguj</a></li>
+            </ul>
+        </div>
+        <div class="contact_wrapper mg-bt30">
+            <form class="contact_form">
+                <span class="contact-form-title mg-bt12">
+                    Formularz Kontaktowy
+                </span>
+                @using (Html.BeginForm("ContactMail", "Home", FormMethod.Post))
+                {
+                    <span class="txt1">
+                        Imię:
+                    </span>
+                    <div class="wrap-input mg-bt12">
+                        @Html.TextBoxFor(model => model.firstname, new { @class = "input", @required = "required", @maxlength= "50" })
+                        <span class="focus-input"></span>
+                    </div>
+
+
+                    <span class="txt1">
+                        Nazwisko:
+                    </span>
+                    <div class="wrap-input mg-bt12">
+                        @Html.TextBoxFor(model => model.lastname, new { @class = "input", @required = "required", @maxlength= "50" })
+                        <span class="focus-input"></span>
+                    </div>
+
+
+                    <span class="txt1">
+                        Adres E-mail:
+                    </span>
+                    <div class="wrap-input mg-bt12">
+                        @Html.TextBoxFor(model => model.mailadress, new { @class = "input", @required = "required", @maxlength= "100"  })
+                        <span class="focus-input"></span>
+                    </div>
+
+                    <span class="txt1">
+                        Tytuł:
+                    </span>
+                    <div class="wrap-input mg-bt12">
+                        @Html.TextBoxFor(model => model.mailsubject, new { @class = "input", @required = "required", @maxlength= "100" })
+                        <span class="focus-input"></span>
+                    </div>
+
+                    <span class="txt1">
+                        Treść:
+                    </span>
+                    <div class="wrap-input mg-bt12">
+                        @Html.TextAreaFor(model => model.mailtext, new { @class = "textarea", @placeholder = "Wpisz treść wiadomości...", @required = "required", @maxlength= "1000" })
+                        <span class="focus-input"></span>
+                    </div>
+                    <div class="container-contact-form-btn mg-tp30">
+                        <button type="reset" class="contact-form-btn-clear">
+                            Wyczyść
+                        </button>
+                        <button type="submit" class="contact-form-btn">
+                            Prześlij
+                        </button>
+                    </div>
+                }
+            </form>
+        </div>
+        <div class="contact_info mg-bt30">
+            <span class="contact-form-title mg-bt12">
+                Dane Kontaktowe
+            </span>
+
+            <span class="txt4 mg-bt12">
+                Numer Kontaktowy: 123456789
+            </span>
+            <span class="txt4 mg-bt12">
+                Adres E-mail: pila&commat;amu.edu.pl
+            </span>
+            <span class="txt4 mg-bt12">
+                Adres: Nadnotecki Instytut UAM w Pile - ul. Kołobrzeska 15, 64-920 Piła
+            </span>
+            <span class="txt4">
+                Godziny pracy: 8:00 - 16:00
+            </span>
+        </div>
+    </div>
+        <div id="footer">
+            <a class="footer_link" href="https://pila.amu.edu.pl/">Kontakt</a>
+            <br />
+            &copy; Nadnotecki Instytut UAM w Pile
+            <br />
+            <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
+        </div>
     </div>
 </body>
 </html>

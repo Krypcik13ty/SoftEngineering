@@ -12,84 +12,219 @@
 </head>
 <body>
     <div class="main">
-    <div id="header_nav">
-        <ul>
-            <li><a href="./ManualTimetable">Plan Zajęć</a></li>
-            <li><a class="active" href="#">Panel Administracyjny</a></li>
-            <li><a href="./Accmanagment">Zarządzanie kontem</a></li>
-            <li><a href="./Contact">Kontakt</a></li>
-            <li class="logout"><a href="./LogOut">Wyloguj</a></li>
-        </ul>
-    </div>
+        <div id="header_nav">
+            <ul>
+                <li><a href="./ManualTimetable">Plan Zajęć</a></li>
+                <li><a class="active" href="#">Panel Administracyjny</a></li>
+                <li><a href="./Accmanagment">Zarządzanie kontem</a></li>
+                <li><a href="./Contact">Kontakt</a></li>
+                <li class="logout"><a href="./LogOut">Wyloguj</a></li>
+            </ul>
+        </div>
 
-    <div class="content_wrapper">
-        <button type="button" class="dropdownpanel">DODAWANIE ZAJĘĆ</button>
-        <div class="zawartosc">
-            <div class="addSubject">
-                <form>
-                    <ul class="form-style-1">
-                        <li>
-                            <label>
-                                Przedmiot:
-                                <input type="text" name="subjectName" />
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                Wykładowca:
-                                <select name="field4" class="field-select">
-                                    <option value="teacher1">Pan Jan</option>
-                                    <option value="teacher2">Pan Kazimierz</option>
-                                </select>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                Godziny zajęć <input type="text" name="subjectTime" />
-                            </label>
-                        </li>
-                        <li>
-                            <input type="submit" value="Submit" />
-                        </li>
-                    </ul>
-                </form>
+        <div class="content_wrapper">
+            <button type="button" class="dropdownpanel">DODAWANIE ZAJĘĆ</button>
+            <div class="zawartosc">
+                <div class="addSubject">
+                    <form>
+                        <ul class="form-style-1">
+                            <li>
+                                <label>
+                                    Przedmiot:
+                                    <input type="text" name="subjectName" />
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Wykładowca:
+                                    <select name="field1" class="field-select">
+                                        <option value="teacher1">Pan Jan</option>
+                                        <option value="teacher2">Pan Kazimierz</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Godziny zajęć <input type="text" name="subjectTime" />
+                                </label>
+                            </li>
+                            <li>
+                                <input type="submit" value="Submit" />
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <button type="button" class="dropdownpanel">ZARZĄDZANIE UŻYTKOWNIKAMI</button>
+            <div class="zawartosc">
+                <div class="addPermissions">
+                    <form>
+                        <ul class="form-style-1">
+                            <li>
+                                <label>
+                                    Wykładowca:
+                                    <select name="field2" class="field-select">
+                                        <option value="teacher1">Doktor Górnisiewicz</option>
+                                        <option value="teacher2">Profesor Kandulski</option>
+                                        <option value="teacher3">Profesor Małuch</option>
+                                        <option value="teacher4">Profesor Stach</option>
+                                        <option value="teacher5">Brak</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    Student:
+                                    <select name="field2" class="field-select">
+                                        <option value="student1">Pan Stasiewicz</option>
+                                        <option value="student2">Pan Michałek</option>
+                                        <option value="student3">Pani Szczęsnowicz</option>
+                                        <option value="student4">Pani która kiedyś pobierze gita</option>
+                                        <option value="student5">Pan Sokół</option>
+                                        <option value="student6">Brak</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Rodzaj uprawnienia:
+                                    <select name="field4" class="field-select">
+                                        <option value="teacher1">Wszystkie</option>
+                                        <option value="teacher2">Edycja</option>
+                                        <option value="teacher3">Odczyt</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="submit" value="Zatwierdź" />
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <button type="button" class="dropdownpanel">EDYCJA ZAJĘĆ</button>
+            <div class="zawartosc">
+                <div class="editSchoolSubject">
+                    <form>
+                        <ul class="form-style-1">
+                            <li>
+                                <label>
+                                    Wybierz przedmiot:
+                                    <select name="field3" class="field-select">
+                                        <option value="subject1">Inżynieria oprogramowania</option>
+                                        <option value="subject2">Automaty i języki formalne</option>
+                                        <option value="subject3">Podstawy elektroniki</option>
+                                        <option value="subject4">Geoinformatyka</option>
+                                        <option value="subject5">Biologia dla informatyków</option>
+
+                                    </select>
+                                </label>
+                                <label>
+                                    Wybierz datę:
+                                    <select name="field3" class="field-select">
+                                        <option value="date1">którys stycznia</option>
+                                        <option value="date2">jakiśtam lutego</option>
+                                        <option value="date3">któregoś marca</option>
+                                        <option value="date4">pewnego grudnia</option>
+                                        <option value="date5">5 maj</option>
+
+                                    </select>
+                                </label>
+                                <label>
+                                    Zamień wybrany przedmiot na:
+                                    <select name="field3" class="field-select">
+                                        <option value="subject1">Inżynieria oprogramowania</option>
+                                        <option value="subject2">Automaty i języki formalne</option>
+                                        <option value="subject3">Podstawy elektroniki</option>
+                                        <option value="subject4">Geoinformatyka</option>
+                                        <option value="subject5">Biologia dla informatyków</option>
+
+                                    </select>
+                                </label>
+                                <label>
+                                    Wybierz wykładowcę:
+                                    <select name="field3" class="field-select">
+                                        <option value="teacher1">Doktor Górnisiewicz</option>
+                                        <option value="teacher2">Profesor Kandulski</option>
+                                        <option value="teacher3">Profesor Małuch</option>
+                                        <option value="teacher3">Profesor Stach</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    Wybierz salę:
+                                    <select name="field3" class="field-select">
+                                        <option value="room1">104</option>
+                                        <option value="room2">105</option>
+                                        <option value="room3">204</option>
+                                        <option value="room4">205</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    Zamień godzinę na:
+                                    <select name="field3" class="field-select">
+                                        <option value="hour1">8.00 - 9.30</option>
+                                        <option value="hour2">9.45 - 11.15</option>
+                                        <option value="hour3">11.30 - 13.00</option>
+                                        <option value="hour4">13.30 - 15.00</option>
+                                        <option value="hour5">15.15 - 16.45</option>
+                                        <option value="hour6">Brak</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="submit" value="Zatwierdź" />
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <button type="button" class="dropdownpanel">DODAJ POWIADOMIENIE</button>
+            <div class="zawartosc">
+                <div class="addMessage">
+                    <form>
+                        <ul class="form-style-1">
+                            <li>
+                                <label>
+                                    Do kogo wysłać?
+                                    <select name="field4" class="field-select">
+                                        <option value="teacher1">Doktor Górnisiewicz</option>
+                                        <option value="teacher2">Profesor Kandulski</option>
+                                        <option value="teacher3">Profesor Małuch</option>
+                                        <option value="teacher3">Profesor Stach</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Treść wiadomości <textarea name="message" style="width: 30%"></textarea>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="submit" value="Wyślij" />
+                            </li>
+                        </ul>
+                    </form>
+                </div>
             </div>
         </div>
-        <button type="button" class="dropdownpanel">ZARZĄDZANIE UŻYTKOWNIKAMI</button>
-        <div class="zawartosc">
-            <p>
-                TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?
-                TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?
-                TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?
-                TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?
-                TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?
-                TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?
-            </p>
-        </div>
-        <button type="button" class="dropdownpanel">EDYCJA ZAJĘĆ</button>
-        <div class="zawartosc">
-            <p>TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?</p>
-        </div>
-        <button type="button" class="dropdownpanel">DODAJ POWIADOMIENIE</button>
-        <div class="zawartosc">
-            <p>TUTAJ TEŻ JEST JAKAS LOSOWA ZAWARTOSC USTALIMY PÓŹNIEJ MKEJ?</p>
-        </div>
-    </div>
 
-    <div id="footer">
-        <a class="footer_link" href="https://pila.amu.edu.pl/">Kontakt</a>
-        <br />
-        &copy; Nadnotecki Instytut UAM w Pile
-        <br />
-        <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
-    </div>
+        <div id="footer">
+            <a class="footer_link" href="https://pila.amu.edu.pl/">Kontakt</a>
+            <br />
+            &copy; Nadnotecki Instytut UAM w Pile
+            <br />
+            <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
+        </div>
     </div>
     <script>
         var coll = document.getElementsByClassName("dropdownpanel");
-        var i;
+
 
         for (i = 0; i < coll.length; i++) {
             coll[i].addEventListener("click", function () {
+                for (var j = 0; j < coll.length; j++) {
+                    coll[j].classList.remove("aktywowanie");
+                    coll[j].nextElementSibling.style.display = "none";
+                }
+
                 this.classList.toggle("aktywowanie");
                 var content = this.nextElementSibling;
                 if (content.style.display === "block") {
@@ -100,5 +235,6 @@
             });
         }
     </script>
-</body>
-</html>
+    <script>
+</body >
+</html >

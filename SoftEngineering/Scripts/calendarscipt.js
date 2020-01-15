@@ -64,7 +64,7 @@ function showCalendar(month, year) {
                 cell = document.createElement("td");
                 cellText = document.createTextNode(date);
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                    cell.classList.add("bg-info");
+                    cell.classList.add("bg-primary");
                 } // zaznaczenie kolorem dzisiejszej daty
                 cell.appendChild(cellText);
                 row.appendChild(cell);

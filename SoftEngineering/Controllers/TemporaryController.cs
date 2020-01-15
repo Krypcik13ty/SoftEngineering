@@ -7,6 +7,8 @@ using System.Net;
 using System.Net.Mail;
 using System.Data.SqlClient;
 using System.Windows;
+using System.Timers;
+using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 
@@ -14,10 +16,12 @@ namespace SoftEngineering.Controllers
 {
     public class TemporaryController : Controller
     {
+        private string connectionString = "datasource=127.0.0.1; port=3306; username=root; password=; database=testt; CharSet=utf8";
+        private string query = "SELECT login, typ FROM accounts";
         // GET: Temporary
         public ActionResult TemporaryView()
         {
-            //sendMail();
+            GetTimer();
             return View();
         }
 
@@ -49,19 +53,52 @@ namespace SoftEngineering.Controllers
             }
             return View("TemporaryView");
         }
+        private void OpenConnection(MySqlConnection databaseConnection)
+        {
+            try
+            {
+                databaseConnection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 0:
+                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        break;
+
+                    case 1045:
+                        MessageBox.Show("Invalid username/password, please try again");
+                        break;
+                }
+            }
+        }
+
+        private void CloseConnection(MySqlConnection databaseConnection)
+        {
+            databaseConnection.Close();
+        }
 
         public ActionResult connectToDB()
         {
-            string connectionString = "datasource=127.0.0.1;port=3306;username=root;password=;database=test;CharSet=utf8";
-            string query = "SELECT * FROM user";
-
+            /*
+             * # 2 STEPS to connect to database:
+             * #1
+            in my.ini file in xampp you must change these lines
+            character-set-server=utf8
+            collation-server=utf8_general_ci
+            --------------
+             * #2
+             * In database 'Metoda porównywania napisów' = 'utf8_general_ci'	
+            */
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+            OpenConnection(databaseConnection);
+
             MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
             commandDatabase.CommandTimeout = 60;
             MySqlDataReader reader;
             try
             {
-                databaseConnection.Open();
                 reader = commandDatabase.ExecuteReader();
 
                 if (reader.HasRows)
@@ -69,20 +106,49 @@ namespace SoftEngineering.Controllers
                     while (reader.Read())
                     {
                         // As our database, the array will contain : ID 0, FIRST_NAME 1,LAST_NAME 2, ADDRESS 3
-                        string[] row = { reader.GetString(0), reader.GetString(1)};
+                        string[] row = { reader.GetString(0), reader.GetString(1) };
+                        MessageBox.Show(CheckUserType(row));
                     }
                 }
                 else
                 {
                     Console.WriteLine("No rows found.");
                 }
-                databaseConnection.Close();
+                CloseConnection(databaseConnection);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
             return View("TemporaryView");
+        }
+        public static void GetTimer()
+        {
+            Timer timer = new Timer(10000);
+            timer.Elapsed += async (sender, e) => await HandleTimer();
+            timer.Start();
+        }
+        private static Task HandleTimer()
+        {
+            MessageBox.Show("Wyslano maila");
+            throw new NotImplementedException();
+        }
+
+        private string CheckUserType(string[] row)
+        {
+            if(row[1] == "Admin")
+            {
+                return "admin";
+            }
+            else if(row[1] == "Wykładowca")
+            {
+                return "wykladowca";
+            }
+            else
+            {
+                return "User";
+            }
         }
     }
 }

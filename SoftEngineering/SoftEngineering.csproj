@@ -131,6 +131,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Logging.cs" />
+    <Compile Include="Models\MailSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -216,7 +217,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\LogOut.cshtml" />
     <Content Include="Views\Temporary\TemporaryView.cshtml" />
-    <Content Include="Views\Home\View1.cshtml" />
+    <Content Include="Views\Home\ConfirmedReg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

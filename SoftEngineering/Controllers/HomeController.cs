@@ -10,7 +10,7 @@ namespace SoftEngineering.Controllers
 {
     public class HomeController : Controller
     {
-       
+       [HttpGet]
         // GET: Home
        
         public ActionResult Index()

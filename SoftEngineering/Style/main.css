@@ -790,3 +790,34 @@ button:hover {
 .contact-form-btn-clear:hover {
     background-color: #DC143C;
 }
+
+#adjusting {
+    margin-right:75%;
+    float: right;
+}
+#adjusting2 {
+    margin-right: 81%;
+    float: right;
+}
+#adjusting3 {
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: dodgerblue;
+    color: black;
+}
+#adjusting4 {
+    margin-right: 78%;
+    float: right;
+}
+#adjusting5 {
+    margin-right: 67%;
+    float: right;
+}
+#adjusting6 {
+    margin-right: 78%;
+    float: right;
+}
+#adjusting7 {
+    margin-right: 73%;
+    float: right;
+}

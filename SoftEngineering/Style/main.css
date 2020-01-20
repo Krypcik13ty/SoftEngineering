@@ -99,13 +99,14 @@ body, html {
 }
 
 #header_nav li a.active {
-    background-color: lightgray;
+    background-color: #ebebeb;
     color: black;
 }
 
 #footer {
 
     margin-top: auto;
+    bottom: 0 px;
     flex-shrink: 0;
     width: 100%;
     border-top: 1px solid #17134d;

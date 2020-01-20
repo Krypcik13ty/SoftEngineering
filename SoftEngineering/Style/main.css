@@ -344,7 +344,7 @@ button:hover {
 
 
 .wrap-login {
-    max-width: 650px;
+    min-width: 450px;
     background: #fff;
     border-radius: 8px;
     position: relative;
@@ -562,6 +562,7 @@ button:hover {
   .wrap-login {
     padding-left: 15px;
     padding-right: 15px;
+
   }
 }
 

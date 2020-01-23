@@ -815,11 +815,11 @@ button:hover {
     margin-right: 67%;
     float: right;
 }
-#adjusting6 {
-    margin-right: 78%;
-    float: right;
 }
 #adjusting7 {
     margin-right: 73%;
     float: right;
+}
+#h {
+    height: 300px;
 }

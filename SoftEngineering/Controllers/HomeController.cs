@@ -48,10 +48,10 @@ namespace SoftEngineering.Controllers
         [HttpPost]
         public ActionResult Passchange(string password, string passcheck, string Newpass, string Newpasscheck, string Username)
         {
-            string[] array = connectToDB(passchange(Newpass, Username));
+            
             if (password == passcheck && Newpass == Newpasscheck)
             {
-                
+                string[] array = connectToDB(passchange(Newpass, Username));
                 MessageBox.Show("Complete!");
                 return View("ManualTimetable");
             }

@@ -10,9 +10,9 @@ namespace SoftEngineering.Controllers
 {
     public class HomeController : Controller
     {
-       [HttpGet]
+        [HttpGet]
         // GET: Home
-       
+
         public ActionResult Index()
         {
             return View();
@@ -28,8 +28,8 @@ namespace SoftEngineering.Controllers
              5. If the username is correct, checks if password is ok
              6. If password is ok, forwards to ManualTimetable.                         
              */
-            string[] array = connectToDB(querymaker(username));
-         
+            string[] array = connectToDB(querymaker());
+
             if (array[1] == password)
             {
                 return View("ManualTimetable");
@@ -44,6 +44,19 @@ namespace SoftEngineering.Controllers
         public ActionResult Accmanagment()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult Passchange(string password, string passcheck, string Newpass, string Newpasscheck, string Username)
+        {
+            string[] array = connectToDB(passchange(Newpass, Username));
+            if (password == passcheck && Newpass == Newpasscheck)
+            {
+                
+                MessageBox.Show("Complete!");
+                return View("ManualTimetable");
+            }
+            MessageBox.Show("Something went wrong! Please confirm if credentials you've put in are correct.");
+            return View("Accmanagment");
         }
         public ActionResult AdminPanel()
         {
@@ -115,7 +128,7 @@ namespace SoftEngineering.Controllers
         {
             databaseConnection.Close();
         }
-        private string connectionString = "datasource=127.0.0.1; port=3306; username=root; password=; database=testt; CharSet=utf8";
+        private string connectionString = "datasource=mysql.wmi.amu.edu.pl ; port=3306; username=s442257_proj; password=rdelyegraningel; database=s442257_proj; CharSet=utf8";
         public string[] connectToDB(string query)
         {
             /*
@@ -169,7 +182,7 @@ namespace SoftEngineering.Controllers
             {
                 return "admin";
             }
-            else if (row[1] == "Wykładowca")
+            else if (row[1] == "Wykladowca")
             {
                 return "wykladowca";
             }
@@ -178,12 +191,17 @@ namespace SoftEngineering.Controllers
                 return "User";
             }
         }
-        private string querymaker(string login)
+        private string querymaker()
         {       
-            string query = "SELECT login, haslo FROM login";
+            string query = "SELECT login, haslo FROM accounts";
             //string querycomplete = query + "'" + login + "'";
             return query;
            
+        }
+        private string passchange(string Newpass, string username)
+        {
+            string query = "UPDATE accounts SET haslo = '" + Newpass + "'WHERE login = '" + username + "'";
+            return query;
         }
     }
 }

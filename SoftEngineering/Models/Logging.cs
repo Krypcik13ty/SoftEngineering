@@ -11,5 +11,12 @@ namespace SoftEngineering.Models
         [Required]
         public string Username { get; set; }
         public string Password { get; set; }
+        
+        public string Type { get; set; }
+
+        public string passcheck { get; set; }
+
+        public string Newpass { get; set; }
+        public string Newpasscheck { get; set; }
     }
 }

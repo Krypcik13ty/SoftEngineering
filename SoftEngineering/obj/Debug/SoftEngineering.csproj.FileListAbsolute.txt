@@ -958,7 +958,6 @@ C:\Users\Krypcik\Source\Repos\SoftEngineering2\SoftEngineering\bin\pl\System.Web
 C:\Users\Krypcik\Source\Repos\SoftEngineering2\SoftEngineering\bin\pl\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Krypcik\Source\Repos\SoftEngineering2\SoftEngineering\bin\pl\System.Web.WebPages.Razor.resources.dll
 C:\Users\Krypcik\Source\Repos\SoftEngineering2\SoftEngineering\obj\Debug\SoftEngineering.csprojAssemblyReference.cache
-C:\Users\Krypcik\Source\Repos\SoftEngineering2\SoftEngineering\obj\Debug\SoftEngineering.csproj.CoreCompileInputs.cache
 C:\Users\Krypcik\Source\Repos\SoftEngineering2\SoftEngineering\obj\Debug\SoftEngineering.csproj.CopyComplete
 C:\Users\Krypcik\Source\Repos\SoftEngineering2\SoftEngineering\obj\Debug\SoftEngineering.dll
 C:\Users\Krypcik\Source\Repos\SoftEngineering2\SoftEngineering\obj\Debug\SoftEngineering.pdb

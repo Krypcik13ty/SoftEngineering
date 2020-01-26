@@ -5,14 +5,15 @@ using System.Net.Mail;
 using System.Web.Mvc;
 using System.Windows;
 using MySql.Data.MySqlClient;
+using System.Collections.Generic;
 
 namespace SoftEngineering.Controllers
 {
     public class HomeController : Controller
     {
+        string subjectquery = "SELECT Subject FROM SUBJECTS_DICTIONARY ";
         [HttpGet]
         // GET: Home
-
         public ActionResult Index()
         {
             return View();
@@ -39,7 +40,37 @@ namespace SoftEngineering.Controllers
         }
         public ActionResult ManualTimetable()
         {
+            List<string> subjectList = new List<string>();
+            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+            OpenConnection(databaseConnection);
+
+            MySqlCommand commandDatabase = new MySqlCommand(subjectquery, databaseConnection);
+            commandDatabase.CommandTimeout = 60;
+            MySqlDataReader reader;
+            try
+            {
+                reader = commandDatabase.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        subjectList.Add(reader.GetString(0));
+                    }
+                    ViewData["subjects"] = subjectList;
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+                CloseConnection(databaseConnection);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             return View();
+
         }
         public ActionResult Accmanagment()
         {
@@ -48,7 +79,7 @@ namespace SoftEngineering.Controllers
         [HttpPost]
         public ActionResult Passchange(string password, string passcheck, string Newpass, string Newpasscheck, string Username)
         {
-            
+
             if (password == passcheck && Newpass == Newpasscheck)
             {
                 string[] array = connectToDB(passchange(Newpass, Username));
@@ -158,7 +189,7 @@ namespace SoftEngineering.Controllers
                         // As our database, the array will contain : ID 0, FIRST_NAME 1,LAST_NAME 2, ADDRESS 3
                         string[] row = { reader.GetString(0), reader.GetString(1) };
                         return row;
-                    }                  
+                    }
                 }
                 else
                 {
@@ -166,7 +197,7 @@ namespace SoftEngineering.Controllers
                     return null;
                 }
                 CloseConnection(databaseConnection);
-                
+
             }
             catch (Exception ex)
             {
@@ -192,11 +223,11 @@ namespace SoftEngineering.Controllers
             }
         }
         private string querymaker()
-        {       
+        {
             string query = "SELECT login, haslo FROM accounts";
             //string querycomplete = query + "'" + login + "'";
             return query;
-           
+
         }
         private string passchange(string Newpass, string username)
         {

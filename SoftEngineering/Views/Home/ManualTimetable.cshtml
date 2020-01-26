@@ -23,31 +23,34 @@
                 var daysOfWeek = ['', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek'];
                 var hours = ['8:15 - 9:45', '10:00 - 11:30', '11:45 - 13:15',
                     '13:30 - 15:00', '15:15 - 16:45', '17:00 - 18:30'];
-                var defaultData = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]];
-                var nextData = [[6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10]];
-                var lastData = [['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e']];
+                var defaultData = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]];
+
                 //----
-                $('td[id="SubjectField"]').click(function () {
-                    $(this).text(subject);
-                    $(this).attr('title', titleAtr);
-                    nextData = [];
-                    $("#SubjectField").each(function () {
-                        nextData.push($(this).text());
-                    });
-
-                });
-
-                /*narazie niedziała
-
+               
+                $(function () {
                 $("#save").click(function () {
-                    nextData = $(".hoverTable .test").map(function() {
-                         return [$(this).find('#SubjectField').map(function() {
-                            return $(this).text()
-                            }).get()]
-                    }).get()
-                    alert(nextData);
+                    if(confirm("Czy chcesz zapisać zmiany?"))
+    {
+        defaultData = []
+
+                        $("table .test").each(function (row, tr) {
+                            tmp = []
+                            tmp.push($(tr).find('td:eq(1)').text(),
+                                $(tr).find('td:eq(2)').text(),
+                                $(tr).find('td:eq(3)').text(),
+                                $(tr).find('td:eq(4)').text(),
+                                $(tr).find('td:eq(5)').text())
+                            defaultData.push(tmp)
+
+                        });
+                        alert("Zapisano plan");
+    }
+                    else
+                    {
+                        
+                    }
                 });
-*/
+                 });
                 //Tworzenie planu
                 arrayToTable = function (defaultData, options = {}) {
                     var table = $('<table />'),
@@ -66,12 +69,12 @@
                     table.attr(options.attrs)
 
                     // loop through all the rows, we will deal with tfoot and thead later
-                    for (i = 0; i < defaultData.length; i++) {
+                    for (i = 0; i <= defaultData.length; i++) {
                         if (i == 0)
                             row = $('<tr />');
                         else { row = $('<tr class ="test"/>'); }
 
-                        for (j = 0; j < defaultData[i].length + 1; j++) {
+                        for (j = 0; j < daysOfWeek.length; j++) {
                             if (i == 0) {
                                 row.append($('<th>').html(daysOfWeek[j]));
                             }
@@ -83,8 +86,8 @@
                             }
                         }
                         rows.push(row);
+                        
                     }
-
 
                     // add all the rows
                     for (i = 0; i < rows.length; i++) {
@@ -106,7 +109,7 @@
                 //Zmiana wyświetlanego tygodnia
                 $('button[id="nextWeek"]').click(function () {
                     $(".hoverTable").remove();
-                    var table = arrayToTable(nextData, {
+                    var table = arrayToTable(defaultData, {
                         thead: true,
                         attrs: { class: 'hoverTable', border: 1 }
                     })
@@ -114,7 +117,7 @@
                 })
                 $('button[id="lastWeek"]').click(function () {
                     $(".hoverTable").remove();
-                    var table = arrayToTable(lastData, {
+                    var table = arrayToTable(defaultData, {
                         thead: true,
                         attrs: { class: 'hoverTable', border: 1 }
                     })
@@ -126,15 +129,12 @@
                 $(document).on('click', 'td[id="SubjectField"]', function () {
                     $(this).text(subject);
                     $(this).attr('title', titleAtr);
-                    // for () {
-                    //   var = $("td").index(this)
-                    ///}
                 });
-                $("#calendar-body td").click(function () {
+                $(document).on("click","#calendar-body td",function () { 
                     $(".bg-primary").removeClass("bg-primary")
                     $(this).addClass("bg-primary");
                     $(".hoverTable").remove();
-                    var table = arrayToTable(nextData, {
+                    var table = arrayToTable(defaultData, {
                         thead: true,
                         attrs: { class: 'hoverTable', border: 1 }
                     })
@@ -170,5 +170,8 @@
 
             </div>
         </div>
+        <br />
+        <br />
+        <button id="save">save</button>
     </body>
     </html>

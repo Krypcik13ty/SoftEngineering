@@ -16,8 +16,10 @@ namespace SoftEngineering.Controllers
         public ActionResult Index()
         {
             return View();
-        }
+        }       
         [HttpPost]
+       
+        
         public ActionResult Login(string username, string password)
         {
             /*HOW IT WORKS:
@@ -28,15 +30,21 @@ namespace SoftEngineering.Controllers
              5. If the username is correct, checks if password is ok
              6. If password is ok, forwards to ManualTimetable.                         
              */
-            string[] array = connectToDB(querymaker());
 
-            if (array[1] == password)
-            {
-                return View("ManualTimetable");
+            string[] array = connectToDB(login(username));
+            if (username == array[0]) 
+            { 
+                if (array[1] == password)
+                    {                    
+                    Logging.Type = array[2];
+                    return View("ManualTimetable");
+                    }
+                MessageBox.Show("Incorrect username");
+                return View("index");
+                }
+            return View();
             }
-            MessageBox.Show("Incorrect username");
-            return View("index");
-        }
+            
         public ActionResult ManualTimetable()
         {
             return View();
@@ -191,9 +199,9 @@ namespace SoftEngineering.Controllers
                 return "User";
             }
         }
-        private string querymaker()
-        {       
-            string query = "SELECT login, haslo FROM accounts";
+        private string login(string login)
+        {
+            string query = "SELECT login, haslo, typ FROM accounts WHERE login = '" + login + "'";
             //string querycomplete = query + "'" + login + "'";
             return query;
            

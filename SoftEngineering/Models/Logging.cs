@@ -9,10 +9,10 @@ namespace SoftEngineering.Models
     public class Logging
     {
         [Required]
-        public string Username { get; set; }
-        public string Password { get; set; }
-        
-        public string Type { get; set; }
+        public static string Username { get; set; }
+        public static string Password { get; set; }
+         
+        public static string Type { get; set; }
 
         public string passcheck { get; set; }
 

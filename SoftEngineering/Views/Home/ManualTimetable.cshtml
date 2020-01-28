@@ -3,172 +3,174 @@
     ViewBag.Title = "ManualTimetable";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <html lang="pl">
-    <head>
-        <title>SoftEngineering</title> @* temporary title tag *@
-        <link href="~/Style/main.css" rel="stylesheet" />
-        <script src="~/Scripts/main.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
-        <script>
-            $(document).ready(function () {
-                var subject = document.getElementById("SubElement1").value;
-                var titleAtr = document.getElementById("SubElement1").title;
-                $("#option").change(function () {
-                    $("#option option:selected").each(function () {
-                        subject = $(this).text();
-                        titleAtr = $("#option option:selected").attr("title");
-                    });
-                })
-                //Dane do tabeli (do czasu pobierania ich z bazy)
-                var daysOfWeek = ['', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek'];
-                var hours = ['8:15 - 9:45', '10:00 - 11:30', '11:45 - 13:15',
-                    '13:30 - 15:00', '15:15 - 16:45', '17:00 - 18:30'];
-                var defaultData = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]];
-                var nextData = [[6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10], [6, 7, 8, 9, 10]];
-                var lastData = [['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e'], ['a', 'b', 'c', 'd', 'e']];
-                //----
-                $('td[id="SubjectField"]').click(function () {
-                    $(this).text(subject);
-                    $(this).attr('title', titleAtr);
-                    nextData = [];
-                    $("#SubjectField").each(function () {
-                        nextData.push($(this).text());
-                    });
-
+<html lang="pl">
+<head>
+    <title>SoftEngineering</title> @* temporary title tag *@
+    <link href="~/Style/main.css" rel="stylesheet" />
+    <script src="~/Scripts/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
+    <script>
+        $(document).ready(function () {
+            var subject = document.getElementById("SubElement1").value;
+            var titleAtr = document.getElementById("SubElement1").title;
+            $("#option").change(function () {
+                $("#option option:selected").each(function () {
+                    subject = $(this).text();
+                    titleAtr = $("#option option:selected").attr("title");
                 });
+            })
+            //Dane do tabeli (do czasu pobierania ich z bazy)
+            var daysOfWeek = ['', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek'];
+            var hours = ['8:15 - 9:45', '10:00 - 11:30', '11:45 - 13:15',
+                '13:30 - 15:00', '15:15 - 16:45', '17:00 - 18:30'];
+            var defaultData = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]];
 
-                /*narazie niedziała
+            //----
 
+            $(function () {
                 $("#save").click(function () {
-                    nextData = $(".hoverTable .test").map(function() {
-                         return [$(this).find('#SubjectField').map(function() {
-                            return $(this).text()
-                            }).get()]
-                    }).get()
-                    alert(nextData);
+                    if (confirm("Czy chcesz zapisać zmiany?")) {
+                        defaultData = []
+
+                        $("table .test").each(function (row, tr) {
+                            tmp = []
+                            tmp.push($(tr).find('td:eq(1)').text(),
+                                $(tr).find('td:eq(2)').text(),
+                                $(tr).find('td:eq(3)').text(),
+                                $(tr).find('td:eq(4)').text(),
+                                $(tr).find('td:eq(5)').text())
+                            defaultData.push(tmp)
+
+                        });
+                        alert("Zapisano plan");
+                    }
+                    else {
+
+                    }
                 });
-*/
-                //Tworzenie planu
-                arrayToTable = function (defaultData, options = {}) {
-                    var table = $('<table />'),
-                        rows = [],
-                        row,
-                        i, j,
-                        defaults = {
-                            th: true, // should we use th elemenst for the first row
-                            thead: false, //should we incldue a thead element with the first row
-                            tfoot: false, // should we include a tfoot element with the last row
-                            attrs: {} // attributes for the table element, can be used to
-                        }
-
-                    options = $.extend(defaults, options);
-
-                    table.attr(options.attrs)
-
-                    // loop through all the rows, we will deal with tfoot and thead later
-                    for (i = 0; i < defaultData.length; i++) {
-                        if (i == 0)
-                            row = $('<tr />');
-                        else { row = $('<tr class ="test"/>'); }
-
-                        for (j = 0; j < defaultData[i].length + 1; j++) {
-                            if (i == 0) {
-                                row.append($('<th>').html(daysOfWeek[j]));
-                            }
-                            else if (j == 0) {
-                                row.append($('<td>').html(hours[i - 1]));
-                            }
-                            else {
-                                row.append($('<td id="SubjectField">').html(defaultData[i - 1][j - 1]));
-                            }
-                        }
-                        rows.push(row);
+            });
+            //Tworzenie planu
+            arrayToTable = function (defaultData, options = {}) {
+                var table = $('<table />'),
+                    rows = [],
+                    row,
+                    i, j,
+                    defaults = {
+                        th: true, // should we use th elemenst for the first row
+                        thead: false, //should we incldue a thead element with the first row
+                        tfoot: false, // should we include a tfoot element with the last row
+                        attrs: {} // attributes for the table element, can be used to
                     }
 
+                options = $.extend(defaults, options);
 
-                    // add all the rows
-                    for (i = 0; i < rows.length; i++) {
-                        table.append(rows[i]);
-                    };
+                table.attr(options.attrs)
 
-                    return table;
+                // loop through all the rows, we will deal with tfoot and thead later
+                for (i = 0; i <= defaultData.length; i++) {
+                    if (i == 0)
+                        row = $('<tr />');
+                    else { row = $('<tr class ="test"/>'); }
+
+                    for (j = 0; j < daysOfWeek.length; j++) {
+                        if (i == 0) {
+                            row.append($('<th>').html(daysOfWeek[j]));
+                        }
+                        else if (j == 0) {
+                            row.append($('<td>').html(hours[i - 1]));
+                        }
+                        else {
+                            row.append($('<td id="SubjectField">').html(defaultData[i - 1][j - 1]));
+                        }
+                    }
+                    rows.push(row);
+
                 }
 
+                // add all the rows
+                for (i = 0; i < rows.length; i++) {
+                    table.append(rows[i]);
+                };
+
+                return table;
+            }
+
+            var table = arrayToTable(defaultData, {
+                thead: true,
+                attrs: { class: 'hoverTable', border: 1 }
+            })
+
+            $('div[id="table"]').append(table);
+            //-----
+
+
+            //Zmiana wyświetlanego tygodnia
+            $('button[id="nextWeek"]').click(function () {
+                $(".hoverTable").remove();
                 var table = arrayToTable(defaultData, {
                     thead: true,
                     attrs: { class: 'hoverTable', border: 1 }
                 })
-
                 $('div[id="table"]').append(table);
-                //-----
-
-
-                //Zmiana wyświetlanego tygodnia
-                $('button[id="nextWeek"]').click(function () {
-                    $(".hoverTable").remove();
-                    var table = arrayToTable(nextData, {
-                        thead: true,
-                        attrs: { class: 'hoverTable', border: 1 }
-                    })
-                    $('div[id="table"]').append(table);
+            })
+            $('button[id="lastWeek"]').click(function () {
+                $(".hoverTable").remove();
+                var table = arrayToTable(defaultData, {
+                    thead: true,
+                    attrs: { class: 'hoverTable', border: 1 }
                 })
-                $('button[id="lastWeek"]').click(function () {
-                    $(".hoverTable").remove();
-                    var table = arrayToTable(lastData, {
-                        thead: true,
-                        attrs: { class: 'hoverTable', border: 1 }
-                    })
-                    $('div[id="table"]').append(table);
-                })
-                //-------
+                $('div[id="table"]').append(table);
+            })
+            //-------
 
 
-                $(document).on('click', 'td[id="SubjectField"]', function () {
-                    $(this).text(subject);
-                    $(this).attr('title', titleAtr);
-                    // for () {
-                    //   var = $("td").index(this)
-                    ///}
-                });
-                $("#calendar-body td").click(function () {
-                    $(".bg-primary").removeClass("bg-primary")
-                    $(this).addClass("bg-primary");
-                    $(".hoverTable").remove();
-                    var table = arrayToTable(nextData, {
-                        thead: true,
-                        attrs: { class: 'hoverTable', border: 1 }
-                    })
-                    $('div[id="table"]').append(table);
-                });
+            $(document).on('click', 'td[id="SubjectField"]', function () {
+                $(this).text(subject);
+                $(this).attr('title', titleAtr);
             });
-        </script>
-    </head>
-    <body>
-        <div id="header_nav">
-            <ul>
-                <li><a class="active" href="#">Plan Zajęć</a></li>
-                <li><a href="./AdminPanel">Panel Administracyjny</a></li>
-                <li><a href="./Accmanagment">Zarządzanie kontem</a></li>
-                <li><a href="./Contact">Kontakt</a></li>
-                <li class="logout"><a href="./LogOut">Wyloguj</a></li>
-            </ul>
+            $(document).on("click", "#calendar-body td", function () {
+                $(".bg-primary").removeClass("bg-primary")
+                $(this).addClass("bg-primary");
+                $(".hoverTable").remove();
+                var table = arrayToTable(defaultData, {
+                    thead: true,
+                    attrs: { class: 'hoverTable', border: 1 }
+                })
+                $('div[id="table"]').append(table);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="header_nav">
+        <ul>
+            <li><a class="active" href="#">Plan Zajęć</a></li>
+            <li><a href="./AdminPanel">Panel Administracyjny</a></li>
+            <li><a href="./Accmanagment">Zarządzanie kontem</a></li>
+            <li><a href="./Contact">Kontakt</a></li>
+            <li class="logout"><a href="./LogOut">Wyloguj</a></li>
+        </ul>
+    </div>
+    <div>
+        <div id="menu">
+            <!--bootstrap w połowie dziala-->
+            <select class="form-control form-control-lg" id="option">
+                @foreach (var sub in ViewData["subjects"] as List<string>)
+                {
+                    <option id="SubElement1" value="jezyk polski" title="Adrian Gruchowiecki &#10; Sala: 204">@sub</option>
+                }
+            </select>
         </div>
-        <div>
-            <div id="menu">
-                <!--bootstrap w połowie dziala-->
-                <select class="form-control form-control-lg" id="option">
-                    <option id="SubElement1" value="jezyk polski" title="Adrian Gruchowiecki &#10; Sala: 204">jezyk polski</option>
-                    <option id="SubElement2" value="matma" title="Michalus Wojdalus &#10; Sala: 205">matma</option>
-                    <option id="SubElement3" value="wf" title="James Mountain &#10; Sala: 104">wf</option>
-                </select>
-            </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <div id="table">
+        <br />
+        <br />
+        <br />
+        <br />
+        <div id="table">
 
-            </div>
         </div>
-    </body>
-    </html>
+    </div>
+    <br />
+    <br />
+    <button id="save">save</button>
+</body>
+</html>

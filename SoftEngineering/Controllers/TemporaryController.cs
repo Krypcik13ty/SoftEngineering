@@ -6,11 +6,10 @@ using System.Web.Mvc;
 using System.Net;
 using System.Net.Mail;
 using System.Data.SqlClient;
-using System.Windows;
-using System.Timers;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-
+using System.Windows.Forms;
+using System.Timers;
 
 namespace SoftEngineering.Controllers
 {
@@ -123,16 +122,39 @@ namespace SoftEngineering.Controllers
 
             return View("TemporaryView");
         }
-        public static void GetTimer()
+        static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
+        static System.Timers.Timer timer = new System.Timers.Timer();
+
+        // This is the method to run when the timer is raised.
+        private static void TimerEventProcessor(Object myObject,
+                                                EventArgs myEventArgs)
         {
-            Timer timer = new Timer(10000);
-            timer.Elapsed += async (sender, e) => await HandleTimer();
-            timer.Start();
+            myTimer.Stop();
+
+            // Displays a message box asking whether to continue running the timer.
+            if (MessageBox.Show("Continue running?", "Count is: ",
+              MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                // Restarts the timer.
+                timer.Enabled = true;
+            }
+            else
+            {
+                // Stops the timer.
+                timer.Enabled = false;
+            }
         }
-        private static Task HandleTimer()
+
+        public static int GetTimer()
         {
-            MessageBox.Show("Wyslano maila");
-            throw new NotImplementedException();
+            timer = new System.Timers.Timer(5000);
+            timer.Elapsed += TimerEventProcessor;
+
+            timer.Enabled = true;
+
+            // Runs the timer, and raises the event.
+            System.Windows.Forms.Application.DoEvents();
+            return 0;
         }
 
         private string CheckUserType(string[] row)

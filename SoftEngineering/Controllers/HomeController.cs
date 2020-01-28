@@ -13,15 +13,14 @@ namespace SoftEngineering.Controllers
     {
         string subjectquery = "SELECT Subject FROM SUBJECTS_DICTIONARY ";
         [HttpGet]
+
         // GET: Home
         public ActionResult Index()
         {
             return View();
-        }       
+        }
         [HttpPost]
-       
-        
-        public ActionResult Login(string username, string password)
+        public ActionResult Login(Logging user)
         {
             /*HOW IT WORKS:
              1. Takes login and password from "index" view
@@ -32,20 +31,20 @@ namespace SoftEngineering.Controllers
              6. If password is ok, forwards to ManualTimetable.                         
              */
 
-            string[] array = connectToDB(login(username));
-            if (username == array[0]) 
-            { 
-                if (array[1] == password)
-                    {                    
-                    Logging.Type = array[2];
+            string[] array = connectToDB(follog(user.Username));
+            if (user.Username == array[0])
+            {
+                if (array[1] == user.Password)
+                {
+                    user.Type = array[2];
                     return View("ManualTimetable");
-                    }
+                }
                 MessageBox.Show("Incorrect username");
                 return View("index");
-                }
-            return View();
             }
-            
+            return View();
+        }
+
         public ActionResult ManualTimetable()
         {
             List<string> subjectList = new List<string>();
@@ -85,12 +84,12 @@ namespace SoftEngineering.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Passchange(string password, string passcheck, string Newpass, string Newpasscheck, string Username)
+        public ActionResult Passchange(Logging user)
         {
 
-            if (password == passcheck && Newpass == Newpasscheck)
+            if (user.Password == user.passcheck && user.Newpass == user.Newpasscheck)
             {
-                string[] array = connectToDB(passchange(Newpass, Username));
+                string[] array = connectToDB(passchange(user.Newpass, user.Username));
                 MessageBox.Show("Complete!");
                 return View("ManualTimetable");
             }
@@ -230,17 +229,17 @@ namespace SoftEngineering.Controllers
                 return "User";
             }
         }
-        private string login(string login)
+        private string follog(string login)
         {
             string query = "SELECT login, haslo, typ FROM accounts WHERE login = '" + login + "'";
             //string querycomplete = query + "'" + login + "'";
             return query;
 
         }
-        private string passchange(string Newpass, string username)
+        private string passchange(string Newpass, string Username)
         {
-            string query = "UPDATE accounts SET haslo = '" + Newpass + "'WHERE login = '" + username + "'";
-            return query;
-        }
+           string query = "UPDATE accounts SET haslo = '" + Newpass + "'WHERE login = '" + Username + "'";
+          return query;
+       }
     }
 }

@@ -32,8 +32,14 @@ namespace SoftEngineering.Controllers
              */
 
             string[] array = connectToDB(follog(user.Username));
+            if (array[0] == null)
+            {
+                MessageBox.Show("couldn't get result from DB");
+                return View("index");
+            }
             if (user.Username == array[0])
             {
+               
                 if (array[1] == user.Password)
                 {
                     user.Type = array[2];
@@ -166,7 +172,7 @@ namespace SoftEngineering.Controllers
         {
             databaseConnection.Close();
         }
-        private string connectionString = "datasource=mysql.wmi.amu.edu.pl ; port=3306; username=s442257_proj; password=rdelyegraningel; database=s442257_proj; CharSet=utf8";
+        private string connectionString = "Server=sql.freeasphost.net/MSSQL2016; Database=klossik_schedule; uid=klossik; pwd=haslo123";
         public string[] connectToDB(string query)
         {
             /*
@@ -231,14 +237,14 @@ namespace SoftEngineering.Controllers
         }
         private string follog(string login)
         {
-            string query = "SELECT login, haslo, typ FROM accounts WHERE login = '" + login + "'";
+            string query = "SELECT * FROM ACCOUNTS WHERE Login = '" + login + "'";
             //string querycomplete = query + "'" + login + "'";
             return query;
 
         }
         private string passchange(string Newpass, string Username)
         {
-           string query = "UPDATE accounts SET haslo = '" + Newpass + "'WHERE login = '" + Username + "'";
+           string query = "UPDATE ACCOUNTS SET Haslo = '" + Newpass + "'WHERE Login = '" + Username + "'";
           return query;
        }
     }

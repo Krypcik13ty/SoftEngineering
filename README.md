@@ -305,7 +305,11 @@ How to connect to DataBase:
              9. If don't change it in Ustawienia -> funkcje -> Bazy danych.
 ![sadasdasd](https://user-images.githubusercontent.com/26824257/74234145-7e0c5c00-4ccc-11ea-80c2-c8aa4da86d23.png)
 
-             10. Ready! Now you should be connected to DataBase using our application.
+             10. Find "my.ini" file in xampp folder and change these lines
+	    character-set-server=utf8
+            collation-server=utf8_general_ci
+	     
+	     11. Ready! Now you should be connected to DataBase using our application.
              
     
 

@@ -153,11 +153,10 @@
     </div>
     <div>
         <div id="menu">
-            <!--bootstrap w połowie dziala-->
             <select class="form-control form-control-lg" id="option">
                 @foreach (var sub in ViewData["subjects"] as List<string>)
                 {
-                    <option id="SubElement1" value="subjects" title="datafromquery">@sub</option>
+                    <option id="SubElement1" title="datafromquery">@sub</option>
                 }
             </select>
         </div>

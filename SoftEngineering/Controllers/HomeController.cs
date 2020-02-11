@@ -172,7 +172,7 @@ namespace SoftEngineering.Controllers
         {
             databaseConnection.Close();
         }
-        private string connectionString = "Server=sql.freeasphost.net/MSSQL2016; Database=klossik_schedule; uid=klossik; pwd=haslo123";
+        private string connectionString = "datasource=127.0.0.1; port=3306; username=root; password=; database=scheduledb; CharSet=utf8";
         public string[] connectToDB(string query)
         {
             /*

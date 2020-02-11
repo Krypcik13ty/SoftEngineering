@@ -22,15 +22,6 @@ namespace SoftEngineering.Controllers
         [HttpPost]
         public ActionResult Login(Logging user)
         {
-            /*HOW IT WORKS:
-             1. Takes login and password from "index" view
-             2. makes connection with DB using connectToDB (created by my boi Dawid Sokół)
-             3. From connectToDB returns string array containing username, password and social status
-             4. Checks if the array is empty, if it is, returns the fact that you screwed up :)
-             5. If the username is correct, checks if password is ok
-             6. If password is ok, forwards to ManualTimetable.                         
-             */
-
             string[] array = connectToDB(follog(user.Username));
             if (array[0] == null)
             {
@@ -175,16 +166,7 @@ namespace SoftEngineering.Controllers
         private string connectionString = "datasource=127.0.0.1; port=3306; username=root; password=; database=scheduledb; CharSet=utf8";
         public string[] connectToDB(string query)
         {
-            /*
-             * # 2 STEPS to connect to database:
-             * #1
-            in my.ini file in xampp you must change these lines
-            character-set-server=utf8
-            collation-server=utf8_general_ci
-            --------------
-             * #2
-             * In database 'Metoda porównywania napisów' = 'utf8_general_ci'	
-            */
+
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
             OpenConnection(databaseConnection);
 

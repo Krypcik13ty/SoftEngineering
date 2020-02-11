@@ -4,7 +4,8 @@
 >.NET Framework 4.7.2
 
 SQL Script:
-```create database scheduledb;
+```
+create database scheduledb;
 use scheduledb;
 CREATE TABLE ACCOUNTS(
 	Login varchar(25) NOT NULL,

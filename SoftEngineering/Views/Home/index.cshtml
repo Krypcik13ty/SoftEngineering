@@ -38,7 +38,7 @@
                         </span>
 
                         <div class="wrap-input m-b-36">
-                            @Html.TextBoxFor(model => model.Username)
+                            @Html.TextBoxFor(model => model.Username, new { @class = "input", @required = "required", @maxlength= "50", @type = "text" })
                             <span class="focus-input"></span>
                         </div>
 
@@ -47,7 +47,7 @@
                             Hasło
                         </span>
                         <div class="wrap-input mg-bt12">
-                            @Html.TextBoxFor(model => model.Password)
+                            @Html.TextBoxFor(model => model.Password, new { @class = "input", @required = "required", @maxlength= "50", @type = "password" })
                             <span class="focus-input"></span>
                         </div>
 

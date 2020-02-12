@@ -15,10 +15,10 @@
     <div class="main">
         <div id="header_nav">
             <ul>
-                <li><a href="./ManualTimetable">Plan Zajęć</a></li>
-                <li><a href="./AdminPanel">Panel Administracyjny</a></li>
+                <li>@Html.ActionLink("Timetable", "ManualTimetable", "Home")</li>
+                <li>@Html.ActionLink("AdminPanel", "AdminPanel", "AdminPanel")</li>
                 <li><a class="active" href="#">Zarządzanie kontem</a></li>
-                <li><a href="./Contact">Kontakt</a></li>
+                <li>@Html.ActionLink("Contact", "Contact", "Contact")</li>
                 <li class="logout"><a href="./LogOut">Wyloguj</a></li>
             </ul>
         </div>
@@ -26,7 +26,7 @@
         <div class="content_wrapper">
             <button type="button" class="dropdownpanel">ZMIANA HASŁA</button>
             <div class="zawartosc">
-                @using (Html.BeginForm("Passchange", "Home", FormMethod.Post))
+                @using (Html.BeginForm("Passchange", "Log", FormMethod.Post))
                 {
                     <div class="PasswordCh">
                         <form>

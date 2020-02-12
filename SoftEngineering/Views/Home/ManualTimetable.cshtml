@@ -145,9 +145,9 @@
     <div id="header_nav">
         <ul>
             <li><a class="active" href="#">Plan Zajęć</a></li>
-            <li><a href="./AdminPanel">Panel Administracyjny</a></li>
-            <li><a href="./Accmanagment">Zarządzanie kontem</a></li>
-            <li><a href="./Contact">Kontakt</a></li>
+            <li>@Html.ActionLink("AdminPanel", "AdminPanel", "AdminPanel")</li>
+            <li>@Html.ActionLink("Accmanagment", "Accmanagment", "Accmanagment")</li>
+            <li>@Html.ActionLink("Contact", "Contact", "Contact")</li>
             <li class="logout"><a href="./LogOut">Wyloguj</a></li>
         </ul>
     </div>

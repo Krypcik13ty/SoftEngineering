@@ -126,11 +126,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccmanagmentController.cs" />
+    <Compile Include="Controllers\AdminPanelController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\TemporaryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DBConnection.cs" />
     <Compile Include="Models\Logging.cs" />
     <Compile Include="Models\MailSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -213,18 +218,17 @@
     <None Include="Scripts\umd\popper-utils.min.js.map" />
     <None Include="Scripts\umd\popper.js.map" />
     <None Include="Scripts\umd\popper.min.js.map" />
-    <Content Include="Views\Home\AdminPanel.cshtml" />
-    <Content Include="Views\Home\Accmanagment.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\AdminPanel\AdminPanel.cshtml" />
+    <Content Include="Views\Accmanagment\Accmanagment.cshtml" />
+    <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\Home\LogOut.cshtml" />
     <Content Include="Views\Temporary\TemporaryView.cshtml" />
     <Content Include="Views\Home\ConfirmedReg.cshtml" />
-    <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\Log\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\LoginModel\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

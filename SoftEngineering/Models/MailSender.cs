@@ -11,11 +11,12 @@ namespace SoftEngineering.Models
 {
     public class MailSender
     {
-        public string mailadress;
-        public string mailsubject;
-        public string mailtext;
-        public string firstname;
-        public string lastname;
+        [Required]
+        public string mailadress { get; set; }
+        public string mailsubject { get; set; }
+        public string mailtext { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
 
         public void SendMail()
         {

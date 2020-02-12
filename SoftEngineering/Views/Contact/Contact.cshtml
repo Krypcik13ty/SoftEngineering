@@ -30,17 +30,19 @@
             </ul>
         </div>
         <div class="contact_wrapper mg-bt30">
-            <form class="contact_form">
-                <span class="contact-form-title mg-bt12">
-                    Formularz Kontaktowy
-                </span>
-                @using (Html.BeginForm("ContactMail", "Contact", FormMethod.Post))
-                {
+            @using (Html.BeginForm("ContactMail", "Contact", FormMethod.Post))
+            {
+                <form class="contact_form">
+
+                    <span class="contact-form-title mg-bt12">
+                        Formularz Kontaktowy
+                    </span>
+
                     <span class="txt1">
                         Imię:
                     </span>
                     <div class="wrap-input mg-bt12">
-                        @Html.TextBoxFor(model => model.firstname, new { @class = "input", @required = "required", @maxlength= "50" })
+                        @Html.TextBoxFor(model => model.firstname, new { @class = "input", @required = "required", @maxlength = "50" })
                         <span class="focus-input"></span>
                     </div>
 
@@ -49,7 +51,7 @@
                         Nazwisko:
                     </span>
                     <div class="wrap-input mg-bt12">
-                        @Html.TextBoxFor(model => model.lastname, new { @class = "input", @required = "required", @maxlength= "50" })
+                        @Html.TextBoxFor(model => model.lastname, new { @class = "input", @required = "required", @maxlength = "50" })
                         <span class="focus-input"></span>
                     </div>
 
@@ -58,7 +60,7 @@
                         Adres E-mail:
                     </span>
                     <div class="wrap-input mg-bt12">
-                        @Html.TextBoxFor(model => model.mailadress, new { @class = "input", @required = "required", @maxlength= "100"  })
+                        @Html.TextBoxFor(model => model.mailadress, new { @class = "input", @required = "required", @maxlength = "100" })
                         <span class="focus-input"></span>
                     </div>
 
@@ -66,7 +68,7 @@
                         Tytuł:
                     </span>
                     <div class="wrap-input mg-bt12">
-                        @Html.TextBoxFor(model => model.mailsubject, new { @class = "input", @required = "required", @maxlength= "100" })
+                        @Html.TextBoxFor(model => model.mailsubject, new { @class = "input", @required = "required", @maxlength = "100" })
                         <span class="focus-input"></span>
                     </div>
 
@@ -74,7 +76,7 @@
                         Treść:
                     </span>
                     <div class="wrap-input mg-bt12">
-                        @Html.TextAreaFor(model => model.mailtext, new { @class = "textarea", @placeholder = "Wpisz treść wiadomości...", @required = "required", @maxlength= "1000" })
+                        @Html.TextAreaFor(model => model.mailtext, new { @class = "textarea", @placeholder = "Wpisz treść wiadomości...", @required = "required", @maxlength = "1000" })
                         <span class="focus-input"></span>
                     </div>
                     <div class="container-contact-form-btn mg-tp30">
@@ -85,9 +87,11 @@
                             Prześlij
                         </button>
                     </div>
-                }
-            </form>
-        </div>
+                    
+                </form>
+            }
+
+            </div>
         <div class="contact_info mg-bt30">
             <span class="contact-form-title mg-bt12">
                 Dane Kontaktowe

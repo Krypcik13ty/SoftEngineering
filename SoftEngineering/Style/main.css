@@ -833,3 +833,10 @@ button:hover {
 #h {
     height: 300px;
 }
+#manullist {
+    float: right;
+}
+#adjustingadd {
+    margin-right: 87%;
+    float: left;
+}

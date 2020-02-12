@@ -170,6 +170,19 @@
     </div>
     <br />
     <br />
-    <button id="save">save</button>
+    <button id="save">Zapisz</button>
+    <ul class="form-style-1" id="manullist">
+        <li>
+            <label>
+                Aktualna grupa:
+                <select name="field1" class="field-select" id="adjustingadd">
+                   @foreach (var sub in ViewData["groups"] as List<string>)
+                    {
+                        <option id="SubElement1" title="datafromquery">@sub</option>
+                    }
+                </select>
+            </label>
+        </li>
+    </ul>
 </body>
 </html>

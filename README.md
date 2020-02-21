@@ -217,6 +217,22 @@ INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-02-11','1','ses
 INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-02-10','1','sesja');
 INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-02-09','1','sesja');
 INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-02-13','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-07','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-08','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-09','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-10','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-13','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-15','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-17','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-20','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-21','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-22','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-23','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-24','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-27','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-29','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-30','0','');
+INSERT INTO CALENDAR(idDate,IsHoliday,IsHolidayText)Values('2020-01-31','0','');
 -- wprowadzanie informacji o salach trzecia wartosc to adres czyli id adresu z tabeli adresses_dictionary
 INSERT INTO CLASSES VALUES('1.02','laboratorium','1');
 INSERT INTO CLASSES VALUES('1.03','wykładowa','2');
@@ -251,6 +267,79 @@ INSERT INTO SUBJECTS_HOURS(Subject,Type,Quantity,Lecturer,Groups)VALUES('1','wyk
 INSERT INTO SUBJECTS_HOURS(Subject,Type,Quantity,Lecturer,Groups)VALUES('2','wykład','30','AStach','2');
 INSERT INTO SUBJECTS_HOURS(Subject,Type,Quantity,Lecturer,Groups)VALUES('3','wykład','30','MKandul','3');
 INSERT INTO SUBJECTS_HOURS(Subject,Type,Quantity,Lecturer,Groups)VALUES('4','wykład','30','AStach','4');
+-- 1tydzien
+-- pon
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-07','1','AStach','1.02','1','8:15','10:30');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-07','2','AStach','1.02','1','10:45','13:15');
+-- sr
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-08','1','MKandul','1.05','1','8:00',':9:30');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-08','2','MKandul','1.05','1','9:45','11:15');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-08','3','MKandul','1.05','1','11:30','13:00');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-08','4','MKandul','1.05','1','13:15','14:30');
+-- czw
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-09','1','KMaluch','1.04','1','16:15','17:45');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-09','2','KMaluch','1.04','1','18:00','19:30');
+-- pt
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-10','1','KGorn','1.02','1','8:15','9:45');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-10','2','KGorn','1.03','2','10:00','11:30');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-10','3','KGorn','1.04','1','11:45','13:15');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-10','4','KGorn','1.05','2','13:30','15:00');
+
+
+-- 2tydzien
+-- pon
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-13','1','KMaluch','1.02','1','11:30','13:45');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-13','2','KMaluch','1.02','1','14:00','16:15');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-13','3','KMaluch','1.02','1','16:30','18:00');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-13','4','KMaluch','1.02','1','18:15','19:45');
+-- sr
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-15','1','MKandul','1.05','1','8:00',':9:30');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-15','2','MKandul','1.05','1','9:45','11:15');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-15','3','MKandul','1.05','2','11:30','13:00');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-15','4','MKandul','1.05','2','13:15','14:30');
+-- pt
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-17','1','KGorn','1.02','1','8:15','9:45');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-17','2','KGorn','1.03','2','10:00','11:30');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-17','3','KGorn','1.04','1','11:45','13:15');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-17','4','KGorn','1.05','2','13:30','15:00');
+
+-- 3tydzien
+#pon
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-20','1','AStach','1.02','1','11:30','13:45');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-20','2','AStach','1.02','1','14:00','16:15');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-20','3','KMaluch','1.04','1','16:30','18:00');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-20','4','KMaluch','1.04','1','18:15','19:45');
+-- wt
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-21','1','AStach','1.02','1','8:15','10:30');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-21','2','AStach','1.02','1','10:45','13:15');
+-- sr
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-22','1','MKandul','1.05','1','8:00',':9:30');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-22','2','MKandul','1.05','1','9:45','11:15');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-22','3','MKandul','1.05','1','11:30','13:00');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-22','4','MKandul','1.05','1','13:15','14:30');
+-- czw
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-23','1','KMaluch','1.04','1','16:15','17:45');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-23','2','KMaluch','1.04','1','18:00','19:30');
+-- pt
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-24','1','KGorn','1.03','1','10:00','11:30');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-24','2','KGorn','1.03','1','11:45','13:15');
+
+-- 4tydzien
+-- pon
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-27','1','KMaluch','1.05','1','8:00',':9:30');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-27','2','KMaluch','1.05','1','9:45','11:15');
+-- sr
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-29','1','MKandul','1.05','1','8:00',':9:30');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-29','2','MKandul','1.05','1','9:45','11:15');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-29','3','MKandul','1.05','1','11:30','13:00');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-29','4','MKandul','1.05','1','13:15','14:30');
+-- czw
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-30','1','KMaluch','1.04','1','16:15','17:45');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-30','2','KMaluch','1.04','1','18:00','19:30');
+-- pt
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-31','1','KGorn','1.03','1','10:00','11:30');
+INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-01-31','2','KGorn','1.03','1','11:45','13:15');
+
 -- informacje o tym kiedy wykladowca jest zajety, można użyć podczas wprowadzania zajęć do planu oraz przed, żeby wiedzieć kiedy wykładowca nie może prowadzić zajęć
 INSERT INTO LECTURER_AVAILABILITY(Login,Date,TimeFrom,TimeTo)VALUES('KGorn','2020-02-12','8:00','12:00');
 INSERT INTO LECTURER_AVAILABILITY(Login,Date,TimeFrom,TimeTo)VALUES('MKandul','2020-02-11','13:00','23:00');

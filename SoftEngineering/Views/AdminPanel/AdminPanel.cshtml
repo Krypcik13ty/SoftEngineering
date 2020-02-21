@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SoftEngineering.Models.SubjectAdder
+@{
     Layout = "~/Views/Shared/_Page_Layout.cshtml";
 }
 
@@ -26,36 +27,41 @@
             <button type="button" class="dropdownpanel">DODAWANIE ZAJĘĆ</button>
             <div class="zawartosc">
                 <div class="addSubject">
-                    <form>
-                        <ul class="form-style-1">
-                            <li>
-                                <label>
-                                    Przedmiot:
-                                    <input type="text" id="adjusting" name="subjectName" />
-                                </label>
-                            </li>
-                            <li>
-                                <br />
-                                <label>
-                                    Wykładowca:
-                                    <select name="field1" class="field-select" id="adjusting2">
-                                        <option value="teacher1">Pan Jan</option>
-                                        <option value="teacher2">Pan Kazimierz</option>
-                                    </select>
-                                </label>
-                            </li>
-                            <li>
-                                <br />
-                                <label>
-                                    Godziny zajęć: <input type="text" name="subjectTime" id="adjusting" />
-                                </label>
-                            </li>
-                            <li>
-                                <br />
-                                <input type="submit" value=" Zatwierdź " id="adjusting3" />
-                            </li>
-                        </ul>
-                    </form>
+                    @using (Html.BeginForm("SubjectAdd", "AdminPanel", FormMethod.Post))
+                    {
+                        <form>
+                            <ul class="form-style-1">
+                                <li>
+                                    <label>
+                                        Przedmiot:
+                                        @Html.TextBoxFor(model => model.NewSubject)
+                                    </label>
+                                </li>
+                                <li>
+                                    <br />
+                                    <label>
+                                        Wykładowca:
+                                        <select name="field1" class="field-select" id="adjusting2">
+                                            @foreach (var lec in ViewData["lecturers"] as List<string>)
+                                            {
+                                                <option value="teacher2">@lec</option>
+                                            }
+                                        </select>
+                                    </label>
+                                </li>
+                                <li>
+                                    <br />
+                                    <label>
+                                        Godziny zajęć: <input type="text" name="subjectTime" id="adjusting" />
+                                    </label>
+                                </li>
+                                <li>
+                                    <br />
+                                    <input type="submit" value=" Zatwierdź " id="adjusting3" />
+                                </li>
+                            </ul>
+                        </form>
+                    }
                 </div>
             </div>
             <button type="button" class="dropdownpanel">ZARZĄDZANIE UŻYTKOWNIKAMI</button>

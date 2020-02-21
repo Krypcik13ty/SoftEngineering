@@ -48,6 +48,28 @@ namespace SoftEngineering.Models
             return null;
         }
 
+        public string[] ExecuteQuery(string query)
+        {
+            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+            OpenConnection(databaseConnection);
+
+            MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+            commandDatabase.CommandTimeout = 60;
+            MySqlDataReader reader;
+            try
+            {
+                reader = commandDatabase.ExecuteReader();
+                CloseConnection(databaseConnection);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+            return null;
+        }
+
         public string ConnectionToList(string query, List<string> subjectListt)
         {
 

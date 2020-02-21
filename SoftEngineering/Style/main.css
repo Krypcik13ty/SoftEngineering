@@ -57,6 +57,7 @@ body, html {
     color: white;
     padding: 15px 32px;
     text-align: center;
+    top: 70%;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
@@ -833,10 +834,29 @@ button:hover {
 #h {
     height: 300px;
 }
+#grview{
+    left:80%;
+    position: absolute;
+    top: 70%;
+}
 #manullist {
     float: right;
 }
 #adjustingadd {
     margin-right: 87%;
     float: left;
+}
+#tableadj{
+    position: fixed;
+    float: left;
+    margin-left: 34%;
+    width: 130%;
+    height: 80%
+}
+#trs{
+    width: 50%;
+    height: 50%;
+}
+#tbwidth{
+    width:20%;
 }

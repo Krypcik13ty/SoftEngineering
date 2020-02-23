@@ -14,9 +14,17 @@ namespace SoftEngineering.Controllers
         public ActionResult AdminPanel()
         {
             string lecturerquery = "SELECT CONCAT(Name, '" + " ', Surname) AS lecturer FROM lecturers";
+            string subjectQuery = "SELECT Subject FROM subjects_dictionary";
+            string classesQuery = "SELECT ClassNR FROM classes";
             List<string> lecturersList = new List<string>();
+            List<string> subjectList = new List<string>();
+            List<string> classesList = new List<string>();
             dbconnection.ConnectionToList(lecturerquery, lecturersList);
+            dbconnection.ConnectionToList(subjectQuery, subjectList);
+            dbconnection.ConnectionToList(classesQuery, classesList);
             ViewData["lecturers"] = lecturersList;
+            ViewData["subjects_dictionary"] = subjectList;
+            ViewData["classes"] = classesList;
             return View();
         }
 
@@ -35,7 +43,18 @@ namespace SoftEngineering.Controllers
         }
 
 
-     
+        public ActionResult SubjectEdit(SubjectAdder model)
+        {
+            string subAdd = "INSERT INTO subjects_dictionary(Subject) VALUES ('" + model.NewSubject + "');";
+            DBConnection dbconnection = new DBConnection();
+            dbconnection.ExecuteQuery(subAdd);
+
+            string lecturerquery = "SELECT CONCAT(Name, '" + " ', Surname) AS lecturer FROM lecturers";
+            List<string> lecturersList = new List<string>();
+            dbconnection.ConnectionToList(lecturerquery, lecturersList);
+            ViewData["lecturers"] = lecturersList;
+            return View("AdminPanel");
+        }
 
     }
 }

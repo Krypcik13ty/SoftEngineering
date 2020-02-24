@@ -139,6 +139,18 @@ body, html {
     text-decoration: none;
 }
 
+#contact_link {
+    color: #e6e6e6;
+    font-family: Roboto;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+#contact_link:hover {
+    color: #3374FF;
+    text-decoration: none;
+}
+
 
 
 
@@ -572,23 +584,23 @@ button:hover {
     top: 30%;
 }
 
-#logIn_again a {
+#logIn_again_button {
     color: #3374FF;
     text-align: center;
     text-decoration: none;
     font-family: Roboto;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: bold;
 }
 
-#logIn_again a:hover {
-    color: #000;
-    text-align: center;
-    text-decoration: none;
-    font-family: Roboto;
-    font-size: 15px;
-    font-weight: bold;
-}
+    #logIn_again_button:hover {
+        color: #000;
+        text-align: center;
+        text-decoration: none;
+        font-family: Roboto;
+        font-size: 17px;
+        font-weight: bold;
+    }
 
 /*//////////////////////////////////////////////////////////////////
 [ ADMIN PANEL LOOK]*/

@@ -26,7 +26,7 @@
                 <li>@Html.ActionLink("Panel Administracyjny", "AdminPanel", "AdminPanel")</li>
                 <li>@Html.ActionLink("Zarządzanie kontem", "Accmanagment", "Accmanagment")</li>
                 <li><a class="active" href="#">Kontakt</a></li>
-                <li class="logout"><a href="./LogOut">Wyloguj</a></li>
+                <li class="logout">@Html.ActionLink("Wyloguj", "LogOut", "Home")</li>
             </ul>
         </div>
         <div class="contact_wrapper mg-bt30">
@@ -110,13 +110,13 @@
             </span>
         </div>
     </div>
-        <div id="footer">
-            <a class="footer_link" href="./Contact">Kontakt</a>
-            <br />
-            &copy; Nadnotecki Instytut UAM w Pile
-            <br />
-            <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
-        </div>
+    <div id="footer">
+        <span>@Html.ActionLink("Kontakt", "Contact", "Contact", null, new { id = "contact_link" })</span>
+        <br />
+        &copy; Nadnotecki Instytut UAM w Pile
+        <br />
+        <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
+    </div>
     </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 body, html {
-    font-family: Raleway-Medium;
+    font-family: Roboto;
     width: 100%;
     height: 100%;
     min-width: 562px;
@@ -28,28 +28,28 @@ body, html {
     table-layout: fixed;
 }
 
-    .hoverTable td {
-        padding: 7px;
-        height: 10%;
-        border-top: #3374FF 1px solid;
-        border-bottom: #3374FF 1px solid;
-        border-left: #3374FF 1px solid;
-        border-right: #3374FF 1px solid;
-        background: #ffffff;
-    }
+.hoverTable td {
+    padding: 7px;
+    height: 10%;
+    border-top: #3374FF 1px solid;
+    border-bottom: #3374FF 1px solid;
+    border-left: #3374FF 1px solid;
+    border-right: #3374FF 1px solid;
+    background: #ffffff;
+}
 
-    .hoverTable th {
-        padding: 20px;
-        background: linear-gradient(30deg,#3374FF,#93b5fe);
-        border: #3374FF 1px solid;
-        color: #ffffff;
-        text-align: center;
-    }
+.hoverTable th {
+    padding: 20px;
+    background: linear-gradient(30deg,#3374FF,#93b5fe);
+    border: #3374FF 1px solid;
+    color: #ffffff;
+    text-align: center;
+}
 
 
-    .hoverTable td:hover {
-        background-color: #93b5fe;
-        cursor: pointer;
+.hoverTable td:hover {
+    background-color: #93b5fe;
+    cursor: pointer;
     }
 #save {
     position: absolute;
@@ -100,9 +100,8 @@ body, html {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-family: Arial;
+    font-family: Roboto;
     font-size: 15px;
-    font-weight: bold;
 }
 
 #header_nav li a:hover {
@@ -130,7 +129,7 @@ body, html {
 
 .footer_link {
     color: #e6e6e6;
-    font-family: Arial;
+    font-family: Roboto;
     font-size: 15px;
     text-decoration: none;
 }
@@ -155,27 +154,6 @@ body, html {
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////[CONTENT] END  */
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////[INDEX - LOGIN PAGE] START  */
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-@font-face {
-    font-family: Raleway-Regular;
-    src: url('~/Style/fonts/raleway/Raleway-Regular.ttf');
-}
-
-@font-face {
-    font-family: Raleway-Medium;
-    src: url('~/Style/fonts/raleway/Raleway-Medium.ttf');
-}
-
-@font-face {
-    font-family: Raleway-SemiBold;
-    src: url('~/Style/fonts/raleway/Raleway-SemiBold.ttf');
-}
-
-@font-face {
-    font-family: Raleway-Bold;
-    src: url('~/Style/fonts/raleway/Raleway-Bold.ttf');
-}
 
 /*//////////////////////////////////////////////////*/
 
@@ -183,18 +161,18 @@ body-login {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-	font-family: Raleway-Regular, sans-serif;
+    font-family: Roboto;
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: Raleway-Regular;
-	font-size: 14px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
-	transition: all 0.4s;
-	-webkit-transition: all 0.4s;
+    font-family: Roboto;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #666666;
+    margin: 0px;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
 }
@@ -214,11 +192,11 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-	font-family: Raleway-Regular;
-	font-size: 14px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
+    font-family: Roboto;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #666666;
+    margin: 0px;
 }
 
 ul, li {
@@ -257,29 +235,29 @@ button:hover {
 
 /*//////////////////////////////////////////////////*/
 .txt1 {
-  font-family: Raleway-SemiBold;
-  font-size: 13px;
-  color: #555555;
-  line-height: 1.4;
-  text-transform: uppercase;
+    font-family: Roboto:500;
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.4;
+    text-transform: uppercase;
 }
 
 .txt2 {
-  font-family: Raleway-Regular;
-  font-size: 13px;
-  color: #999999;
-  line-height: 1.4;
+    font-family: Roboto;
+    font-size: 13px;
+    color: #999999;
+    line-height: 1.4;
 }
 
 .txt3 {
-    font-family: Raleway-Regular;
+    font-family: Roboto;
     font-size: 13px;
     color: #555555;
     line-height: 1.4;
 }
 
 .txt4 {
-    font-family: Raleway-Bold;
+    font-family: Roboto:500;
     font-size: 16px;
     color: #555555;
     line-height: 1.4;
@@ -371,15 +349,14 @@ button:hover {
 }
 
 .login-form-title {
-  font-family: Raleway-Medium;
-  font-size: 30px;
-  color: #555555;
-  line-height: 1.2;
-  text-transform: uppercase;
-  text-align: center;
-
-  width: 100%;
-  display: block;
+    font-family: Roboto:500;
+    font-size: 30px;
+    color: #555555;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    display: block;
 }
 
 
@@ -398,16 +375,15 @@ button:hover {
 
 /*---------------------------------------------*/
 .input, .textarea {
-  font-family: Raleway-Medium;
-  color: #555555;
-  line-height: 1.2;
-  font-size: 18px;
-
-  display: block;
-  width: 100%;
-  background: transparent;
-  height: 30px;
-  padding: 0 25px 0 25px;
+    font-family: Roboto:500;
+    color: #555555;
+    line-height: 1.2;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    background: transparent;
+    height: 30px;
+    padding: 0 25px 0 25px;
 }
 
 .textarea {
@@ -479,43 +455,42 @@ button:hover {
 }
 
 .label-checkbox {
-  font-family: Raleway-Regular;
-  font-size: 13px;
-  color: #999999;
-  line-height: 1.4;
-
-  display: block;
-  position: relative;
-  padding-left: 26px;
-  cursor: pointer;
-}
-
-.label-checkbox::before {
-    content: "\f00d";
-    font-family: FontAwesome;
+    font-family: Roboto;
     font-size: 13px;
-    color: transparent;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border-radius: 2px;
-    background: #fff;
-    border: 1px solid #e6e6e6;
-    left: 0;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
+    color: #999999;
+    line-height: 1.4;
+    display: block;
+    position: relative;
+    padding-left: 26px;
+    cursor: pointer;
 }
+
+    .label-checkbox::before {
+        content: "\f00d";
+        font-family: Roboto;
+        font-size: 13px;
+        color: transparent;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        border-radius: 2px;
+        background: #fff;
+        border: 1px solid #e6e6e6;
+        left: 0;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
 
 .input-checkbox:checked + .label-checkbox::before {
     color: #3374FF;
@@ -537,28 +512,26 @@ button:hover {
 }
 
 .login-form-btn {
-  font-family: Raleway-Bold;
-  font-size: 16px;
-  color: #fff;
-  line-height: 1.2;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
-  min-width: 150px;
-  height: 55px;
-  background-color: #333333;
-  border-radius: 12px;
-
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
+    font-family: Roboto:500;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 150px;
+    height: 55px;
+    background-color: #333333;
+    border-radius: 12px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
 }
 
 .login-form-btn:hover {
@@ -587,7 +560,7 @@ button:hover {
     color: #3374FF;
     text-align: center;
     text-decoration: none;
-    font-family: Arial;
+    font-family: Roboto;
     font-size: 35px;
     font-weight: bold;
 }
@@ -603,7 +576,7 @@ button:hover {
     color: #3374FF;
     text-align: center;
     text-decoration: none;
-    font-family: Arial;
+    font-family: Roboto;
     font-size: 15px;
     font-weight: bold;
 }
@@ -612,7 +585,7 @@ button:hover {
     color: #000;
     text-align: center;
     text-decoration: none;
-    font-family: Arial;
+    font-family: Roboto;
     font-size: 15px;
     font-weight: bold;
 }
@@ -621,7 +594,7 @@ button:hover {
 [ ADMIN PANEL LOOK]*/
 
 .dropdownpanel {
-    background-color: #3374FF;
+    background-color: #333;
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -636,14 +609,16 @@ button:hover {
     margin-left: 2%;
     position: relative;
 }
-    .aktywowanie, .dropdownpanel:hover {
-        background-color: #666666;
-    }
+.aktywowanie, .dropdownpanel:hover {
+    background-color: #666666;
+
+}
+
 .zawartosc {
     padding: 14px 14px;
     display: none;
     overflow: hidden;
-    background-color: #e6e6e6;
+    background-color: #fff;
     width: 96%;
     margin-left: 2%;
     margin-top: -1%;
@@ -651,6 +626,7 @@ button:hover {
     position: relative;
     top: 2%;
     border-radius: 12px;
+    border: 3px solid #666;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
@@ -675,7 +651,7 @@ button:hover {
 }
 
 .contact_form {
-    font-family: Raleway-Regular;
+    font-family: Roboto;
     width: 540px;
     display: flex;
     flex-direction: column;
@@ -691,7 +667,7 @@ button:hover {
 }
 
 .contact_info {
-    font-family: Raleway-Regular;
+    font-family: Roboto;
     width: 540px;
     display: flex;
     flex-direction: column;
@@ -737,7 +713,7 @@ button:hover {
 }
 
 .contact-form-title {
-    font-family: Raleway-Medium;
+    font-family: Roboto:500;
     font-size: 30px;
     color: #555555;
     line-height: 1.2;
@@ -749,7 +725,7 @@ button:hover {
 }
 
 .contact_textarea {
-    font-family: Raleway-Medium;
+    font-family: Roboto:500;
     color: #555555;
     line-height: 1.2;
     font-size: 18px;
@@ -772,7 +748,7 @@ button:hover {
 }
 
 .contact-form-btn, .contact-form-btn-clear {
-    font-family: Raleway-Bold;
+    font-family: Roboto:500;
     font-size: 16px;
     color: #fff;
     line-height: 1.2;
@@ -859,4 +835,11 @@ button:hover {
 }
 #tbwidth{
     width:20%;
+}
+
+
+/*//////////////////////////////////////////////////////////////////[ Timetable ]*/
+
+.pd30{
+    padding: 30px;
 }

@@ -2,6 +2,7 @@ body, html {
     font-family: Raleway-Medium;
     width: 100%;
     height: 100%;
+    min-width: 562px;
 }
 
 * {
@@ -147,7 +148,6 @@ body, html {
     margin-top: 50px;
     margin-bottom: 50px;
     padding-bottom: 30px;
-    padding-top: 30px;
     flex-grow: 1;
     flex-shrink: 0;
 }
@@ -670,32 +670,32 @@ button:hover {
     background-color: white;
     justify-content: space-around;
     background-color: #ebebeb;
+    flex-direction: column;
+    margin-top: 50px;
 }
 
 .contact_form {
     font-family: Raleway-Regular;
-    width: 100%;
+    width: 540px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin: 0 auto;
-    max-width: 650px;
     height: auto;
     background-color: white;
     text-align: left;
     padding: 30px;
+    margin-bottom: 30px;
     border-radius: 12px;
     flex-wrap: wrap;
 }
 
 .contact_info {
     font-family: Raleway-Regular;
-    width: 100%;
+    width: 540px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin: 0 auto;
-    max-width: 650px;
     height: auto;
     background-color: white;
     text-align: left;

@@ -17,7 +17,10 @@ body, html {
     align-items: stretch;
     background-color: #ebebeb;
 }
-
+.edit-form-1 {
+    width: 50%;
+    float: left;
+}
 .hoverTable {
     width: 60%;
     margin-left: 35%;
@@ -793,6 +796,7 @@ button:hover {
 }
 
 #adjusting {
+
     margin-right:75%;
     float: right;
 }
@@ -803,7 +807,8 @@ button:hover {
 #adjusting3 {
     border: 1px solid black;
     border-radius: 4px;
-    background-color: dodgerblue;
+    background-color: #A9A9A9;
+    margin-top: 1%;
     color: black;
 }
 #adjusting4 {
@@ -812,7 +817,7 @@ button:hover {
 }
 #adjusting5 {
     margin-right: 67%;
-    float: right;
+    !important float: right;
 }
 }
 #adjusting7 {
@@ -854,4 +859,10 @@ button:hover {
 
 .pd30{
     padding: 30px;
+}
+
+#newcal{
+
+  position:inherit;
+  margin-top: -3%;
 }

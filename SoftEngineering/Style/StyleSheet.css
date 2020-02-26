@@ -29,7 +29,9 @@
     color: #ffffff;
     text-align: center;
 }
-
+.edit-form {
+    background: linear-gradient(30deg,#17134d,#40377c);
+}
 
 .hoverTable td:hover {
     background-color: #9f99c8;

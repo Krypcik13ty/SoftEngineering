@@ -138,6 +138,7 @@
     <Compile Include="Models\DBConnection.cs" />
     <Compile Include="Models\Logging.cs" />
     <Compile Include="Models\MailSender.cs" />
+    <Compile Include="Models\SubEdit.cs" />
     <Compile Include="Models\SubjectAdder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

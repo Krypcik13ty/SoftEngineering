@@ -51,7 +51,6 @@
                                     </label>
                                 </li>
                                 <li>
-                                    <br />
                                     <input type="submit" value=" Zatwierdź " id="adjusting3" />
                                 </li>
                             </ul>
@@ -100,7 +99,6 @@
                                 </label>
                             </li>
                             <li>
-                                <br />
                                 <input type="submit" value=" Zatwierdź " id="adjusting3"/>
                             </li>
                         </ul>
@@ -113,73 +111,104 @@
                     @using (Html.BeginForm("SubjectEdit", "AdminPanel", FormMethod.Post))
                     {
                     <form>
+
                     <ul class="form-style-1">
                         <li>
-                            <label>
-                                Wybierz wykładowcę:
-                                <select name="field4" class="field-select" id="adjusting5">
-                                    @foreach (var lec in ViewData["lecturers"] as List<string>)
-                                    {
-                                        <option value="teacher2">@lec</option>
-                                    }
-                                </select>
-                            </label>
-                            <label>
-                                Wybierz przedmiot:
-                                <select name="field1" class="field-select" id="adjusting5">
-                                    @foreach (var sub in ViewData["subjects_dictionary"] as List<string>)
-                                    {
-                                        <option value="subject">@sub</option>
-                                    }
+                            <div class="edit-form-1">
+                                <label>
+                                    Wybierz wykładowcę:
+                                    <select name="Ch1" class="field-select" id="adjusting5">
+                                        @foreach (var lec in ViewData["lecturers"] as List<string>)
+                                        {
+                                            <option>@lec</option>
+                                        }
+                                    </select>
+                                </label>
+                                <label>
+                                    Wybierz przedmiot:
+                                    <select name="Ch2" class="field-select" id="adjusting5">
+                                        @foreach (var sub in ViewData["subjects_dictionary"] as List<string>)
+                                        {
+                                            <option value="subject">@sub</option>
+                                        }
 
-                                </select>
-                            </label>
-                            <label>
-                                Wybierz datę:
-                                <select name="field2" class="field-select" id="adjusting5">
-                                    <option value="date1">którys stycznia</option>
-                                    <option value="date2">jakiśtam lutego</option>
-                                    <option value="date3">któregoś marca</option>
-                                    <option value="date4">pewnego grudnia</option>
-                                    <option value="date5">5 maj</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    Wybierz datę:
+                                    <input type="date" name="Ch3" class="field-select" id="adjusting5"
+                                           value="2019-12-24">
+                                </label>
+                                <label>
+                                    Wybierz salę:
+                                    <select name="Ch4" class="field-select" id="adjusting5">
+                                        @foreach (var cls in ViewData["classes"] as List<string>)
+                                        {
+                                            <option>@cls</option>
+                                        }
+                                    </select>
+                                </label>
+                                <label>
+                                    Wybierz godzinę:
+                                    <select name="Ch5" class="field-select" id="adjusting5">
+                                        @foreach (var hrs in ViewData["hours"] as List<string>)
+                                        {
+                                            <option>@hrs</option>
+                                        }
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="edit-form-1">
+                                <label>
+                                    Zamień wykładowcę na:
+                                    <select name="Change1" class="field-select" id="adjusting5">
+                                        @foreach (var lec in ViewData["lecturers"] as List<string>)
+                                        {
+                                            <option>@lec</option>
+                                        }
+                                    </select>
+                                </label>
+                                <label>
+                                    Zamień wybrany przedmiot na:
+                                    <select name="Change2" class="field-select" id="adjusting5">
+                                        @foreach (var sub in ViewData["subjects_dictionary"] as List<string>)
+                                        {
+                                            <option value="subject">@sub</option>
+                                        }
 
-                                </select>
-                            </label>
-                            <label>
-                                Zamień wybrany przedmiot na:
-                                <select name="field3" class="field-select" id="adjusting5">
-                                    @foreach (var sub in ViewData["subjects_dictionary"] as List<string>)
-                                    {
-                                        <option value="subject">@sub</option>
-                                    }
+                                    </select>
+                                </label>
+                                <label>
+                                    Zamień datę na:
+                                    <input type="date" name="Change3" class="field-select" id="adjusting5"
+                                           value="2019-12-24">
+                                </label>
 
-                                </select>
-                            </label>
-                            <label>
-                                Wybierz salę:
-                                <select name="field5" class="field-select" id="adjusting5">
-                                    @foreach (var cls in ViewData["classes"] as List<string>)
-                                    {
-                                        <option value="teacher2">@cls</option>
-                                    }
-                                </select>
-                            </label>
-                            <label>
-                                Zamień godzinę na:
-                                <select name="field6" class="field-select" id="adjusting5">
-                                    <option value="hour1">8.00 - 9.30</option>
-                                    <option value="hour2">9.45 - 11.15</option>
-                                    <option value="hour3">11.30 - 13.00</option>
-                                    <option value="hour4">13.30 - 15.00</option>
-                                    <option value="hour5">15.15 - 16.45</option>
-                                    <option value="hour6">Brak</option>
-                                </select>
-                            </label>
+                                <label>
+                                    Zamień salę na:
+                                    <select name="Change4" class="field-select" id="adjusting5">
+                                        @foreach (var cls in ViewData["classes"] as List<string>)
+                                        {
+                                            <option>@cls</option>
+                                        }
+                                    </select>
+                                </label>
+                                <label>
+                                    Zamień godzinę na:
+                                    <select type="time" name="Change5" class="field-select" id="adjusting5">
+                                        @foreach (var hrs in ViewData["hours"] as List<string>)
+                                        {
+                                            <option value="teacher2">@hrs</option>
+                                        }
+                                    </select>
+                                </label>
+                            </div>
                         </li>
+                        
                         <li>
-                            <br />
-                            <input type="submit" value=" Zatwierdź " id="adjusting3" />
+                                <input type="submit" value=" Zatwierdź " id="adjusting3" />
                         </li>
+                        
                     </ul>
                 </form>
                 }
@@ -242,6 +271,4 @@
             });
         }
     </script>
-    <script>
-</body >
-</html >
+

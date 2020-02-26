@@ -21,68 +21,81 @@
 {
 <body class="body-login">
 
-    <div class="titleText">
-        <span class="textn">Nadnotecki Instytut UAM w Pile</span>
-        <br />
-        <span class="textp">PLANY ZAJĘĆ</span>
-    </div>
+    <!--<div class="titleText">
+            <span class="textn">Nadnotecki Instytut UAM w Pile</span>
+            <br />
+            <span class="textp">PLANY ZAJĘĆ</span>
+        </div>-->
 
-    <div class="limiter">
-
-        <div class="container-login">
-            <div class="wrap-login">
-
-                <form class="login-form flex-sb flex-w" action="Login" method="post">
-                    <span class="login-form-title pd-bt30">
-                        Logowanie
-                    </span>
-
-                    <span class="txt1 mg-bt">
-                        Użytkownik
-                    </span>
-
-                    <div class="wrap-input m-b-36">
-                        @Html.TextBoxFor(model => model.Username, new { @class = "input", @required = "required", @maxlength = "50", @type = "text" })
-                        <span class="focus-input"></span>
+        <div class="limiter">
+            <div class="container-login">
+                <div class="wrap-login_info">
+                    <div class="login_info_img">
+                        <img src="~/Content/Images/logo_uam.jpg" class="login_logo_image" />
                     </div>
-
-
-                    <span class="txt1 mg-bt">
-                        Hasło
-                    </span>
-                    <div class="wrap-input mg-bt12">
-                        @Html.TextBoxFor(model => model.Password, new { @class = "input", @required = "required", @maxlength = "50", @type = "password" })
-                        <span class="focus-input"></span>
-                    </div>
-
-                    <div class="flex-sb-m w-full pd-bt30">
-                        <div class="contact-form-checkbox">
-                            <input class="input-checkbox" id="ckb1" type="checkbox" name="remember-me">
-                            <label class="label-checkbox" for="ckb1">
-                                Zapamiętaj
-                            </label>
+                    <div class="login_info_text_container">
+                        <div class="login_info_text_line">
+                            <span class="login_info_title"> NIUAM </span>
+                        </div>
+                        <div class="login_info_text_line">
+                            <span class="login_info_title"> Plan Zajęć </span>
                         </div>
 
-                        <div>
-                            <a href="#" class="txt3">
-                                <a href="~/WebForm1.aspx">Zapomniałeś hasła?</a>
-                            </a>
+                    </div>
+                </div>
+                <div class="wrap-login">
+
+                    <form class="login-form flex-sb flex-w" action="Login" method="post">
+                        <span class="login-form-title pd-bt30">
+                            Logowanie
+                        </span>
+
+                        <span class="txt1 mg-bt">
+                            Użytkownik
+                        </span>
+
+                        <div class="wrap-input m-b-36">
+                            @Html.TextBoxFor(model => model.Username, new { @class = "input", @required = "required", @maxlength = "50", @type = "text" })
+                            <span class="focus-input"></span>
                         </div>
-                    </div>
 
-                    <div class="container-login-form-btn">
 
-                        <button type="submit" class="login-form-btn">
-                            Zaloguj
-                        </button>
+                        <span class="txt1 mg-bt">
+                            Hasło
+                        </span>
+                        <div class="wrap-input mg-bt12">
+                            @Html.TextBoxFor(model => model.Password, new { @class = "input", @required = "required", @maxlength = "50", @type = "password" })
+                            <span class="focus-input"></span>
+                        </div>
 
-                    </div>
+                        <div class="flex-sb-m w-full pd-bt30">
+                            <div class="contact-form-checkbox">
+                                <input class="input-checkbox" id="ckb1" type="checkbox" name="remember-me">
+                                <label class="label-checkbox" for="ckb1">
+                                    Zapamiętaj
+                                </label>
+                            </div>
 
-                </form>
+                            <div>
+                                <a href="#" class="txt3">
+                                    <a href="~/WebForm1.aspx">Zapomniałeś hasła?</a>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="container-login-form-btn">
+
+                            <button type="submit" class="login-form-btn">
+                                Zaloguj
+                            </button>
+
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-</body>
-}
-</html>
+    </body>
+    }
+    </html>

@@ -72,6 +72,40 @@ body, html {
 
 /*////////////////////LAYOUT - HEADER (NAVBAR), FOOTER////////////////////////////////*/
 
+.titleText {
+    position: absolute;
+    top: 28px;
+    width: 100%;
+    text-align: center;
+    font-family: Roboto;
+    background: #cfcfcf;
+    padding: 10px;
+}
+
+.textn {
+    font-size: 25px;
+    color: #3374FF;
+    letter-spacing: 4px;
+    position: relative;
+    animation: text 4s 1;
+}
+
+.textp {
+    font-size: 45px;
+    color: #333333;
+    letter-spacing: 4px;
+    animation: text 4s 1;
+}
+
+@keyframes text {
+    0% {
+        color: #cfcfcf;
+    }
+
+    30% {
+        letter-spacing: 10px;
+    }
+}
 
 #header_nav {
     margin-bottom: 30px;
@@ -348,6 +382,7 @@ button:hover {
 
 
 .wrap-login {
+    top: 60px;
     min-width: 450px;
     background: #fff;
     border-radius: 8px;

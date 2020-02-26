@@ -97,11 +97,16 @@
                         <td id="tbwidth">Piątek</td>
                     </tr>
                     <tr>
-                        <td id="SubjectField">afdssssssssssss</td>
-                        <td id="SubjectField" 2</td>
-                        <td id="SubjectField">3</td>
-                        <td id="SubjectField">4</td>
-                        <td id="SubjectField">5</td>
+                        @foreach (var days in ViewData["subjectday"] as List<string>)
+                        {
+                            string day = days.Split(' ')[0];
+                            string hour = days.Split(' ')[2];
+                            string subject = days.Substring(36);
+                            if (day == "08.01.2020")
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                        }
                     </tr>
                     <tr>
                         <td id="SubjectField">1</td>

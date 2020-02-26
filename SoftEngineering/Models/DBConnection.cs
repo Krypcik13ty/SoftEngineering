@@ -70,7 +70,7 @@ namespace SoftEngineering.Models
             return null;
         }
 
-        public string ConnectionToList(string query, List<string> subjectListt)
+        public string ConnectionToList(string query, List<string> subjectList)
         {
 
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
@@ -87,7 +87,7 @@ namespace SoftEngineering.Models
                 {
                     while (reader.Read())
                     {
-                        subjectListt.Add(reader.GetString(0));
+                        subjectList.Add(reader.GetString(0));
                     }
                 }
                 else
@@ -100,7 +100,42 @@ namespace SoftEngineering.Models
             {
                 MessageBox.Show(ex.Message);
             }
-            return subjectListt.ToString();
+            return subjectList.ToString();
+        }
+
+        public string ConnectionTo3List(string query, List<string> subjectList, List<string> dayList, List<string> hourList)
+        {
+
+            MySqlConnection databaseConnection = new MySqlConnection(connectionString);
+            OpenConnection(databaseConnection);
+
+            MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+            commandDatabase.CommandTimeout = 60;
+            MySqlDataReader reader;
+            try
+            {
+                reader = commandDatabase.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        subjectList.Add(reader.GetString(0));
+                        dayList.Add(reader.GetString(1));
+                        hourList.Add(reader.GetString(2));
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+                CloseConnection(databaseConnection);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return subjectList.ToString();
         }
 
         private void CloseConnection(MySqlConnection databaseConnection)

@@ -103,7 +103,7 @@ namespace SoftEngineering.Models
             return subjectList.ToString();
         }
 
-        public string ConnectionTo3List(string query, List<string> subjectList, List<string> dayList, List<string> hourList)
+        public string ConnectionTo3List(string query, List<string> subjectList, List<string> hourList)
         {
 
             MySqlConnection databaseConnection = new MySqlConnection(connectionString);
@@ -121,8 +121,7 @@ namespace SoftEngineering.Models
                     while (reader.Read())
                     {
                         subjectList.Add(reader.GetString(0));
-                        dayList.Add(reader.GetString(1));
-                        hourList.Add(reader.GetString(2));
+                        hourList.Add(reader.GetString(1));
                     }
                 }
                 else

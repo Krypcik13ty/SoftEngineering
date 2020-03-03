@@ -351,23 +351,7 @@ INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VA
 INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-02-13','2','AStach','1.03','2','8:00','9:30');
 INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-02-13','3','MKandul','1.04','3','9:45','11:15');
 INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-02-13','4','AStach','1.05','4','9:45','11:15');
-```
-Logging by Radek Nawrocki
-
-HOW IT WORKS:
-
-             1. Takes login and password from "index" view
-             
-             2. makes connection with DB using connectToDB (created by my boi Dawid Sokół)
-             
-             3. From connectToDB returns string array containing username, password and social status
-             
-             4. Checks if the array is empty, if it is, returns the fact that you screwed up :)
-             
-             5. If the username is correct, checks if password is ok
-             
-             6. If password is ok, forwards to ManualTimetable.  
-             
+```          
 
 How to connect to DataBase:
 

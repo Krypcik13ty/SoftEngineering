@@ -24,70 +24,78 @@ namespace SoftEngineering.Controllers
         // GET: Home
         //"08:00:00.000000 Plastyka dla Informatyków"
         //"07.01.2020 00:00:00 08:15:00.000000 Plastyka dla Informatyków"
+
         public ActionResult ManualTimetable()
         {
-            List<string> subjectList = new List<string>();
-            List<string> subjectsList = new List<string>();
-            List<string> grouplist = new List<string>();
-            List<string> dayList = new List<string>();
-            
-            List<string> hourList = new List<string>();
-            List<string> mondaysList = new List<string>();
-            List<string> tuesdaysList = new List<string>();
-            List<string> wednesdaysList = new List<string>();
-            List<string> thursdaysList = new List<string>();
-            List<string> fridaysList = new List<string>();
-            DBConnection dbconnection = new DBConnection();
-            dbconnection.ConnectionToList(subjectquery, subjectList);
-            dbconnection.ConnectionToList(grquery, grouplist);
-            dbconnection.ConnectionTo3List(mondayquery, subjectsList, hourList);
-            for (int i = 0; i < hourList.Count; i++)
+            if (Session["Username"] != null)
             {
-                
-                mondaysList.Add(hourList[i].ToString() + " " + subjectsList[i].ToString());
-            }
-            subjectsList.Clear();
-            hourList.Clear();
-            dbconnection.ConnectionTo3List(tuesdayquery, subjectsList, hourList);
-            for (int i = 0; i < hourList.Count; i++)
-            {
-                
-                tuesdaysList.Add(hourList[i].ToString() + " " + subjectsList[i].ToString());
-            }
+                List<string> subjectList = new List<string>();
+                List<string> subjectsList = new List<string>();
+                List<string> grouplist = new List<string>();
+                List<string> dayList = new List<string>();
 
-            subjectsList.Clear();
-            hourList.Clear();
-            dbconnection.ConnectionTo3List(wednesdayquery, subjectsList, hourList);
-            for (int i = 0; i < hourList.Count; i++)
-            {
-                wednesdaysList.Add(hourList[i].ToString() + " " + subjectsList[i].ToString());
-            }
+                List<string> hourList = new List<string>();
+                List<string> mondaysList = new List<string>();
+                List<string> tuesdaysList = new List<string>();
+                List<string> wednesdaysList = new List<string>();
+                List<string> thursdaysList = new List<string>();
+                List<string> fridaysList = new List<string>();
+                DBConnection dbconnection = new DBConnection();
+                dbconnection.ConnectionToList(subjectquery, subjectList);
+                dbconnection.ConnectionToList(grquery, grouplist);
+                dbconnection.ConnectionTo3List(mondayquery, subjectsList, hourList);
+                for (int i = 0; i < hourList.Count; i++)
+                {
 
-            subjectsList.Clear();
-            hourList.Clear();
-            dbconnection.ConnectionTo3List(thursdayquery, subjectsList, hourList);
-            for (int i = 0; i < hourList.Count; i++)
-            {
-                thursdaysList.Add(hourList[i].ToString() + " " + subjectsList[i].ToString());
-            }
+                    mondaysList.Add(hourList[i].ToString() + " " + subjectsList[i].ToString());
+                }
+                subjectsList.Clear();
+                hourList.Clear();
+                dbconnection.ConnectionTo3List(tuesdayquery, subjectsList, hourList);
+                for (int i = 0; i < hourList.Count; i++)
+                {
 
-            subjectsList.Clear();
-            hourList.Clear();
-            dbconnection.ConnectionTo3List(fridayquery, subjectsList, hourList);
-            for (int i = 0; i < hourList.Count; i++)
-            {
-                fridaysList.Add(hourList[i].ToString() + " " + subjectsList[i].ToString());
-            }
-            //kazda lista przechowwuje zajecia z danego dnia
-            ViewData["mondays"] = mondaysList;
-            ViewData["tuesdays"] = tuesdaysList;
-            ViewData["wednesdays"] = wednesdaysList;
-            ViewData["thursdays"] = thursdaysList;
-            ViewData["fridays"] = fridaysList;
+                    tuesdaysList.Add(hourList[i].ToString() + " " + subjectsList[i].ToString());
+                }
 
-            ViewData["subjects"] = subjectList;
-            ViewData["groups"] = grouplist;
-            return View();
+                subjectsList.Clear();
+                hourList.Clear();
+                dbconnection.ConnectionTo3List(wednesdayquery, subjectsList, hourList);
+                for (int i = 0; i < hourList.Count; i++)
+                {
+                    wednesdaysList.Add(hourList[i].ToString() + " " + subjectsList[i].ToString());
+                }
+
+                subjectsList.Clear();
+                hourList.Clear();
+                dbconnection.ConnectionTo3List(thursdayquery, subjectsList, hourList);
+                for (int i = 0; i < hourList.Count; i++)
+                {
+                    thursdaysList.Add(hourList[i].ToString() + " " + subjectsList[i].ToString());
+                }
+
+                subjectsList.Clear();
+                hourList.Clear();
+                dbconnection.ConnectionTo3List(fridayquery, subjectsList, hourList);
+                for (int i = 0; i < hourList.Count; i++)
+                {
+                    fridaysList.Add(hourList[i].ToString() + " " + subjectsList[i].ToString());
+                }
+                //kazda lista przechowwuje zajecia z danego dnia
+                ViewData["mondays"] = mondaysList;
+                ViewData["tuesdays"] = tuesdaysList;
+                ViewData["wednesdays"] = wednesdaysList;
+                ViewData["thursdays"] = thursdaysList;
+                ViewData["fridays"] = fridaysList;
+
+                ViewData["subjects"] = subjectList;
+                ViewData["groups"] = grouplist;
+                return View();
+            }
+            else
+            {
+                return View("LogOut");
+            }
         }
         public ActionResult LogOut()
         {

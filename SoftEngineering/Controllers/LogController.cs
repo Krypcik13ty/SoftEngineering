@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Windows;
 using SoftEngineering.Models;
+using System.Web.SessionState;
 
 namespace SoftEngineering.Controllers
 {
@@ -31,8 +32,8 @@ namespace SoftEngineering.Controllers
 
                 if (array[1] == user.Password)
                 {
-                    user.Type = array[2];
-                    return View("ManualTimetable");
+                    Session["Username"] = user.Username;
+                    return View("../Home/ManualTimetable");
                 }
                 MessageBox.Show("Incorrect username");
                 return View("index");

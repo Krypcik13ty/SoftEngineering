@@ -17,6 +17,22 @@ namespace SoftEngineering.Models
 
         public string Newpass { get; set; }
         public string Newpasscheck { get; set; }
-        
+
+
+        public string CheckUserType(string[] row)
+        {
+            if (row[1] == "Admin")
+            {
+                return "admin";
+            }
+            else if (row[1] == "Wykladowca")
+            {
+                return "wykladowca";
+            }
+            else
+            {
+                return "User";
+            }
+        }
     }
 }

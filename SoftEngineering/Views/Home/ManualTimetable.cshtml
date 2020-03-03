@@ -7,6 +7,9 @@
 <head>
     <title>SoftEngineering</title> @* temporary title tag *@
     <link href="~/Style/main.css" rel="stylesheet" />
+    <link href="~/Style/calendarmake.css" rel="stylesheet" />
+    <script src="~/Scripts/calendarscipt.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
     <script src="~/Scripts/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
     <script>
@@ -19,11 +22,6 @@
                     titleAtr = $("#option option:selected").attr("title");
                 });
             })
-            //Dane do tabeli (do czasu pobierania ich z bazy)
-            var daysOfWeek = ['', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek'];
-            var hours = ['8:15 - 9:45', '10:00 - 11:30', '11:45 - 13:15',
-                '13:30 - 15:00', '15:15 - 16:45', '17:00 - 18:30'];
-            var defaultData = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5]];
 
             //----
 
@@ -49,80 +47,6 @@
                     }
                 });
             });
-            //Tworzenie planu
-            arrayToTable = function (defaultData, options = {}) {
-                var table = $('<table />'),
-                    rows = [],
-                    row,
-                    i, j,
-                    defaults = {
-                        th: true, // should we use th elemenst for the first row
-                        thead: false, //should we incldue a thead element with the first row
-                        tfoot: false, // should we include a tfoot element with the last row
-                        attrs: {} // attributes for the table element, can be used to
-                    }
-
-                options = $.extend(defaults, options);
-
-                table.attr(options.attrs)
-
-                // loop through all the rows, we will deal with tfoot and thead later
-                for (i = 0; i <= defaultData.length; i++) {
-                    if (i == 0)
-                        row = $('<tr />');
-                    else { row = $('<tr class ="test"/>'); }
-
-                    for (j = 0; j < daysOfWeek.length; j++) {
-                        if (i == 0) {
-                            row.append($('<th>').html(daysOfWeek[j]));
-                        }
-                        else if (j == 0) {
-                            row.append($('<td>').html(hours[i - 1]));
-                        }
-                        else {
-                            row.append($('<td id="SubjectField">').html(defaultData[i - 1][j - 1]));
-                        }
-                    }
-                    rows.push(row);
-
-                }
-
-                // add all the rows
-                for (i = 0; i < rows.length; i++) {
-                    table.append(rows[i]);
-                };
-
-                return table;
-            }
-
-            var table = arrayToTable(defaultData, {
-                thead: true,
-                attrs: { class: 'hoverTable', border: 1 }
-            })
-
-            $('div[id="table"]').append(table);
-            //-----
-
-
-            //Zmiana wyświetlanego tygodnia
-            $('button[id="nextWeek"]').click(function () {
-                $(".hoverTable").remove();
-                var table = arrayToTable(defaultData, {
-                    thead: true,
-                    attrs: { class: 'hoverTable', border: 1 }
-                })
-                $('div[id="table"]').append(table);
-            })
-            $('button[id="lastWeek"]').click(function () {
-                $(".hoverTable").remove();
-                var table = arrayToTable(defaultData, {
-                    thead: true,
-                    attrs: { class: 'hoverTable', border: 1 }
-                })
-                $('div[id="table"]').append(table);
-            })
-            //-------
-
 
             $(document).on('click', 'td[id="SubjectField"]', function () {
                 $(this).text(subject);
@@ -142,35 +66,1067 @@
     </script>
 </head>
 <body>
+
+
     <div id="header_nav">
         <ul>
             <li><a class="active" href="#">Plan Zajęć</a></li>
-            <li><a href="./AdminPanel">Panel Administracyjny</a></li>
-            <li><a href="./Accmanagment">Zarządzanie kontem</a></li>
-            <li><a href="./Contact">Kontakt</a></li>
+            <li>@Html.ActionLink("Panel Administracyjny", "AdminPanel", "AdminPanel")</li>
+            <li>@Html.ActionLink("Zarządzanie kontem", "Accmanagment", "Accmanagment")</li>
+            <li>@Html.ActionLink("Kontakt", "Contact", "Contact")</li>
             <li class="logout"><a href="./LogOut">Wyloguj</a></li>
         </ul>
     </div>
-    <div>
-        <div id="menu">
-            <!--bootstrap w połowie dziala-->
-            <select class="form-control form-control-lg" id="option">
-                @foreach (var sub in ViewData["subjects"] as List<string>)
-                {
-                    <option id="SubElement1" value="jezyk polski" title="Adrian Gruchowiecki &#10; Sala: 204">@sub</option>
-                }
-            </select>
-        </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <div id="table">
+    <div id="newcal">
+        <div class="container col-sm-2 col-md-7 col-lg-4 mt-5" id="positioning">
+            <br /><br />    <!--calendar is hiding my button in TemporaryView-->
+            <div class="card">
+                <h3 class="card-header" id="monthAndYear"></h3>
+                <table class="table table-bordered table-responsive-sm" id="calendar">
+                    <thead>
+                        <tr>
 
+                            <th>Nie</th>
+                            <th>Pon</th>
+                            <th>Wto</th>
+                            <th>Sro</th>
+                            <th>Czw</th>
+                            <th>Pia</th>
+                            <th>Sob</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="calendar-body">
+                    </tbody>
+                </table>
+
+                <div class="form-inline">
+
+                    <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Poprzedni</button>
+
+                    <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Następny</button>
+                </div>
+                <br />
+                <form class="form-inline">
+                    <label class="lead mr-2 ml-2" for="month">Przejdź do: </label>
+                    <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+                        <option value=0>Styczeń</option>
+                        <option value=1>Luty</option>
+                        <option value=2>Marzec</option>
+                        <option value=3>Kwiecień</option>
+                        <option value=4>Maj</option>
+                        <option value=5>Czerwiec</option>
+                        <option value=6>Lipiec</option>
+                        <option value=7>Sierpień</option>
+                        <option value=8>Wczesień</option>
+                        <option value=9>Październik</option>
+                        <option value=10>Listopad</option>
+                        <option value=11>Grudzień</option>
+                    </select>
+
+
+                    <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
+                        <option value=2018>2018</option>
+                        <option value=2019>2019</option>
+                        <option value=2020>2020</option>
+                        <option value=2021>2021</option>
+                        <option value=2022>2022</option>
+                        <option value=2023>2023</option>
+                        <option value=2024>2024</option>
+                        <option value=2025>2025</option>
+                        <option value=2026>2026</option>
+                        <option value=2027>2027</option>
+                        <option value=2028>2028</option>
+                        <option value=2029>2029</option>
+                        <option value=2030>2030</option>
+                    </select>
+                </form>
+            </div>
         </div>
     </div>
-    <br />
-    <br />
-    <button id="save">save</button>
+
+    <div class="content_wrapper pd30">
+        <div>
+            <div id="menu">
+                <select class="form-control form-control-lg" id="option">
+                    @foreach (var sub in ViewData["subjects"] as List<string>)
+                    {
+                        <option id="SubElement1" title="datafromquery">@sub</option>
+                    }
+                </select>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <div id="tableadj">
+                <table id="trs" border="2">
+                    <tr>
+                        <td id="tbwidth">Poniedziałek</td>
+                        <td id="tbwidth">Wtorek</td>
+                        <td id="tbwidth">Środa</td>
+                        <td id="tbwidth">Czwartek</td>
+                        <td id="tbwidth">Piątek</td>
+                    </tr>
+                    <tr>
+                        @{ bool cond = false;               //1
+                            string hour;
+                            var subject = "";
+                            foreach (var monday in ViewData["mondays"] as List<string>)
+                            {
+                                hour = monday.Split(' ')[0];
+                                subject = monday.Substring(16);
+                                if (hour == "08:00:00.000000" || hour == "08:15:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var tuesday in ViewData["tuesdays"] as List<string>)
+                            {
+                                hour = tuesday.Split(' ')[0];
+                                subject = tuesday.Substring(16);
+                                if (hour == "08:00:00.000000" || hour == "08:15:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var wednesday in ViewData["wednesdays"] as List<string>)
+                            {
+                                hour = wednesday.Split(' ')[0];
+                                subject = wednesday.Substring(16);
+                                if (hour == "08:00:00.000000" || hour == "08:15:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var thursday in ViewData["thursdays"] as List<string>)
+                            {
+                                hour = thursday.Split(' ')[0];
+                                subject = thursday.Substring(16);
+                                if (hour == "08:00:00.000000" || hour == "08:15:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var friday in ViewData["fridays"] as List<string>)
+                            {
+                                hour = friday.Split(' ')[0];
+                                subject = friday.Substring(16);
+                                if (hour == "08:00:00.000000" || hour == "08:15:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        @{ cond = false;                    //2
+                            hour = "";
+                            subject = "";
+                            foreach (var monday in ViewData["mondays"] as List<string>)
+                            {
+                                hour = monday.Split(' ')[0];
+                                subject = monday.Substring(16);
+                                if (hour == "09:45:00.000000" || hour == "10:00:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var tuesday in ViewData["tuesdays"] as List<string>)
+                            {
+                                hour = tuesday.Split(' ')[0];
+                                subject = tuesday.Substring(16);
+                                if (hour == "09:45:00.000000" || hour == "10:00:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var wednesday in ViewData["wednesdays"] as List<string>)
+                            {
+                                hour = wednesday.Split(' ')[0];
+                                subject = wednesday.Substring(16);
+                                if (hour == "09:45:00.000000" || hour == "10:00:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var thursday in ViewData["thursdays"] as List<string>)
+                            {
+                                hour = thursday.Split(' ')[0];
+                                subject = thursday.Substring(16);
+                                if (hour == "09:45:00.000000" || hour == "10:00:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var friday in ViewData["fridays"] as List<string>)
+                            {
+                                hour = friday.Split(' ')[0];
+                                subject = friday.Substring(16);
+                                if (hour == "09:45:00.000000" || hour == "10:00:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        @{ cond = false;                    //3
+                            hour = "";
+                            subject = "";
+                            foreach (var monday in ViewData["mondays"] as List<string>)
+                            {
+                                hour = monday.Split(' ')[0];
+                                subject = monday.Substring(16);
+                                if (hour == "11:30:00.000000" || hour == "11:45:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var tuesday in ViewData["tuesdays"] as List<string>)
+                            {
+                                hour = tuesday.Split(' ')[0];
+                                subject = tuesday.Substring(16);
+                                if (hour == "11:30:00.000000" || hour == "11:45:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var wednesday in ViewData["wednesdays"] as List<string>)
+                            {
+                                hour = wednesday.Split(' ')[0];
+                                subject = wednesday.Substring(16);
+                                if (hour == "11:30:00.000000" || hour == "11:45:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var thursday in ViewData["thursdays"] as List<string>)
+                            {
+                                hour = thursday.Split(' ')[0];
+                                subject = thursday.Substring(16);
+                                if (hour == "11:30:00.000000" || hour == "11:45:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var friday in ViewData["fridays"] as List<string>)
+                            {
+                                hour = friday.Split(' ')[0];
+                                subject = friday.Substring(16);
+                                if (hour == "11:30:00.000000" || hour == "11:45:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        @{ cond = false;                        //4
+                            hour = "";
+                            subject = "";
+                            foreach (var monday in ViewData["mondays"] as List<string>)
+                            {
+                                hour = monday.Split(' ')[0];
+                                subject = monday.Substring(16);
+                                if (hour == "13:15:00.000000" || hour == "13:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var tuesday in ViewData["tuesdays"] as List<string>)
+                            {
+                                hour = tuesday.Split(' ')[0];
+                                subject = tuesday.Substring(16);
+                                if (hour == "13:15:00.000000" || hour == "13:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var wednesday in ViewData["wednesdays"] as List<string>)
+                            {
+                                hour = wednesday.Split(' ')[0];
+                                subject = wednesday.Substring(16);
+                                if (hour == "13:15:00.000000" || hour == "13:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var thursday in ViewData["thursdays"] as List<string>)
+                            {
+                                hour = thursday.Split(' ')[0];
+                                subject = thursday.Substring(16);
+                                if (hour == "13:15:00.000000" || hour == "13:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var friday in ViewData["fridays"] as List<string>)
+                            {
+                                hour = friday.Split(' ')[0];
+                                subject = friday.Substring(16);
+                                if (hour == "13:15:00.000000" || hour == "13:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        @{ cond = false;                        //5
+                            hour = "";
+                            subject = "";
+                            foreach (var monday in ViewData["mondays"] as List<string>)
+                            {
+                                hour = monday.Split(' ')[0];
+                                subject = monday.Substring(16);
+                                if (hour == "15:00:00.000000" || hour == "15:15:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var tuesday in ViewData["tuesdays"] as List<string>)
+                            {
+                                hour = tuesday.Split(' ')[0];
+                                subject = tuesday.Substring(16);
+                                if (hour == "15:00:00.000000" || hour == "15:15:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var wednesday in ViewData["wednesdays"] as List<string>)
+                            {
+                                hour = wednesday.Split(' ')[0];
+                                subject = wednesday.Substring(16);
+                                if (hour == "15:00:00.000000" || hour == "15:15:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var thursday in ViewData["thursdays"] as List<string>)
+                            {
+                                hour = thursday.Split(' ')[0];
+                                subject = thursday.Substring(16);
+                                if (hour == "15:00:00.000000" || hour == "15:15:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var friday in ViewData["fridays"] as List<string>)
+                            {
+                                hour = friday.Split(' ')[0];
+                                subject = friday.Substring(16);
+                                if (hour == "15:00:00.000000" || hour == "15:15:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        @{ cond = false;                            //6
+                            hour = "";
+                            subject = "";
+                            foreach (var monday in ViewData["mondays"] as List<string>)
+                            {
+                                hour = monday.Split(' ')[0];
+                                subject = monday.Substring(16);
+                                if (hour == "16:45:00.000000" || hour == "16:15:00.000000" || hour == "16:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var tuesday in ViewData["tuesdays"] as List<string>)
+                            {
+                                hour = tuesday.Split(' ')[0];
+                                subject = tuesday.Substring(16);
+                                if (hour == "16:45:00.000000" || hour == "16:15:00.000000" || hour == "16:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var wednesday in ViewData["wednesdays"] as List<string>)
+                            {
+                                hour = wednesday.Split(' ')[0];
+                                subject = wednesday.Substring(16);
+                                if (hour == "16:45:00.000000" || hour == "16:15:00.000000" || hour == "16:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var thursday in ViewData["thursdays"] as List<string>)
+                            {
+                                hour = thursday.Split(' ')[0];
+                                subject = thursday.Substring(16);
+                                if (hour == "16:45:00.000000" || hour == "16:15:00.000000" || hour == "16:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var friday in ViewData["fridays"] as List<string>)
+                            {
+                                hour = friday.Split(' ')[0];
+                                subject = friday.Substring(16);
+                                if (hour == "16:45:00.000000" || hour == "16:15:00.000000" || hour == "16:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        @{ cond = false;                            //7
+                            hour = "";
+                            subject = "";
+                            foreach (var monday in ViewData["mondays"] as List<string>)
+                            {
+                                hour = monday.Split(' ')[0];
+                                subject = monday.Substring(16);
+                                if (hour == "18:00:00.000000" || hour == "18:15:00.000000" || hour == "18:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var tuesday in ViewData["tuesdays"] as List<string>)
+                            {
+                                hour = tuesday.Split(' ')[0];
+                                subject = tuesday.Substring(16);
+                                if (hour == "18:00:00.000000" || hour == "18:15:00.000000" || hour == "18:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var wednesday in ViewData["wednesdays"] as List<string>)
+                            {
+                                hour = wednesday.Split(' ')[0];
+                                subject = wednesday.Substring(16);
+                                if (hour == "18:00:00.000000" || hour == "18:15:00.000000" || hour == "18:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var thursday in ViewData["thursdays"] as List<string>)
+                            {
+                                hour = thursday.Split(' ')[0];
+                                subject = thursday.Substring(16);
+                                if (hour == "18:00:00.000000" || hour == "18:15:00.000000" || hour == "18:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                        @{ cond = false;
+                            hour = "";
+                            subject = "";
+                            foreach (var friday in ViewData["fridays"] as List<string>)
+                            {
+                                hour = friday.Split(' ')[0];
+                                subject = friday.Substring(16);
+                                if (hour == "18:00:00.000000" || hour == "18:15:00.000000" || hour == "18:30:00.000000")
+                                {
+                                    cond = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    cond = false;
+                                }
+                            }
+                            if (cond)
+                            {
+                                <td id="SubjectField">@subject</td>
+                            }
+                            else
+                            {
+                                <td id="SubjectField">1</td>
+                            }
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br />
+        <br />
+        <button id="save">Zapisz</button>
+        <div id="grview">
+            <ul class="form-style-1" id="manullist">
+                <li>
+                    <label>
+                        Aktualna grupa:
+                        <select name="field1" class="field-select" id="adjustingadd">
+                            @foreach (var sub in ViewData["groups"] as List<string>)
+                            {
+                                <option id="SubElement1" title="datafromquery">@sub</option>
+                            }
+                        </select>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script src="~/Scripts/calendarscipt.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+            integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+            integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
+
 </body>
 </html>

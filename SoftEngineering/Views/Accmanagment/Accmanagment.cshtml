@@ -9,24 +9,25 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="~/Style/main.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
     <title></title>
 </head>
 <body>
     <div class="main">
         <div id="header_nav">
             <ul>
-                <li><a href="./ManualTimetable">Plan Zajęć</a></li>
-                <li><a href="./AdminPanel">Panel Administracyjny</a></li>
+                <li>@Html.ActionLink("Plan Zajęć", "ManualTimetable", "Home")</li>
+                <li>@Html.ActionLink("Panel Administracyjny", "AdminPanel", "AdminPanel")</li>
                 <li><a class="active" href="#">Zarządzanie kontem</a></li>
-                <li><a href="./Contact">Kontakt</a></li>
-                <li class="logout"><a href="./LogOut">Wyloguj</a></li>
+                <li>@Html.ActionLink("Kontakt", "Contact", "Contact")</li>
+                <li class="logout">@Html.ActionLink("Wyloguj", "LogOut", "Home")</li>
             </ul>
         </div>
 
         <div class="content_wrapper">
             <button type="button" class="dropdownpanel">ZMIANA HASŁA</button>
             <div class="zawartosc">
-                @using (Html.BeginForm("Passchange", "Home", FormMethod.Post))
+                @using (Html.BeginForm("Passchange", "Log", FormMethod.Post))
                 {
                     <div class="PasswordCh">
                         <form>
@@ -90,7 +91,7 @@
 
         </div>
         <div id="footer">
-            <a class="footer_link" href="./Contact">Kontakt</a>
+            <span>@Html.ActionLink("Kontakt", "Contact", "Contact", null, new { id = "contact_link" })</span>
             <br />
             &copy; Nadnotecki Instytut UAM w Pile
             <br />

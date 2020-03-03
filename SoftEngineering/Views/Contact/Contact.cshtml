@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/Style/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="~/Style/css/main.css">
     <!--===============================================================================================-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> <!--Jquery-->
@@ -22,25 +22,27 @@
     <div class="main">
         <div id="header_nav">
             <ul>
-                <li><a href="./ManualTimetable">Plan Zajęć</a></li>
-                <li><a href="./AdminPanel">Panel Administracyjny</a></li>
-                <li><a href="./Accmanagment">Zarządzanie kontem</a></li>
+                <li>@Html.ActionLink("Plan Zajęć", "ManualTimetable", "Home")</li>
+                <li>@Html.ActionLink("Panel Administracyjny", "AdminPanel", "AdminPanel")</li>
+                <li>@Html.ActionLink("Zarządzanie kontem", "Accmanagment", "Accmanagment")</li>
                 <li><a class="active" href="#">Kontakt</a></li>
-                <li class="logout"><a href="./LogOut">Wyloguj</a></li>
+                <li class="logout">@Html.ActionLink("Wyloguj", "LogOut", "Home")</li>
             </ul>
         </div>
         <div class="contact_wrapper mg-bt30">
-            <form class="contact_form">
-                <span class="contact-form-title mg-bt12">
-                    Formularz Kontaktowy
-                </span>
-                @using (Html.BeginForm("ContactMail", "Home", FormMethod.Post))
-                {
+            @using (Html.BeginForm("ContactMail", "Contact", FormMethod.Post))
+            {
+                <span class="contact_form">
+
+                    <span class="contact-form-title mg-bt12">
+                        Formularz Kontaktowy
+                    </span>
+
                     <span class="txt1">
                         Imię:
                     </span>
                     <div class="wrap-input mg-bt12">
-                        @Html.TextBoxFor(model => model.firstname, new { @class = "input", @required = "required", @maxlength= "50" })
+                        @Html.TextBoxFor(model => model.firstname, new { @class = "input", @required = "required", @maxlength = "50" })
                         <span class="focus-input"></span>
                     </div>
 
@@ -49,7 +51,7 @@
                         Nazwisko:
                     </span>
                     <div class="wrap-input mg-bt12">
-                        @Html.TextBoxFor(model => model.lastname, new { @class = "input", @required = "required", @maxlength= "50" })
+                        @Html.TextBoxFor(model => model.lastname, new { @class = "input", @required = "required", @maxlength = "50" })
                         <span class="focus-input"></span>
                     </div>
 
@@ -58,7 +60,7 @@
                         Adres E-mail:
                     </span>
                     <div class="wrap-input mg-bt12">
-                        @Html.TextBoxFor(model => model.mailadress, new { @class = "input", @required = "required", @maxlength= "100"  })
+                        @Html.TextBoxFor(model => model.mailadress, new { @class = "input", @required = "required", @maxlength = "100" })
                         <span class="focus-input"></span>
                     </div>
 
@@ -66,7 +68,7 @@
                         Tytuł:
                     </span>
                     <div class="wrap-input mg-bt12">
-                        @Html.TextBoxFor(model => model.mailsubject, new { @class = "input", @required = "required", @maxlength= "100" })
+                        @Html.TextBoxFor(model => model.mailsubject, new { @class = "input", @required = "required", @maxlength = "100" })
                         <span class="focus-input"></span>
                     </div>
 
@@ -74,7 +76,7 @@
                         Treść:
                     </span>
                     <div class="wrap-input mg-bt12">
-                        @Html.TextAreaFor(model => model.mailtext, new { @class = "textarea", @placeholder = "Wpisz treść wiadomości...", @required = "required", @maxlength= "1000" })
+                        @Html.TextAreaFor(model => model.mailtext, new { @class = "textarea", @placeholder = "Wpisz treść wiadomości...", @required = "required", @maxlength = "1000" })
                         <span class="focus-input"></span>
                     </div>
                     <div class="container-contact-form-btn mg-tp30">
@@ -85,35 +87,36 @@
                             Prześlij
                         </button>
                     </div>
-                }
-            </form>
-        </div>
-        <div class="contact_info mg-bt30">
-            <span class="contact-form-title mg-bt12">
-                Dane Kontaktowe
-            </span>
 
-            <span class="txt4 mg-bt12">
-                Numer Kontaktowy: 123456789
-            </span>
-            <span class="txt4 mg-bt12">
-                Adres E-mail: pila&commat;amu.edu.pl
-            </span>
-            <span class="txt4 mg-bt12">
-                Adres: Nadnotecki Instytut UAM w Pile - ul. Kołobrzeska 15, 64-920 Piła
-            </span>
-            <span class="txt4">
-                Godziny pracy: 8:00 - 16:00
+                </span>
+            }
+            <span class="contact_info mg-bt30">
+                <span class="contact-form-title mg-bt12">
+                    Dane Kontaktowe
+                </span>
+
+                <span class="txt4 mg-bt12">
+                    Numer Kontaktowy: 123456789
+                </span>
+                <span class="txt4 mg-bt12">
+                    Adres E-mail: pila&commat;amu.edu.pl
+                </span>
+                <span class="txt4 mg-bt12">
+                    Adres: Nadnotecki Instytut UAM w Pile - ul. Kołobrzeska 15, 64-920 Piła
+                </span>
+                <span class="txt4">
+                    Godziny pracy: 8:00 - 16:00
+                </span>
             </span>
         </div>
     </div>
-        <div id="footer">
-            <a class="footer_link" href="./Contact">Kontakt</a>
-            <br />
-            &copy; Nadnotecki Instytut UAM w Pile
-            <br />
-            <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
-        </div>
+    <div id="footer">
+        <span>@Html.ActionLink("Kontakt", "Contact", "Contact", null, new { id = "contact_link" })</span>
+        <br />
+        &copy; Nadnotecki Instytut UAM w Pile
+        <br />
+        <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
+    </div>
     </div>
 </body>
 </html>

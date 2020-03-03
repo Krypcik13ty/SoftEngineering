@@ -1,0 +1,274 @@
+﻿@model SoftEngineering.Models.SubjectAdder
+@{
+    Layout = "~/Views/Shared/_Page_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Style/main.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+    <div class="main">
+        <div id="header_nav">
+            <ul>
+                <li>@Html.ActionLink("Plan Zajęć", "ManualTimetable", "Home")</li>
+                <li><a class="active" href="#">Panel Administracyjny</a></li>
+                <li>@Html.ActionLink("Zarządzanie kontem", "Accmanagment", "Accmanagment")</li>
+                <li>@Html.ActionLink("Kontakt", "Contact", "Contact")</li>
+                <li class="logout">@Html.ActionLink("Wyloguj", "LogOut", "Home")</li>
+            </ul>
+        </div>
+
+        <div class="content_wrapper">
+            <button type="button" class="dropdownpanel">DODAWANIE ZAJĘĆ</button>
+            <div class="zawartosc">
+                <div class="addSubject">
+                    @using (Html.BeginForm("SubjectAdd", "AdminPanel", FormMethod.Post))
+                    {
+                        <form>
+                            <ul class="form-style-1">
+                                <li>
+                                    <label>
+                                        Przedmiot:
+                                        @Html.TextBoxFor(model => model.NewSubject)
+                                    </label>
+                                </li>
+                                <li>
+                                    <br />
+                                    <label>
+                                        Wykładowca:
+                                        <select name="field1" class="field-select" id="adjusting2">
+                                            @foreach (var lec in ViewData["lecturers"] as List<string>)
+                                            {
+                                                <option value="teacher2">@lec</option>
+                                            }
+                                        </select>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="submit" value=" Zatwierdź " id="adjusting3" />
+                                </li>
+                            </ul>
+                        </form>
+                    }
+                </div>
+            </div>
+            <button type="button" class="dropdownpanel">ZARZĄDZANIE UŻYTKOWNIKAMI</button>
+            <div class="zawartosc">
+                <div class="addPermissions">
+                    <form>
+                        <ul class="form-style-1">
+                            <li>
+                                <label>
+                                    Wykładowca:
+                                    <select name="field2" class="field-select" id="adjusting4">
+                                        <option value="teacher1">Doktor Górnisiewicz</option>
+                                        <option value="teacher2">Profesor Kandulski</option>
+                                        <option value="teacher3">Profesor Małuch</option>
+                                        <option value="teacher4">Profesor Stach</option>
+                                        <option value="teacher5">Brak</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <br />
+                                    Student:
+                                    <select name="field2" class="field-select" id="adjusting4">
+                                        <option value="student1">Pan Stasiewicz</option>
+                                        <option value="student2">Pan Michałek</option>
+                                        <option value="student3">Pani Szczęsnowicz</option>
+                                        <option value="student4">Pani gita</option>
+                                        <option value="student5">Pan Sokół</option>
+                                        <option value="student6">Brak</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li>
+                                <br />
+                                <label>
+                                    Rodzaj uprawnienia:
+                                    <select name="field4" class="field-select" id="adjusting4">
+                                        <option value="teacher1">Wszystkie</option>
+                                        <option value="teacher2">Edycja</option>
+                                        <option value="teacher3">Odczyt</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="submit" value=" Zatwierdź " id="adjusting3"/>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <button type="button" class="dropdownpanel">EDYCJA ZAJĘĆ</button>
+            <div class="zawartosc">
+                <div class="editSchoolSubject">
+                    @using (Html.BeginForm("SubjectEdit", "AdminPanel", FormMethod.Post))
+                    {
+                    <form>
+
+                    <ul class="form-style-1">
+                        <li>
+                            <div class="edit-form-1">
+                                <label>
+                                    Wybierz wykładowcę:
+                                    <select name="Ch1" class="field-select" id="adjusting5">
+                                        @foreach (var lec in ViewData["lecturers"] as List<string>)
+                                        {
+                                            <option>@lec</option>
+                                        }
+                                    </select>
+                                </label>
+                                <label>
+                                    Wybierz przedmiot:
+                                    <select name="Ch2" class="field-select" id="adjusting5">
+                                        @foreach (var sub in ViewData["subjects_dictionary"] as List<string>)
+                                        {
+                                            <option value="subject">@sub</option>
+                                        }
+
+                                    </select>
+                                </label>
+                                <label>
+                                    Wybierz datę:
+                                    <input type="date" name="Ch3" class="field-select" id="adjusting5"
+                                           value="2019-12-24">
+                                </label>
+                                <label>
+                                    Wybierz salę:
+                                    <select name="Ch4" class="field-select" id="adjusting5">
+                                        @foreach (var cls in ViewData["classes"] as List<string>)
+                                        {
+                                            <option>@cls</option>
+                                        }
+                                    </select>
+                                </label>
+                                <label>
+                                    Wybierz godzinę:
+                                    <select name="Ch5" class="field-select" id="adjusting5">
+                                        @foreach (var hrs in ViewData["hours"] as List<string>)
+                                        {
+                                            <option>@hrs</option>
+                                        }
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="edit-form-1">
+                                <label>
+                                    Zamień wykładowcę na:
+                                    <select name="Change1" class="field-select" id="adjusting5">
+                                        @foreach (var lec in ViewData["lecturers"] as List<string>)
+                                        {
+                                            <option>@lec</option>
+                                        }
+                                    </select>
+                                </label>
+                                <label>
+                                    Zamień wybrany przedmiot na:
+                                    <select name="Change2" class="field-select" id="adjusting5">
+                                        @foreach (var sub in ViewData["subjects_dictionary"] as List<string>)
+                                        {
+                                            <option value="subject">@sub</option>
+                                        }
+
+                                    </select>
+                                </label>
+                                <label>
+                                    Zamień datę na:
+                                    <input type="date" name="Change3" class="field-select" id="adjusting5"
+                                           value="2019-12-24">
+                                </label>
+
+                                <label>
+                                    Zamień salę na:
+                                    <select name="Change4" class="field-select" id="adjusting5">
+                                        @foreach (var cls in ViewData["classes"] as List<string>)
+                                        {
+                                            <option>@cls</option>
+                                        }
+                                    </select>
+                                </label>
+                                <label>
+                                    Zamień godzinę na:
+                                    <select type="time" name="Change5" class="field-select" id="adjusting5">
+                                        @foreach (var hrs in ViewData["hours"] as List<string>)
+                                        {
+                                            <option value="teacher2">@hrs</option>
+                                        }
+                                    </select>
+                                </label>
+                            </div>
+                        </li>
+                        
+                        <li>
+                                <input type="submit" value=" Zatwierdź " id="adjusting3" />
+                        </li>
+                        
+                    </ul>
+                </form>
+                }
+                </div>
+            </div>
+            <button type="button" class="dropdownpanel">DODAJ POWIADOMIENIE</button>
+            <div class="zawartosc">
+                <div class="addMessage">
+                    <form>
+                        <ul class="form-style-1">
+                            <li>
+                                <label>
+                                    Wyślij do:<br />
+                                    <select name="field4" class="field-select" id="adjusting6">
+                                        <option value="teacher1">Doktor Górnisiewicz</option>
+                                        <option value="teacher2">Profesor Kandulski</option>
+                                        <option value="teacher3">Profesor Małuch</option>
+                                        <option value="teacher3">Profesor Stach</option>
+                                    </select>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    Treść wiadomości: <br /> <textarea name="message" style="width: 30%"></textarea>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="submit" value=" Wyślij " id="adjusting3" />
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <span>@Html.ActionLink("Kontakt", "Contact", "Contact", null, new { id = "contact_link" })</span>
+            <br />
+            &copy; Nadnotecki Instytut UAM w Pile
+            <br />
+            <a class="footer_link" href="https://pila.amu.edu.pl/">Witryna Nadnoteckiego Instytutu UAM w Pile</a>
+        </div>
+    </div>
+    <script>
+        var coll = document.getElementsByClassName("dropdownpanel");
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                for (var j = 0; j < coll.length; j++) {
+                    coll[j].classList.remove("aktywowanie");
+                    coll[j].nextElementSibling.style.display = "none";
+                }
+
+                this.classList.toggle("aktywowanie");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    </script>
+

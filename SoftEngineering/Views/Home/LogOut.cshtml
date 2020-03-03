@@ -7,6 +7,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
     <title></title>
 </head>
 <body>
@@ -14,9 +15,9 @@
         Zostałeś wylogowany.
     </div>
     <div id="logIn_again">
-        <a href="./index" class="login-form-btn">
-            Zaloguj ponownie
-        </a>
+        <button type="submit" id="logIn_again_button" class="login-form-btn">
+            @Html.ActionLink("Zaloguj ponownie", "index", "Log", new { Style = "color:white" })
+        </button>
     </div>
 
 </body>

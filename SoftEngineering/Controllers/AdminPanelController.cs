@@ -14,6 +14,11 @@ namespace SoftEngineering.Controllers
         DBConnection dbconnection = new DBConnection();
         public ActionResult AdminPanel()
         {
+            string Username = Session["username"] as string;
+            if (Username == null)
+            {
+                return Redirect("../Log/index");
+            }
             string lecturerquery = "SELECT Login AS lecturer FROM lecturers";
             string subjectQuery = "SELECT Subject FROM subjects_dictionary";
             string classesQuery = "SELECT ClassNR FROM classes";
@@ -36,6 +41,11 @@ namespace SoftEngineering.Controllers
         [HttpPost]
         public ActionResult SubjectAdd(SubjectAdder model)
         {
+            string Username = Session["username"] as string;
+            if (Username == null)
+            {
+                return Redirect("../Log/index");
+            }
             string subAdd = "INSERT INTO subjects_dictionary(Subject) VALUES ('" + model.NewSubject + "');";
             DBConnection dbconnection = new DBConnection();
             dbconnection.ExecuteQuery(subAdd);
@@ -62,6 +72,11 @@ namespace SoftEngineering.Controllers
         [HttpPost]
         public ActionResult SubjectEdit(SubEdit model)
         {
+            string Username = Session["username"] as string;
+            if (Username == null)
+            {
+                return Redirect("../Log/index");
+            }
             string subEdit = "UPDATE schedule SET Class=('" + model.Change4 + "'),Lecturer=('" + model.Change1 + "'),DateId=('" + model.Change3 + "')" +
                 "Where Class=('" + model.Ch4 + "') AND Lecturer=('" + model.Ch1 + "') AND DateId=('" + model.Ch3 + "');";
             DBConnection dbconnection = new DBConnection();

@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Windows;
 using SoftEngineering.Models;
-using System.Web.SessionState;
 
 namespace SoftEngineering.Controllers
 {
@@ -22,18 +21,16 @@ namespace SoftEngineering.Controllers
         {
             DBConnection dbconnection = new DBConnection();
             string[] array = dbconnection.connectToDB(follog(user.Username));
-            if (array[0] == null)
-            {
-                MessageBox.Show("couldn't get result from DB");
-                return View("index");
-            }
+
             if (user.Username == array[0])
             {
 
                 if (array[1] == user.Password)
                 {
-                    Session["Username"] = user.Username;
-                    return View("../Home/ManualTimetable");
+
+                    Session["username"] = user.Username;
+
+                    return Redirect("../Home/ManualTimetable");
                 }
                 MessageBox.Show("Incorrect username");
                 return View("index");

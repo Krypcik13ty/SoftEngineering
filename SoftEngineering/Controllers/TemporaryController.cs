@@ -20,12 +20,22 @@ namespace SoftEngineering.Controllers
         // GET: Temporary
         public ActionResult TemporaryView()
         {
+            string Username = Session["username"] as string;
+            if (Username == null)
+            {
+                return Redirect("../Log/index");
+            }
             GetTimer();
             return View();
         }
 
         public ActionResult sendMail()
         {
+            string Username = Session["username"] as string;
+            if (Username == null)
+            {
+                return Redirect("../Log/index");
+            }
             string host = "smtp.gmail.com";
             SmtpClient client = new SmtpClient(host, 587);
             client.Credentials = new NetworkCredential("21edqcds@gmail.com", "P@ssw0rd_");

@@ -15,12 +15,22 @@ namespace SoftEngineering.Controllers
         // GET: Contact
         public ActionResult Contact()
         {
+            string Username = Session["username"] as string;
+            if (Username == null)
+            {
+                return Redirect("../Log/index");
+            }
             return View();
         }
 
         [HttpPost]
         public ActionResult ContactMail(MailSender model)
         {
+            string Username = Session["username"] as string;
+            if (Username == null)
+            {
+                return Redirect("../Log/index");
+            }
             MailSender mailsender = new MailSender();
             mailsender.mailadress = model.mailadress;
             mailsender.mailtext = model.mailtext;

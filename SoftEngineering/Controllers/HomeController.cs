@@ -7,11 +7,14 @@ using System.Windows;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.SessionState;
 
 namespace SoftEngineering.Controllers
 {
     public class HomeController : Controller
     {
+
+
         string subjectquery = "SELECT Subject FROM SUBJECTS_DICTIONARY ";
         string grquery = "SELECT GroupName FROM groups ";
         string mondayquery = "select subjects_dictionary.Subject, CONVERT(schedule.Start_hour, varchar(255)) as hour from schedule inner join subjects_dictionary on schedule.Subject=subjects_dictionary.ID where schedule.DateId ='" + "2020-01-08'";
@@ -23,13 +26,20 @@ namespace SoftEngineering.Controllers
 
         // GET: Home
         //"08:00:00.000000 Plastyka dla Informatyków"
-        //"07.01.2020 00:00:00 08:15:00.000000 Plastyka dla Informatyków"
+        //"07.01.2020 00:00:0008:15:00.000000 Plastyka dla Informatyków"
+
 
         public ActionResult ManualTimetable()
         {
-            if (Session["Username"] != null)
+            string Username = Session["username"] as string;
+            if (Username == null)
             {
-                List<string> subjectList = new List<string>();
+                return Redirect("../Log/index");
+            }
+
+       
+
+            List<string> subjectList = new List<string>();
                 List<string> subjectsList = new List<string>();
                 List<string> grouplist = new List<string>();
                 List<string> dayList = new List<string>();
@@ -81,6 +91,7 @@ namespace SoftEngineering.Controllers
                 {
                     fridaysList.Add(hourList[i].ToString() + " " + subjectsList[i].ToString());
                 }
+            
                 //kazda lista przechowwuje zajecia z danego dnia
                 ViewData["mondays"] = mondaysList;
                 ViewData["tuesdays"] = tuesdaysList;
@@ -90,13 +101,10 @@ namespace SoftEngineering.Controllers
 
                 ViewData["subjects"] = subjectList;
                 ViewData["groups"] = grouplist;
+
                 return View();
             }
-            else
-            {
-                return View("LogOut");
-            }
-        }
+
         public ActionResult LogOut()
         {
             return View();

@@ -11,6 +11,11 @@ namespace SoftEngineering.Controllers
         // GET: Accmanagment
         public ActionResult Accmanagment()
         {
+            string Username = Session["username"] as string;
+            if (Username == null)
+            {
+                return Redirect("../Log/index");
+            }
             return View();
         }
     }

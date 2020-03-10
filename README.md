@@ -10,6 +10,7 @@ use scheduledb;
 CREATE TABLE ACCOUNTS(
 	Login varchar(25) NOT NULL,
 	Password varchar(24) NOT NULL,
+	Pesel BIGINT(11) NOT NULL UNIQUE,
 	Typ varchar(24) NOT NULL,
 	PRIMARY KEY (Login))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -69,6 +70,7 @@ CREATE TABLE LECTURERS(
 	Login varchar(25) NOT NULL,
 	Name varchar(50) NOT NULL,
 	Surname varchar(50) NOT NULL,
+	Pesel BIGINT(11) NOT NULL UNIQUE,
 	City varchar(50) NOT NULL,
 	Adress varchar(50) NOT NULL,
 	Building varchar(25) NOT NULL,
@@ -79,6 +81,7 @@ CREATE TABLE STUDENTS(
 	Login varchar(25) NOT NULL,
 	Name varchar(50) NOT NULL,
 	Surname varchar(50) NOT NULL,
+	Pesel BIGINT(11) NOT NULL UNIQUE,
 	City varchar(50) NOT NULL,
 	Adress varchar(50) NOT NULL,
 	Building varchar(25) NOT NULL,
@@ -193,12 +196,12 @@ INSERT INTO SUBJECTS_DICTIONARY(Subject)VALUES('Geografia dla Informatyków');
 INSERT INTO SUBJECTS_DICTIONARY(Subject)VALUES('Muzyka dla Informatyków');
 INSERT INTO SUBJECTS_DICTIONARY(Subject)VALUES('WF dla Informatyków');
 -- wprowadzenie usera do bazy
-INSERT INTO ACCOUNTS(Login,Password,Typ)VALUES('KGorn','skjhabdashi','wykladowca');
-INSERT INTO ACCOUNTS(Login,Password,Typ)VALUES('MKandul','hthtef','wykladowca');
-INSERT INTO ACCOUNTS(Login,Password,Typ)VALUES('AStach','skkjfwef','wykladowca');
-INSERT INTO ACCOUNTS(Login,Password,Typ)VALUES('KMaluch','uretwe','wykladowca');
-INSERT INTO ACCOUNTS(Login,Password,Typ)VALUES('student','djnsad','student');
-INSERT INTO ACCOUNTS(Login,Password,Typ)VALUES('student2','njin','student');
+INSERT INTO ACCOUNTS(Login,Pesel,Password,Typ)VALUES('KGorn','12345678901','skjhabdashi','wykladowca');
+INSERT INTO ACCOUNTS(Login,Pesel,Password,Typ)VALUES('MKandul','12345678903','hthtef','wykladowca');
+INSERT INTO ACCOUNTS(Login,Pesel,Password,Typ)VALUES('AStach','12345678904','skkjfwef','wykladowca');
+INSERT INTO ACCOUNTS(Login,Pesel,Password,Typ)VALUES('KMaluch','12345678905','uretwe','wykladowca');
+INSERT INTO ACCOUNTS(Login,Pesel,Password,Typ)VALUES('student','12345678906','djnsad','student');
+INSERT INTO ACCOUNTS(Login,Pesel,Password,Typ)VALUES('student2','12345678907','njin','student');
 -- wprowadzenie imienia i nazwiska danego użytkownika
 INSERT INTO ACCOUNTS_DICTIONARY (Name,Description)VALUES('student','Pierwszy Student');
 INSERT INTO ACCOUNTS_DICTIONARY (Name,Description)VALUES('student2','Drugi Student');
@@ -250,13 +253,13 @@ INSERT INTO GROUPS(GroupName) VALUES('IT3');
 INSERT INTO GROUPS(GroupName) VALUES('IT4');
 -- informacje o wykladowcach, przechowuje login, imie, nazwisko, przedmioty wykładowcy. Jeden wykładowca może mieć wiele rekordów, 
 -- zależy od tego ile przedmiotów prowadzi. jeżeli będzie sie tworzyło konto to login i hasło wykładowcy trzeba też wprowadzić to tabeli accounts, insert jest wyżej
-INSERT INTO LECTURERS(Login,Name,Surname,City,Adress,Building,Phone_Number)VALUES('KGorn','Krzysztof','Górnisiewicz','Poznań','ul.JakaśTam 10a','13','999888777');
-INSERT INTO LECTURERS(Login,Name,Surname,City,Adress,Building,Phone_Number)VALUES('MKandul','Maciej','Kandulski','Poznań','ul.GdzieśTam 2c','130','111222333');
-INSERT INTO LECTURERS(Login,Name,Surname,City,Adress,Building,Phone_Number)VALUES('AStach','Alfred','Stach','Poznań','ul.Szpitalna 14','1','246513289');
-INSERT INTO LECTURERS(Login,Name,Surname,City,Adress,Building,Phone_Number)VALUES('KMaluch','Kuba','Maluch','Piła','ul.Quadowska 11','1','482157953');
+INSERT INTO LECTURERS(Login,Name,Pesel,Surname,City,Adress,Building,Phone_Number)VALUES('KGorn','Krzysztof','12345678901','Górnisiewicz','Poznań','ul.JakaśTam 10a','13','999888777');
+INSERT INTO LECTURERS(Login,Name,Pesel,Surname,City,Adress,Building,Phone_Number)VALUES('MKandul','Maciej','12345678903','Kandulski','Poznań','ul.GdzieśTam 2c','130','111222333');
+INSERT INTO LECTURERS(Login,Name,Pesel,Surname,City,Adress,Building,Phone_Number)VALUES('AStach','Alfred','12345678904','Stach','Poznań','ul.Szpitalna 14','1','246513289');
+INSERT INTO LECTURERS(Login,Name,Pesel,Surname,City,Adress,Building,Phone_Number)VALUES('KMaluch','Kuba','12345678905','Maluch','Piła','ul.Quadowska 11','1','482157953');
 
-INSERT INTO STUDENTS(Login,Name,Surname,City,Adress,Building,Phone_Number)VALUES('student','Pierwszy','Student','Poznań','ul.Akademicka 11a','3','478954245');
-INSERT INTO STUDENTS(Login,Name,Surname,City,Adress,Building,Phone_Number)VALUES('student2','Drugi','Student','Poznań','ul.Uczelniana 5c','1','478975245');
+INSERT INTO STUDENTS(Login,Name,Pesel,Surname,City,Adress,Building,Phone_Number)VALUES('student','Pierwszy','12345678906','Student','Poznań','ul.Akademicka 11a','3','478954245');
+INSERT INTO STUDENTS(Login,Name,Pesel,Surname,City,Adress,Building,Phone_Number)VALUES('student2','Drugi','12345678907','Student','Poznań','ul.Uczelniana 5c','1','478975245');
 -- przypisanie studenta do grupy. login studenta i id grupy. jedens tudent moze być w kilku grupach
 INSERT INTO STUDENTS_MEMBERSHIPS(Student,Groups)VALUES('student','1');
 INSERT INTO STUDENTS_MEMBERSHIPS(Student,Groups)VALUES('student2','2');
@@ -351,6 +354,7 @@ INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VA
 INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-02-13','2','AStach','1.03','2','8:00','9:30');
 INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-02-13','3','MKandul','1.04','3','9:45','11:15');
 INSERT INTO SCHEDULE(DateId,Subject,Lecturer,Class,Groups,Start_hour,End_hour)VALUES('2020-02-13','4','AStach','1.05','4','9:45','11:15');
+
 ```          
 
 How to connect to DataBase:
